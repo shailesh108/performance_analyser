@@ -1,0 +1,19 @@
+<html>
+<body>
+<h1>Show Student Details</h1>
+<table>
+	<tr><td>Enrollment_no</td><td><%= @student.enrollment_no %></td></tr>
+	<tr><td>Password</td><td><%= @student.password%></td></tr>
+	<tr><td>First name</td><td><%= @student.first_name %></td></tr>
+	<tr><td>Middle name</td><td><%= @student.middle_name %></td></tr>
+	<tr><td>Last name</td> <td><%= @student.last_name %></td></tr>
+	<tr><td>Date of Birth</td><td><%= @student.date_of_birth %></td></tr>
+	<tr><td>Address</td><td><%= @student.address %></td></tr>
+	<tr><td>City</td><td><%= @student.city %></td></tr>
+	<tr><td>Contactno</td><td><%= @student.contactno %></td></tr>
+	<tr><td>Standard</td><td><%= @student.standard_id %></td></tr>
+	</table>
+</body>
+</html>
+<%= link_to 'Edit',edit_student_path(@student) %> 
+<%= link_to 'Back', students_path %>

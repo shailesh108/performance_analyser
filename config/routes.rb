@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post 'admins/login/:resource' => 'devise/sessions#create',as: :session
       delete '/logout' => 'devise/sessions#destroy', as: :destroy_admin_session
       get '/login' => 'devise/sessions#new', as: :new_admin_session
+      resources :students
     end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
