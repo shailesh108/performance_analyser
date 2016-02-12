@@ -1,17 +1,6 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-    root 'home#index'
-     devise_for :admins, :skip => [:sessions]
-     devise_scope :admin do
-      post 'admins/login/:resource' => 'devise/sessions#create',as: :session
-      delete '/logout' => 'devise/sessions#destroy', as: :destroy_admin_session
-      get '/login' => 'devise/sessions#new', as: :new_admin_session
-      resources :students
-    end
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-=======
   root 'home#index'
+  resources :students
 
     devise_for :admins,:skip => [:sessions]
     devise_scope :admin do
@@ -29,6 +18,4 @@ Rails.application.routes.draw do
     delete 'teacher/logout' => 'teachers/sessions#destroy', as: :destroy_teacher_session
     get 'teacher/login' => 'teachers/sessions#new', as: :new_teacher_session
   end
->>>>>>> teachermodel
-
 end
