@@ -1,0 +1,6 @@
+<% if admin_signed_in? %>
+  <h1>welcome Admin <%=current_admin.email%></h1>
+
+<%= link_to "Logout",  destroy_admin_session_path, :method => :delete   %>
+<%end%>
+

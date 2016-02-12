@@ -161,7 +161,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+<<<<<<< HEAD
   autoprefixer-rails
+=======
+>>>>>>> teachermodel
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
