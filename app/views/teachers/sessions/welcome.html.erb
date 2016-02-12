@@ -1,5 +1,6 @@
 <% if teacher_signed_in? %>
   <h1>welcome Teacher <%=current_teacher.email%></h1>
+<%= link_to "Add Student",  new_student_registration_path   %>
 
 <%= link_to "Logout",  destroy_teacher_session_path, :method => :delete   %>
 <%end%>
