@@ -39,8 +39,7 @@ class StudentsController < ApplicationController
       render:'new'
     end
   end
-
-  private
+  
   
   def params_arg
   params.require(:student).permit(:enrollment_no,:password,:password_confirmation,:first_name,:middle_name,:last_name,:date_of_birth,:address,:city,:contactno,:standard_id)

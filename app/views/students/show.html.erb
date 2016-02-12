@@ -1,7 +1,10 @@
+
 <html>
 <body>
+	<div class="col-sm-10 text-left">
+<div class="container">
 <h1>Show Student Details</h1>
-<table>
+<table class="table table-striped">
 	<tr><td>Enrollment_no</td><td><%= @student.enrollment_no %></td></tr>
 	<tr><td>Password</td><td><%= @student.password%></td></tr>
 	<tr><td>First name</td><td><%= @student.first_name %></td></tr>
@@ -13,6 +16,7 @@
 	<tr><td>Contactno</td><td><%= @student.contactno %></td></tr>
 	<tr><td>Standard</td><td><%= @student.standard_id %></td></tr>
 	</table>
+	<div>
 </body>
 </html>
 <%= link_to 'Edit',edit_student_path(@student) %> 
