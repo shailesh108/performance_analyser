@@ -1,3 +1,8 @@
+<% if teacher_signed_in? %>
+  <h1>welcome <%=current_teacher.email%></h1>
+  <%= link_to "Logout",  destroy_admin_session_path, :method => :delete   %>
+
+<%end%>
 <% if admin_signed_in? %>
   <h1>welcome <%=current_admin.email%></h1>
 
@@ -5,4 +10,6 @@
 <%else%>
 <h1> Sign In </h1>
 <%= link_to "Admin Login", new_admin_session_path%>
+<%= link_to "Teacher Login", new_teacher_session_path%>
+
 <%end%>
