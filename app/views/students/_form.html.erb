@@ -1,70 +1,111 @@
-<div class="col-sm-10 text-left">
 <%= form_for @student , class: "form-horizontal" do |f| %>
 <% if @student.errors.any? %>
-    <div id="error_explanation">
-      
-      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:
+    </div>
       <ul>
-      <% @student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+          <% @student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+     <% end %>
+     <%end%>
 
-      <%end%>
-  <div class="form-group">
-    <%= f.label :enrollment_no %><br>
-    <%= f.text_field :enrollment_no,class: "form-control"  , placeholder: "Enter Enrollment_no" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password %><br>
-    <%= f.password_field :password,class: "form-control"  , placeholder: "Enter Password" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :confirmation_password %><br>
-    <%= f.password_field :password_confirmation ,class: "form-control"  , placeholder: "Enter Confirmation_password"%>
-  </div>
+ <!--error...............-->
+
+   <div class="form-horizontal">
   
+    <div class="form-group">
+  <%= f.label :enrollment_no,class: "col-sm-2"%>
+     <div class="col-sm-6">
+  <%= f.text_field :enrollment_no,class: "form-control"  , placeholder: "Enter Enrollment_no" %>
+  </div>
+  </div>
+
   <div class="form-group">
-    <%= f.label :first_name %><br>
+    <%= f.label :first_name,class:"col-sm-2" %>
+     <div class="col-sm-6">
     <%= f.text_field :first_name, class: "form-control"  , placeholder: "Enter First_name" %>
   </div>
+</div>
+
   <div class="form-group">
-    <%= f.label :middle_name%><br>
+    <%= f.label :middle_name ,class:"col-sm-2"%>
+     <div class="col-sm-6">
     <%= f.text_field :middle_name ,class: "form-control"  , placeholder: "Enter Middle_name" %>
   </div>
+  </div>
+
   <div class="form-group">
-    <%= f.label :last_name%><br>
+    <%= f.label :last_name,class:"col-sm-2"%>
+     <div class="col-sm-6">
     <%= f.text_field :last_name ,class: "form-control"  , placeholder: "Enter Last_name" %>
   </div>
+  </div>
+
   <div class="form-group">
-    <%= f.label :date_of_birth%><br>
+    <%= f.label :date_of_birth,class:"col-sm-2"%>
+       <div class="col-sm-6">
      <%= f.date_select :date_of_birth ,class: "form-control"  , placeholder: "Enter Date_of_birth"%>
   </div>
+</div>
    
   <div class="form-group">
-    <%= f.label :address%><br>
+    <%= f.label :address,class:"col-sm-2"%>
+     <div class="col-sm-6">
     <%= f.text_area :address, class: "form-control"  , placeholder: "Enter Address"%>
   </div>
+</div>
+
   <div class="form-group">
-    <%= f.label :city%><br>
+    <%= f.label :city,class:"col-sm-2"%>
+     <div class="col-sm-6">
     <%= f.text_field :city ,class: "form-control"  , placeholder: "Enter City"%>
   </div>
+</div>
+
   <div class="form-group">
-    <%= f.label :contactno%><br>
+    <%= f.label :contactno,class:"col-sm-2"%>
+     <div class="col-sm-6">
     <%= f.telephone_field :contactno ,class: "form-control"  , placeholder: "Enter Contactno"%>
   </div>
-  <!--<div class="field">
-    <%= f.label :standard%><br>
-    <%= f.text_field :standard_id %>
-  </div> -->
+  </div>
+
+  
+
 
   <div class="form-group">
-   <%= f.label :standard_id %>
+   <%= f.label :standard_id,class:"col-sm-2"%>
+    <div class="col-sm-6">
 <%=f.select(:standard_id,options_for_select(Standard.pluck(:name))) %>
   </div>
+</div>
+
+  <div class="form-group">
+    <%= f.label :password,class: "col-sm-2"%>
+    <div class="col-sm-6">
+    <%= f.password_field :password,class: "form-control"  , placeholder: "Enter Password" %><br>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :confirmation_password,class:"col-sm-2"%>
+    <div class="col-sm-6">
+    <%= f.password_field :password_confirmation ,class: "form-control"  , placeholder: "Enter Confirmation_password"%>
+  </div>
+  </div>
+  
+  
 
   <div class="actions">
-    <%= f.submit %>
+     <div class="col-sm-6 text-center">
+    <%= f.submit class: "btn btn-primary"%>
+    <%= link_to students_path , class: "btn btn-primary" do%>
+    <i>cancle</i>
+      
+      <%end%>
   </div>
+</div>
 <% end %>
+</div>
 </div>
 </div>

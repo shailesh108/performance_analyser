@@ -19,5 +19,12 @@
 	<div>
 </body>
 </html>
-<%= link_to 'Edit',edit_student_path(@student) %> 
-<%= link_to 'Back', students_path %>
+
+
+<%= link_to edit_student_path(@student) , class: "btn btn-primary" do %>
+      <i>Edit</i>
+      <%end%>
+      <%= link_to students_path , class: "btn btn-primary" do %>
+      <i>Cancle</i>
+      <%end%>
+     

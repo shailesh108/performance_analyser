@@ -1,3 +1,11 @@
+<style>
+p.center
+{
+	margin-top: 140px;
+}
+</style>
+<p class="center">
+
 <% if admin_signed_in? %>
   <h1>welcome <%=current_admin.email%></h1>
 
@@ -14,9 +22,17 @@
 
 
 <%unless admin_signed_in? or teacher_signed_in?%>
+<div align="center">
 <h1> Sign In </h1>
-<%= link_to "Admin Login",  new_admin_session_path%>
-<%= link_to "Teacher Login",new_teacher_session_path%>
+<%= link_to new_admin_session_path , class: "btn btn-primary" do %>
+      <i>Admin Login</i>
+      <%end%>
+      <%= link_to new_teacher_session_path , class: "btn btn-primary" do %>
+      <i>Teacher Login</i>
+      <%end%>
 
 
+
+</div>
 <%end%>
+</p>
