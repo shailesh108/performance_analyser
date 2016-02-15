@@ -3,7 +3,6 @@ class StudentsController < ApplicationController
 	before_action :set_student, only: [:edit, :update, :destroy]
 
 	def edit
-
 	end
 
 
@@ -23,7 +22,7 @@ class StudentsController < ApplicationController
      	redirect_to list_student_path
    	end
    	def list 
-		 @student=Student.all
+		 @students=Student.all
 	end
 	
 
@@ -36,7 +35,6 @@ private
       params.require(:student).permit(:email,:password,:first_name,:middle_name,:last_name,:date_of_birth,:address,:city,:contactno,:standard_id)
     end
 
-	
 
 
 end

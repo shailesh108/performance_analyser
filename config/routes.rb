@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     delete 'student/logout' => 'students/sessions#destroy', as: :destroy_student_session
     get 'student/login' => 'students/sessions#new', as: :new_student_session
     get 'teacher/student/add'=>'students/registrations#new',as: :new_student_registration
-       post 'teacher/student/add/:resource'=>'students/registrations#create',as: :student_registration
+    post 'teacher/student/add/:resource'=>'students/registrations#create',as: :student_registration
     
   end
 end
