@@ -13,19 +13,19 @@ before_filter :configure_sign_up_params, only: [:create]
    end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+ #   def edit
+ #     super
+ #   end
 
-  # PUT /resource
-  # def update
-  #   super
-  # end
+ #  # PUT /resource
+ #   def update
+ #   super
+ # end
 
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
+ #  # DELETE /resource
+ #   def destroy
+ #     super
+ #   end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -62,6 +62,7 @@ before_filter :configure_sign_up_params, only: [:create]
     end
   # The path used after sign up.
    def after_sign_up_path_for(resource)
+      sign_out resource
       root_path
    end
 

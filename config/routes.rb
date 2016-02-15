@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
   root 'home#index'
-  resources :students
 
     devise_for :admins,:skip => [:sessions]
-    devise_scope :admin do
-  
+    devise_scope :admin do  
     get 'admin/welcome'=> 'admins/sessions#welcome'
     post 'admin/login/:resource' => 'admins/sessions#create',as: :session
     delete 'admin/logout' => 'admins/sessions#destroy', as: :destroy_admin_session
     get 'admin/login' => 'admins/sessions#new', as: :new_admin_session
-
-  
+    get 'admin/teacher/edit/:id'=>'teachers#edit' ,as: :edit_teacher
+    patch 'admin/teacher/update/:id'=>'teachers#update' ,as: :update_teacher
+    delete 'admin/teacher/delete/:id'=>'teachers#destroy' ,as: :delete_teacher
   end
 
   devise_for :teachers,:skip => [:sessions,:registrations]
@@ -21,6 +20,6 @@ Rails.application.routes.draw do
     get 'teacher/login' => 'teachers/sessions#new', as: :new_teacher_session
     get 'admin/teacher/add'=>'teachers/registrations#new',as: :new_teacher_registration
     post 'admin/teacher/add/:resource'=>'teachers/registrations#create',as: :registration
-  end
+   end
 
 end

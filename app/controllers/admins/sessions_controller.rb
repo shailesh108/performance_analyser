@@ -1,7 +1,7 @@
 class Admins::SessionsController < Devise::SessionsController
  
   def welcome
-    
+  @teachers=Teacher.all    
   end
 
   def destroy
