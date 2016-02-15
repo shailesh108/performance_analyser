@@ -1,3 +1,13 @@
+<% if @student.errors.any? %>
+    <div id="error_explanation">
+            <ul>
+        <%@student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>   
+    </div>
+
+<% end %>
 <div class="row">
 <div class="col-md-4 col-md-offset-4">
 <div class="login-panel panel panel-default">
@@ -32,7 +42,7 @@
   </div>
 
 <div class="form-group">
-    <%= f.text_field :date_of_birth,:class => "form-control datepicker",:placeholder => "Birth Date"%>
+    <%= f.date_field :date_of_birth,:class => "form-control datepicker",:placeholder => "Birth Date"%>
   </div>
 
   <div class="form-group">
