@@ -7,8 +7,6 @@
 <%= link_to "Logout",  destroy_admin_session_path, :method => :delete   %>
 <%end%>
 
-
-
 <% if teacher_signed_in? %>
   <h1>welcome <%=current_teacher.email%></h1>
 
@@ -19,6 +17,7 @@
 <%unless admin_signed_in? or teacher_signed_in?%>
 <div align="center">
 <h1> Sign In </h1>
+
 <%= link_to new_admin_session_path , class: "btn btn-primary" do %>
       <i>Admin Login</i>
       <%end%>
@@ -26,6 +25,7 @@
       <i>Teacher Login</i>
       <%end%>
 
+<%= link_to "Student Login",new_student_session_path%>
 
 
 </div>

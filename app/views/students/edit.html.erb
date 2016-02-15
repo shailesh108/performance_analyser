@@ -1,6 +1,62 @@
+<<<<<<< HEAD
 <div class="col-sm-12">
 <h1>Editing Student</h1>
 
 <%= render 'form' %>
 
 </div>
+=======
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="login-panel panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"> <%= @student.first_name.to_s.humanize %>
+          Details</h3>
+      </div>
+      <div class="panel-body">
+          <%= form_for @student,:url => update_student_path, :method=> "patch"  do |f| %>
+        <fieldset>
+          <div class="form-group">
+              <%= f.email_field :email,:class => "form-control",:placeholder => "E-Mail"%>
+          </div>
+          <div class="form-group">
+              <%= f.text_field :enrollment_no, autofocus: true ,:class => "form-control",:placeholder => "enrollment_no"%>
+          </div>
+          <div class="form-group">
+              <%= f.text_field :standard_id,:class => "form-control",:placeholder => "standard "%>
+          </div>
+          <div class="form-group">
+              <%= f.text_field :first_name,:class => "form-control",:placeholder => "First Name"%>
+          </div>
+          <div class="form-group">
+              <%= f.text_field :middle_name,:class => "form-control",:placeholder => "Middle Name"%>
+          </div>
+          <div class="form-group">
+              <%= f.text_field :last_name,:class => "form-control",:placeholder => "Last Name"%>
+          </div>
+          <div class="form-group">
+              <%= f.text_field :date_of_birth,:class => "form-control datepicker",:placeholder => "Birth Date"%>
+          </div>
+          <div class="form-group">
+              <%= f.password_field :password, autocomplete: "off",:class => "form-control",:placeholder => "Password" %>
+          </div>
+          <div class="form-group">
+                <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control",:placeholder => "Confirm Password"%>
+          </div>
+          <div class="form-group">
+                <%= f.text_area :address,:class => "form-control",:placeholder => "Address"%>
+          </div>
+          <div class="form-group">
+                <%= f.text_field :city,:class => "form-control",:placeholder => "City"%>
+          </div>
+          <div class="form-group">
+                <%= f.text_field :contactno,:class => "form-control",:placeholder => "Contact No"%>
+          </div>
+          <div class="actions">
+                <%= f.submit "Update student" ,:class => "btn btn-lg btn-success btn-block"  %>
+          </div>
+        </fieldset>
+
+<% end %>
+</div></div></div></div>
+>>>>>>> devise_for_student
