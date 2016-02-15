@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PerformanceAnalyser</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+	  <title>PerformanceAnalyser</title>
+	  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	 
+	</head>
+	<body>
 
-<%= render 'layouts/header'%>
-<%- flash.each do |name, msg| -%>
-	<div class="alert alert-info">
-	<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+		<%= render 'layouts/header'%>
+		<%- flash.each do |name, msg| -%>
+			<div class="alert alert-info">
+			<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+			</div>
+		<%- end -%>   
 
-	</div>
-<%- end -%>   
 
-<div class="container-fluid text-center">    
-  <div class="row content">
-<%= render 'layouts/sidebar'%>
-<%= yield %>
-</div>
-</div>
-
-</body>
+		<%= yield %>
+	</body>
 </html>
+
+

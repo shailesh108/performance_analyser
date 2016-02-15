@@ -1,10 +1,5 @@
-<style>
-p.center
-{
-	margin-top: 140px;
-}
-</style>
-<p class="center">
+
+<div class="vcenter">
 
 <% if admin_signed_in? %>
   <h1>welcome <%=current_admin.email%></h1>
@@ -35,4 +30,4 @@ p.center
 
 </div>
 <%end%>
-</p>
+</div>

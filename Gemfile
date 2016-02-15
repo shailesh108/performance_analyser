@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'ms-dropdown-rails'
 gem 'font-awesome-sass'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
