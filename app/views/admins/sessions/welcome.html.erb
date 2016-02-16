@@ -3,13 +3,6 @@
 
 <%= link_to "Logout",  destroy_admin_session_path, :method => :delete   %>
 <%= link_to "Add Teacher", new_teacher_registration_path%>
-
-<% @teachers.each do |teacher| %>
-      <tr>
-        <td><%= teacher.email %></td>
-        <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
-        <td><%= link_to 'Delete',delete_teacher_path(teacher), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+<%= link_to "list teachers", admin_teacher_list_path%>
 <%end%>
 
