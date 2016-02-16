@@ -3,6 +3,7 @@ class Student < ActiveRecord::Base
 	validates:enrollment_no,presence:true,uniqueness:true,length:{is:4}
 	validates:first_name,presence:true
 	validates:middle_name,presence:true
+	validates:email,presence:true
 	validates:last_name,presence:true
 	validates:date_of_birth,presence:true
 	validates:address,presence:true

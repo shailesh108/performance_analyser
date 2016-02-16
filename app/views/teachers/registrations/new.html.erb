@@ -1,73 +1,172 @@
+
+ <div class="container">
+
  <% if @teacher.errors.any? %>
     <div id="error_explanation">
-            <ul>
-        <%@teacher.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-        <% end %>
-        </ul>   
+           <div class="alert alert-danger">
+      <%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:
+    </div>
     </div>
 
 <% end %>
 
+
+<div class="form-horizontal">
 <div class="row">
-<div class="col-md-4 col-md-offset-4">
 <div class="login-panel panel panel-default">
 <div class="panel-heading">
-<h3 class="panel-title">Teacher Details</h3>
+      <h3 class="panel-title">Teacher Details</h3>
 </div>
 <div class="panel-body">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<fieldset>
+  <div class="col-md-6">
+    <div class="login-panel panel panel-default">
+      <div class="panel-body">
+        <div class="panel-form">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <fieldset>
+          <div class="form-group <%= 'has-error' if @teacher.errors.messages[:email].present? %>">
+             <%= f.label :Email,class: "col-sm-4"%>
+                <div class="col-sm-8">
+                 <%= f.email_field :email, autofocus: true ,:class => "form-control",:placeholder => "abc@gmail.com"%>
+                   <div class='font-color-red'>
+                      <% if @teacher.errors.messages[:email].present? %>
+                          <%="Please Enter Valid Email"%>
+                      <% end %>
+                    </div>
+                </div>
+          </div>
 
-  
-<div class="form-group">
-    <%= f.email_field :email, autofocus: true ,:class => "form-control",:placeholder => "E-mail"%>
+          <div class="form-group <%= 'has-error' if @teacher.errors.messages[:first_name].present? %>">
+            <%= f.label :First_Name,class: "col-sm-4"%>
+              <div class="col-sm-8">
+                <%= f.text_field :first_name,:class => "form-control",:placeholder => "First Name"%>
+                  <div class='font-color-red'>
+                    <% if @teacher.errors.messages[:first_name].present?%>
+                        <%="Please Enter First Name"%>
+                    <% end %>
+                  </div>
+             </div>
+          </div>
+
+      <div class="form-group <%= 'has-error' if @teacher.errors.messages[:middle_name].present? %>">
+         <%= f.label :Middle_Name,class: "col-sm-4"%>
+           <div class="col-sm-8">
+              <%= f.text_field :middle_name,:class => "form-control",:placeholder => "Middle Name"%>
+                <div class='font-color-red'>
+                  <% if @teacher.errors.messages[:middle_name].present?%>
+                     <%="Please Enter Middel Name"%>
+                  <% end %>
+                </div>
+          </div>
+      </div>
+
+      <div class="form-group <%= 'has-error' if @teacher.errors.messages[:last_name].present? %>">
+         <%= f.label :Last_Name,class: "col-sm-4"%>
+           <div class="col-sm-8">
+              <%= f.text_field :last_name,:class => "form-control",:placeholder => "Last Name"%>
+                <div class='font-color-red'>
+                   <% if @teacher.errors.messages[:last_name].present?%>
+                     <%="Please Enter Last Name"%>
+                  <% end %>
+               </div>
+            </div>
+        </div>
+
+      <div class="form-group <%= 'has-error' if @teacher.errors.messages[:dateofbirth].present? %>">
+         <%= f.label :Birth_date,class: "col-sm-4"%>
+           <div class="col-sm-8">
+            <%= f.date_field :dateofbirth,:class => "form-control",:placeholder => "dd/mm/yy"%>
+             <div class='font-color-red'>
+              <% if @teacher.errors.messages[:dateofbirth].present?%>
+                <%="Please Enter Birth Date"%>
+              <% end %>
+           </div>
+         </div>
+       </div>
+      </fieldset>
+    </div>
   </div>
+</div>
+</div>
 
-<div class="form-group">
-    <%= f.password_field :password, autocomplete: "off",:class => "form-control",:placeholder => "Password" %>
+
+<div class="col-md-6">
+  <div class="login-panel panel panel-default">
+    <div class="panel-body">
+      <div class="panel-form">
+      <fieldset>
+        <div class="form-group <%= 'has-error' if @teacher.errors.messages[:address].present? %>">
+              <%= f.label :Address,class: "col-sm-4"%>
+                <div class="col-sm-8">
+                  <%= f.text_area :address,:class => "form-control",:placeholder => "Address"%>
+                    <div class='font-color-red'>
+                      <% if @teacher.errors.messages[:address].present?%>
+                          <%="Please Enter Address"%>
+                      <% end %>
+                    </div>
+               </div>
+           </div>
+
+          <div class="form-group <%= 'has-error' if @teacher.errors.messages[:city].present? %>">
+            <%= f.label :City,class: "col-sm-4"%>
+              <div class="col-sm-8">
+                <%= f.text_field :city,:class => "form-control",:placeholder => "City"%>
+                  <div class='font-color-red'>
+                      <% if @teacher.errors.messages[:city].present?%>
+                          <%="Please Enter city"%>
+                       <% end %>
+                   </div>
+              </div>
+         </div>
+
+        <div class="form-group <%= 'has-error' if @teacher.errors.messages[:contactno].present? %>">
+          <%= f.label :Contact_No,class: "col-sm-4"%>
+            <div class="col-sm-8">
+              <%= f.text_field :contactno,:class => "form-control",:placeholder => "Contact No"%>
+                <div class='font-color-red'>
+                  <% if @teacher.errors.messages[:contactno].present?%>
+                    <%="Please Enter First Name"%>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group <%= 'has-error' if @teacher.errors.messages[:password].present? %>">
+          <%= f.label :Password,class: "col-sm-4"%>
+            <div class="col-sm-8">
+              <%= f.password_field :password, autocomplete: "off",:class => "form-control",:placeholder => "Maximum 8 character" %>
+                <div class='font-color-red'>
+                  <% if @teacher.errors.messages[:password].present?%>
+                     <%="Please Enter Password"%>
+                <% end %>
+                </div>
+            </div>
+        </div>
+
+    <div class="form-group <%= 'has-error' if @teacher.errors.messages[:password_confirmation].present? %>">
+       <%= f.label :Confirm_Password,class: "col-sm-4"%>
+         <div class="col-sm-8">
+          <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control",:placeholder => "Repeat Password"%>
+            <div class='font-color-red'>
+              <% if @teacher.errors.messages[:password_confirmation].present?%>
+                <%="Please Enter Valid Password"%>
+              <% end %>
+            </div>
+        </div>
+      </div>
+     </div>
   </div>
-
-<div class="form-group">
-    <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control",:placeholder => "Confirm Password"%>
-  </div>
-
-<div class="form-group">
-    <%= f.text_field :first_name,:class => "form-control",:placeholder => "First Name"%>
-  </div>
-
-<div class="form-group">
-    <%= f.text_field :middle_name,:class => "form-control",:placeholder => "Middle Name"%>
-  </div>
-
-<div class="form-group">
-    <%= f.text_field :last_name,:class => "form-control",:placeholder => "Last Name"%>
-  </div>
-
-<div class="form-group">
-      <%= f.date_field :dateofbirth,:class => "form-control",:placeholder => "Birth Date"%>
-  </div>
-
-
-<div class="form-group">
-    <%= f.text_area :address,:class => "form-control",:placeholder => "Address"%>
-  </div>
-
-<div class="form-group">
-    <%= f.text_field :city,:class => "form-control",:placeholder => "City"%>
-  </div>
-
-<div class="form-group">
-    <%= f.text_field :contactno,:class => "form-control",:placeholder => "Contact No"%>
-  </div>
+</div>
+</div>
+</div>
+</div>
 
 <div class="actions">
-    <%= f.submit "Add Teacher" ,:class => "btn btn-lg btn-success btn-block"  %>
-  </div>
-  </fieldset>
+    <%= f.submit "Add Teacher" ,:class => "btn btn-success"  %>
+ </div>
+ </fieldset>
 
 <% end %>
-</div>
 </div>
 </div>
 </div>
