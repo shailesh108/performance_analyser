@@ -14,4 +14,12 @@ class Student < ActiveRecord::Base
   def email_required?
   false
 	end
+
+	def self.search(search)
+  if search
+    where('name LIKE ?', "%#{search}%")
+  else
+    all
+  end
+end
 end

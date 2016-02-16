@@ -1,54 +1,199 @@
+<div class="row" style=" margin-left: 15px;">
 
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <div class="login-panel panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"> <%= @student.first_name.to_s.humanize %>
-          Details</h3>
+<%= form_for @student, :url => update_student_path,:method => "patch" do |f| %>
+
+<% if @student.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:
+    </div>
+     
+     <%end%>
+   <div class="form-horizontal">
+    <div class="row">
+
+  <div class="col-md-6">
+   <div class="form-group">
+<%= f.label :email,class: "col-sm-4"%>
+     <div class="col-sm-6">
+  <%= f.text_field :email,class: "form-control"  , placeholder: "Enter Email ID" %>
+  <div class='font-color-red'>
+      <% if @student.errors.messages[:email].empty?
+      else
+        %>
+      <%="Enter Email ID"%>
+      <% end %>
+    </div>
+ </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :Enrollment_no,class:"col-sm-4" %>
+     <div class="col-sm-6">
+    <%= f.text_field :enrollment_no, class: "form-control"  , placeholder: "Enter First name" %>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:enrollment_no].empty?
+      else
+        %>
+      <%="Please Enter Enrollmnet_no"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :Standard,class:"col-sm-4" %>
+     <div class="col-sm-6">
+    <%= f.text_field :standard_id, class: "form-control"  , placeholder: "Enter First name" %>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:standard_id].empty?
+      else
+        %>
+      <%="Please Enter Enrollmnet_no"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+  <div class="form-group">
+    <%= f.label :first_name,class:"col-sm-4" %>
+     <div class="col-sm-6">
+    <%= f.text_field :first_name, class: "form-control"  , placeholder: "Enter First name" %>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:first_name].empty?
+      else
+        %>
+      <%="Please Enter Your First name"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+  <div class="form-group">
+    <%= f.label :middle_name ,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.text_field :middle_name ,class: "form-control"  , placeholder: "Enter Middle name" %>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:middle_name].empty?
+      else
+        %>
+      <%="Please Enter Your Middle name"%>
+      <% end %>
+    </div>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :last_name,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.text_field :last_name ,class: "form-control"  , placeholder: "Enter Last name" %>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:last_name].empty?
+      else
+        %>
+      <%="Please Enter Your Last name"%>
+      <% end %>
+    </div>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :date_of_birth,class:"col-sm-4"%>
+       <div class="col-sm-6">
+     <%= f.date_field :date_of_birth ,class: "form-control"  , placeholder: "Enter Date of Birth"%>
+      <div class='font-color-red'>
+      <% if @student.errors.messages[:date_of_birth].empty?
+      else
+        %>
+      <%="Please Enter Your date of birth "%>
+      <% end %>
+    </div>
+  </div>
+</div>
+   
+  <div class="form-group">
+    <%= f.label :address,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.text_area :address, class: "form-control"  , placeholder: "Enter Address"%>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:address].empty?
+      else
+        %>
+      <%="Please Enter Your Address"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
+  <div class="col-md-6">
+  <div class="form-group">
+    <%= f.label :city,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.text_field :city ,class: "form-control"  , placeholder: "Enter City"%>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:city].empty?
+      else
+        %>
+      <%="Please Enter Your City"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+  <div class="form-group">
+    <%= f.label :contactno,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.telephone_field :contactno ,class: "form-control"  , placeholder: "Enter Contact no."%>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:first_name].empty?
+      else
+        %>
+      <%="Contact number should be of 10 characters and can't be blank"%>
+      <% end %>
+    </div>
+  </div>
+  </div>
+
+ 
+  <div class="form-group">
+    <%= f.label :password,class: "col-sm-4"%>
+    <div class="col-sm-6">
+    <%= f.password_field :password,class: "form-control"  , placeholder: "Enter Password" %>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:password].empty?      
+      else
+      %>
+        <%="Please Enter Your Password"%>
+      <%end %>
+    </div>
+
       </div>
-      <div class="panel-body">
-          <%= form_for @student,:url => update_student_path, :method=> "patch"  do |f| %>
-        <fieldset>
-          <div class="form-group">
-              <%= f.email_field :email,:class => "form-control",:placeholder => "E-Mail"%>
-          </div>
-          <div class="form-group">
-              <%= f.text_field :enrollment_no, autofocus: true ,:class => "form-control",:placeholder => "enrollment_no"%>
-          </div>
-          <div class="form-group">
-              <%= f.text_field :standard_id,:class => "form-control",:placeholder => "standard "%>
-          </div>
-          <div class="form-group">
-              <%= f.text_field :first_name,:class => "form-control",:placeholder => "First Name"%>
-          </div>
-          <div class="form-group">
-              <%= f.text_field :middle_name,:class => "form-control",:placeholder => "Middle Name"%>
-          </div>
-          <div class="form-group">
-              <%= f.text_field :last_name,:class => "form-control",:placeholder => "Last Name"%>
-          </div>
-          <div class="form-group">
-              <%= f.text_field :date_of_birth,:class => "form-control datepicker",:placeholder => "Birth Date"%>
-          </div>
-          <div class="form-group">
-              <%= f.password_field :password, autocomplete: "off",:class => "form-control",:placeholder => "Password" %>
-          </div>
-          <div class="form-group">
-                <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control",:placeholder => "Confirm Password"%>
-          </div>
-          <div class="form-group">
-                <%= f.text_area :address,:class => "form-control",:placeholder => "Address"%>
-          </div>
-          <div class="form-group">
-                <%= f.text_field :city,:class => "form-control",:placeholder => "City"%>
-          </div>
-          <div class="form-group">
-                <%= f.text_field :contactno,:class => "form-control",:placeholder => "Contact No"%>
-          </div>
-          <div class="actions">
-                <%= f.submit "Update student" ,:class => "btn btn-lg btn-success btn-block"  %>
-          </div>
-        </fieldset>
+  </div>
 
+  <div class="form-group">
+    <%= f.label :confirmation_password,class:"col-sm-4"%>
+    <div class="col-sm-6">
+    <%= f.password_field :password_confirmation ,class: "form-control"  , placeholder: "Enter Confirmation password"%>
+     <div class='font-color-red'>
+      <% if @student.errors.messages[:password].empty?
+        else
+        %>
+      <%="Please Enter Confirmation password"%>
+      <% end %>
+    </div>
+  </div>
+  </div>
+</div>
+  
+  </div>
+
+  <div class="actions">
+     <div class="col-sm-12 text-center">
+     <%= f.submit "Update",:class => "btn btn-success"%>
+    <%= link_to "Cancel",list_student_path, class: "btn btn-danger"%>
+  </div>
+</div>
 <% end %>
-</div></div></div></div>
+</div>
