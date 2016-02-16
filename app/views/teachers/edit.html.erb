@@ -34,7 +34,7 @@
    <%= f.email_field :email, autofocus: true ,:class => "form-control",:placeholder => "abc@gmail.com"%>
   <div class='font-color-red'>
       <% if @teacher.errors.messages[:email].present? %>
-      <%="Please Enter Valid Email"%>
+      <%="Please enter valid email"%>
       <% end %>
     </div>
  </div>
@@ -46,7 +46,7 @@
     <%= f.text_field :first_name,:class => "form-control",:placeholder => "First Name"%>
     <div class='font-color-red'>
       <% if @teacher.errors.messages[:first_name].present?%>
-      <%="Please Enter First Name"%>
+      <%="Please enter first name"%>
       <% end %>
     </div>
  </div>
@@ -58,7 +58,7 @@
     <%= f.text_field :middle_name,:class => "form-control",:placeholder => "Middle Name"%>
      <div class='font-color-red'>
       <% if @teacher.errors.messages[:middle_name].present?%>
-      <%="Please Enter Middel Name"%>
+      <%="Please enter middle name"%>
       <% end %>
     </div>
  </div>
@@ -70,7 +70,7 @@
     <%= f.text_field :last_name,:class => "form-control",:placeholder => "Last Name"%>
      <div class='font-color-red'>
       <% if @teacher.errors.messages[:last_name].present?%>
-      <%="Please Enter Last Name"%>
+      <%="Please enter last name"%>
       <% end %>
     </div>
  </div>
@@ -82,7 +82,7 @@
       <%= f.date_field :dateofbirth,:class => "form-control",:placeholder => "dd/mm/yy"%>
        <div class='font-color-red'>
       <% if @teacher.errors.messages[:dateofbirth].present?%>
-      <%="Please Enter Birth Date"%>
+      <%="Please enter birth date"%>
       <% end %>
     </div>
  </div>
@@ -107,7 +107,7 @@
     <%= f.text_area :address,:class => "form-control",:placeholder => "Address"%>
      <div class='font-color-red'>
       <% if @teacher.errors.messages[:address].present?%>
-      <%="Please Enter Address"%>
+      <%="Please enter address"%>
       <% end %>
     </div>
  </div>
@@ -119,7 +119,7 @@
     <%= f.text_field :city,:class => "form-control",:placeholder => "City"%>
      <div class='font-color-red'>
       <% if @teacher.errors.messages[:city].present? %>
-      <%="Please Enter city"%>
+      <%="Please enter city"%>
       <% end %>
     </div>
  </div>
@@ -143,7 +143,7 @@
     <%= f.password_field :password, autocomplete: "off",:class => "form-control",:placeholder => "Maximum 8 character" %>
      <div class='font-color-red'>
       <% if @teacher.errors.messages[:password].present? %>
-      <%="Please Enter Password"%>
+      <%="Please enter password"%>
       <% end %>
     </div>
  </div>
@@ -155,14 +155,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control",:placeholder => "Repeat Password"%>
     <div class='font-color-red'>
       <% if @teacher.errors.messages[:password_confirmation].present? %>
-      <%="Please Enter Valid Password"%>
+      <%="Please enter valid password"%>
       <% end %>
     </div>
  </div>
   </div>
   </div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -173,6 +171,9 @@
   </fieldset>
 
 <% end %>
+</div>
+</div>
+
 </div>
 </div>
 </div>
