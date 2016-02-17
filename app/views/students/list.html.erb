@@ -1,3 +1,5 @@
+<div class="container">
+<div class="row">
 <div class="col-sm-12">
 <h1>Listing Student</h1>
  <div class="table-responsive">
@@ -31,12 +33,9 @@
   <td><%= student.address %></td>
   <td><%= student.city %></td>
   <td><%= student.contactno %></td>
-<<<<<<< HEAD
   <td><%= student.standard_id %></td>
 
-=======
  
->>>>>>> Pagination_of_Student
       <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe, edit_student_path(student) %>
          </td>
       
@@ -51,10 +50,9 @@
  <%= will_paginate @students, renderer: BootstrapPagination::Rails,class: "pull-right"%>
 
 <br><%= link_to "New Student", new_student_registration_path , class: "btn btn-success" %>
-<<<<<<< HEAD
    
 </div>
 
-=======
 </div>
->>>>>>> Pagination_of_Student
+</div>
+</div>

@@ -31,7 +31,7 @@ private
     end
 
  def teacher_params
-      params.require(:teacher).permit(:email,:password,:first_name,:middle_name,:last_name,:dateofbirth,:address,:city,:contactno)
+      params.require(:teacher).permit(:email,:password,:password_confirmation,:first_name,:middle_name,:last_name,:dateofbirth,:address,:city,:contactno)
     end
 
 end
