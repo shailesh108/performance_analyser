@@ -3,16 +3,18 @@ class TeachersController < ApplicationController
 	before_action :set_teacher, only: [:edit, :update, :destroy]
 
 	def edit
-
 	end
 
+  def list
+   @teachers=Teacher.paginate(:page => params[:page], :per_page => 1)  
+  end
 
 	def update
 		
 		if @teacher.update(teacher_params)
-    	  	redirect_to admin_welcome_path
+    	  	redirect_to admin_teacher_list_path
     	  else
-    	  	redirect_to admin_welcome_path
+    	  	redirect_to admin_teacher_list_path
       	end
 
 	end
@@ -20,7 +22,7 @@ class TeachersController < ApplicationController
 
 	def destroy
     @teacher.destroy
-     	redirect_to admin_welcome_path
+     	redirect_to admin_teacher_list_path
    	end
 
 private

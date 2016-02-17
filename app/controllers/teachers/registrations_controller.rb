@@ -63,7 +63,7 @@ before_filter :configure_sign_up_params, only: [:create]
   # The path used after sign up.
    def after_sign_up_path_for(resource)
       sign_out resource
-      root_path
+      admin_teacher_list_path
    end
 
   # The path used after sign up for inactive accounts.

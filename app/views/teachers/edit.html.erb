@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
  <% if @teacher.errors.any? %>
     <div id="error_explanation">
@@ -35,10 +36,40 @@
   <div class='font-color-red'>
       <% if @teacher.errors.messages[:email].present? %>
       <%="Please enter valid email"%>
+=======
+<% if @teacher.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <%= pluralize(@teacher.errors.count, "error") %> prohibited this student from being saved:
+    </div>
+     
+     <%end%>
+
+
+<div class="row">
+   <div class="form-horizontal">
+
+
+<%= form_for @teacher, :url => update_teacher_path,:method => "patch" do |f| %>
+
+
+
+  <div class="col-md-6">
+   <div class="form-group">
+<%= f.label :email,class: "col-sm-4"%>
+     <div class="col-sm-6">
+  <%= f.text_field :email,class: "form-control"  , placeholder: "Enter Email ID" %>
+  <div class='font-color-red'>
+      <% if @teacher.errors.messages[:email].empty?
+      else
+        %>
+      <%="Enter Email ID"%>
+>>>>>>> Teacher_Design
       <% end %>
     </div>
  </div>
 </div>
+<<<<<<< HEAD
 
 <div class="form-group <%= 'has-error' if @teacher.errors.messages[:first_name].present? %>">
   <%= f.label :First_Name,class: "col-sm-4"%>
@@ -74,8 +105,81 @@
       <% end %>
     </div>
  </div>
+=======
+
+  <div class="form-group">
+    <%= f.label :first_name,class:"col-sm-4" %>
+     <div class="col-sm-6">
+    <%= f.text_field :first_name, class: "form-control"  , placeholder: "Enter First name" %>
+     <div class='font-color-red'>
+      <% if @teacher.errors.messages[:first_name].empty?
+      else
+        %>
+      <%="Please Enter Your First name"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+  <div class="form-group">
+    <%= f.label :middle_name ,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.text_field :middle_name ,class: "form-control"  , placeholder: "Enter Middle name" %>
+     <div class='font-color-red'>
+      <% if @teacher.errors.messages[:middle_name].empty?
+      else
+        %>
+      <%="Please Enter Your Middle name"%>
+      <% end %>
+    </div>
+  </div>
   </div>
 
+  <div class="form-group">
+    <%= f.label :last_name,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.text_field :last_name ,class: "form-control"  , placeholder: "Enter Last name" %>
+     <div class='font-color-red'>
+      <% if @teacher.errors.messages[:last_name].empty?
+      else
+        %>
+      <%="Please Enter Your Last name"%>
+      <% end %>
+    </div>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :date_of_birth,class:"col-sm-4"%>
+       <div class="col-sm-6">
+     <%= f.date_select :dateofbirth ,class: "form-control"  , placeholder: "Enter Date of Birth"%>
+      <div class='font-color-red'>
+      <% if @teacher.errors.messages[:dateofbirth].empty?
+      else
+        %>
+      <%="Please Enter Your date of birth "%>
+      <% end %>
+    </div>
+  </div>
+</div>
+  
+  <div class="form-group">
+    <%= f.label :address,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.text_area :address, class: "form-control"  , placeholder: "Enter Address"%>
+     <div class='font-color-red'>
+      <% if @teacher.errors.messages[:address].empty?
+      else
+        %>
+      <%="Please Enter Your Address"%>
+      <% end %>
+    </div>
+>>>>>>> Teacher_Design
+  </div>
+</div>
+</div>
+
+<<<<<<< HEAD
 <div class="form-group <%= 'has-error' if @teacher.errors.messages[:first_name].present? %>">
    <%= f.label :Birth_date,class: "col-sm-4"%>
      <div class="col-sm-8">
@@ -86,8 +190,24 @@
       <% end %>
     </div>
  </div>
+=======
+  <div class="col-md-6">
+  <div class="form-group">
+    <%= f.label :city,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.text_field :city ,class: "form-control"  , placeholder: "Enter City"%>
+     <div class='font-color-red'>
+      <% if @teacher.errors.messages[:city].empty?
+      else
+        %>
+      <%="Please Enter Your City"%>
+      <% end %>
+    </div>
+>>>>>>> Teacher_Design
   </div>
+</div>
 
+<<<<<<< HEAD
 </fieldset>
 </div>
 </div>
@@ -111,8 +231,36 @@
       <% end %>
     </div>
  </div>
+=======
+  <div class="form-group">
+    <%= f.label :contactno,class:"col-sm-4"%>
+     <div class="col-sm-6">
+    <%= f.telephone_field :contactno ,class: "form-control"  , placeholder: "Enter Contact no."%>
+     <div class='font-color-red'>
+      <% if @teacher.errors.messages[:first_name].empty?
+      else
+        %>
+      <%="Contact number should be of 10 characters and can't be blank"%>
+      <% end %>
+    </div>
+>>>>>>> Teacher_Design
+  </div>
   </div>
 
+ 
+  <div class="form-group">
+    <%= f.label :password,class: "col-sm-4"%>
+    <div class="col-sm-6">
+    <%= f.password_field :password,class: "form-control"  , placeholder: "Enter Password" %>
+     <div class='font-color-red'>
+      <% if @teacher.errors.messages[:password].empty?
+      else
+        %>
+      <%="Please Enter Your Password"%>
+      <% end %>
+    </div>
+
+<<<<<<< HEAD
 <div class="form-group <%= 'has-error' if @teacher.errors.messages[:city].present? %>">
    <%= f.label :City,class: "col-sm-4"%>
      <div class="col-sm-8">
@@ -167,13 +315,43 @@
 <div class="actions">
     <%= f.submit "Update",:class => "btn btn-success "%>
     <%= link_to "Back",admin_welcome_path,:class=>"btn btn-success"%>
+=======
+      </div>
   </div>
-  </fieldset>
 
+  <div class="form-group">
+    <%= f.label :confirmation_password,class:"col-sm-4"%>
+    <div class="col-sm-6">
+    <%= f.password_field :password_confirmation ,class: "form-control"  , placeholder: "Enter Confirmation password"%>
+     <div class='font-color-red'>
+      <% if @teacher.errors.messages[:first_name].empty?
+      else
+        %>
+      <%="Please Enter Confirmation password"%>
+      <% end %>
+    </div>
+  </div>
+  </div>
+
+>>>>>>> Teacher_Design
+  </div>
+  
+  </div>
+
+<<<<<<< HEAD
 <% end %>
 </div>
 </div>
 
 </div>
 </div>
+=======
+  <div class="actions">
+     <div class="col-sm-12 text-center">
+     <%= f.submit "Update",:class => "btn btn-success"%>
+    <%= link_to "Cancel",admin_teacher_list_path, class: "btn btn-danger"%>
+  
+    <% end %>
+  </div>
+>>>>>>> Teacher_Design
 </div>
