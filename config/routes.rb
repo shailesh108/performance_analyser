@@ -1,6 +1,7 @@
+
 Rails.application.routes.draw do
   root 'home#index'
-     
+
     devise_for :admins,:skip => [:sessions]
     devise_scope :admin do  
     get 'admin/welcome'=> 'admins/sessions#welcome'
@@ -30,7 +31,6 @@ Rails.application.routes.draw do
 
    devise_for :students,:skip => [:sessions,:registrations]
     devise_scope :student do
-    get 'student/welcome'=> 'students/sessions#welcome'
     post 'student/login/:resource' => 'students/sessions#create',as: :student_session
     delete 'student/logout' => 'students/sessions#destroy', as: :destroy_student_session
     get 'student/login' => 'students/sessions#new', as: :new_student_session
@@ -38,4 +38,6 @@ Rails.application.routes.draw do
     post 'teacher/student/add/:resource'=>'students/registrations#create',as: :student_registration
     
   end
+  get 'student/welcome'=> 'students#welcome'
+
 end
