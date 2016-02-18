@@ -8,7 +8,5 @@ class Teacher < ActiveRecord::Base
 	validates:dateofbirth,presence:true
 	validates:address,presence:true
 	validates:city,presence:true
-	validates:password,presence: true,confirmation: true
-	validates:password_confirmation,presence:true
 	validates:contactno,presence:true,numericality:{only_integer:true}
 end

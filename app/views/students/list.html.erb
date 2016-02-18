@@ -33,13 +33,13 @@
   <td><%= student.address %></td>
   <td><%= student.city %></td>
   <td><%= student.contactno %></td>
-  <td><%= student.standard_id %></td>
-
  
+ <td><%= link_to '<i class="glyphicon glyphicon-user" title="View"></i>'.html_safe, show_student_path(student)%>
+          </td>
+  
       <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe, edit_student_path(student) %>
          </td>
-      
-      <td><%= link_to ' <i class="glyphicon glyphicon-remove" title="delete"></i>'.html_safe, delete_student_path(student),method: :delete,data: {confirm: 'Are you sure?'} %>
+    <td><%= link_to ' <i class="glyphicon glyphicon-remove" title="delete"></i>'.html_safe, delete_student_path(student),method: :delete,data: {confirm: 'Are you sure?'} %>
      
      </td>
        
@@ -49,7 +49,7 @@
 </table>
  <%= will_paginate @students, renderer: BootstrapPagination::Rails,class: "pull-right"%>
 
-<br><%= link_to "New Student", new_student_registration_path , class: "btn btn-success" %>
+<br><%= link_to "New Student", new_students_path , class: "btn btn-success" %>
    
 </div>
 

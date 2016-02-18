@@ -1,10 +1,6 @@
 class Teachers::SessionsController < Devise::SessionsController
  layout 'login_layout'
 
-def welcome
-
-end
-
 def create
   super
 end

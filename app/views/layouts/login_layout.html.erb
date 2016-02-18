@@ -5,13 +5,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-	<%- flash.each do |name, msg| -%>
-	<div class="alert alert-danger">
-	 <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-	</div>
-	<%end%>   
+<body >
+<div class="container">
+	 
 	<%= yield %>
 	</body>
 </html>
