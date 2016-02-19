@@ -1,6 +1,5 @@
 class Student < ActiveRecord::Base
 	belongs_to:standard
-	
 	#validates:enrollment_no,presence:true,uniqueness:true
 	validates:first_name,presence:true
 	validates:middle_name,presence:true
