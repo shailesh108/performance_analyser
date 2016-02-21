@@ -1,0 +1,11 @@
+<div class="container">
+	<div class>
+<% if admin_signed_in? %>
+  <h1>welcome Admin <%=current_admin.email%></h1>
+
+<%= link_to "Logout",  destroy_admin_session_path, :method => :delete   %>
+<%= link_to "Add Teacher",  new_teacher_path %>
+<%= link_to "list teachers",list_teachers_path%>
+<%end%>
+</div>
+

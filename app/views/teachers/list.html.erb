@@ -1,0 +1,55 @@
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<h1>Listing Teachers</h1>
+
+<div class="table-responsive">
+  <table id="teachers" border="2" class="table table-striped table-bordered table-hover" >
+  <thead>
+       <tr>
+    <th>Email ID</th>
+     <th>First name</th>
+     <th>Middle name</th>
+     <th>Last name</th>
+     <th>Gender</th>
+     <th>Date of Birth</th>
+     <th>Address</th>
+     <th>City</th>
+     <th>Contactno</th>
+     <th colspan="3">Action</th>
+     </tr> </thead>
+    <tbody>
+    <% @teachers.each do |teacher| %>
+      <tr><td><%= teacher.email%></td>
+  <td><%= teacher.first_name %></td>
+    <td><%= teacher.middle_name %></td>
+    <td><%= teacher.last_name %></td>
+    <td><%= teacher.gender %></td>
+  <td><%= teacher.dateofbirth.strftime("%d-%m-%Y")%></td>
+  <td><%= teacher.address %></td>
+  <td><%= teacher.city %></td>
+  <td><%= teacher.contactno %></td>
+
+
+ <td><%= link_to '<i class="glyphicon glyphicon-user" title="View"></i>'.html_safe,teacher_path(teacher)%>
+          </td>
+  
+    <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe,edit_teacher_path(teacher)%></td>   
+      <td><%= link_to ' <i class="glyphicon glyphicon-remove" title="delete"></i>'.html_safe, teacher_path(teacher),method: :delete,data: {confirm: 'Are you sure?'} %>
+     
+     </td>
+       
+</tr>
+    <% end %>
+  </tbody>
+</table>
+   
+</div>
+
+     <%= will_paginate @teachers, renderer: BootstrapPagination::Rails,class: "pull-right"%>
+   
+<br><%= link_to "New Teacher", new_teacher_path , class: "btn btn-success" %>
+
+</div>
+</div>
+</div>

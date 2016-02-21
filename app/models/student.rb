@@ -1,6 +1,5 @@
 class Student < ActiveRecord::Base
 	belongs_to:standard
-	validates:enrollment_no,presence:true,uniqueness:true,length:{is:4}
 	validates:first_name,presence:true
 	validates:middle_name,presence:true
 	validates:last_name,presence:true
@@ -9,9 +8,19 @@ class Student < ActiveRecord::Base
 	validates:city,presence:true
 	validates:contactno,presence:true,numericality:{only_integer:true}
 	validates:standard_id,presence:true
-	
-  devise :database_authenticatable, :registerable,:trackable, :validatable, :authentication_keys=>[:enrollment_no]
+  
+
+  devise :database_authenticatable, :trackable, :validatable, :authentication_keys=>[:enrollment_no]
   def email_required?
   false
 	end
+
+
+has_attached_file :avatar, :styles => {:original => "150x150"},
+                  :path => ":rails_root/public/avatars/students/:styles/:basename.:extension"
+
+validates_attachment_presence :avatar
+validates_attachment_size :avatar, :less_than => 300.kilobytes
+validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
+  
 end

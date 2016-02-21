@@ -1,16 +1,11 @@
 class Students::SessionsController < Devise::SessionsController
+ layout 'login_layout'
 before_filter :configure_sign_in_params, only: [:create]
-   
-  # GET /resource/sign_in
+ # GET /resource/sign_in
   def new
      super
    end
-   def welcome
-    
-  end
 
-
-  # POST /resource/sign_in
    def create
      super
    end

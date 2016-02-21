@@ -1,0 +1,91 @@
+<div class="container">
+<h1>Teacher Profile</h1>
+<div class="row">
+              <div class="col-sm-3">
+                <div class="panel widget light-widget panel-bd-top">
+                  <div class="panel-heading no-title"> </div>
+                  <div class="panel-body">
+                    <div class="text-center"> <%= image_tag("/avatars/teachers/originals/"+@teacher.avatar_file_name)%></div>      
+                    <h2 class="font-semibold mgbt-xs-5">Name: <%=@teacher.first_name%></h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-9">
+                <div class="tabs widget">
+  					<ul class="nav nav-tabs widget">
+    						<li class="active"> <a data-toggle="tab" href="#profile-tab"> Profile <span class="menu-active"></span> </a></li>
+    				</ul>
+  				<div class="tab-content">
+    				<div id="profile-tab" class="tab-pane active">
+      					<div class="pd-20">
+      						<h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="icon-user mgr-10 profile-icon"></i> ABOUT</h3>
+					        <div class="row">
+					          <div class="col-sm-6">
+					            <div class="row mgbt-xs-0">
+					              <label class="col-xs-5 control-label">First Name:</label>
+					              <div class="col-xs-7 controls"><%=@teacher.first_name%></div>
+					              <!-- col-sm-10 --> 
+					            </div>
+					          </div>
+					          <div class="col-sm-6">
+					            <div class="row mgbt-xs-0">
+					              <label class="col-xs-5 control-label">Last Name:</label>
+					              <div class="col-xs-7 controls"><%=@teacher.last_name%></div>
+					              <!-- col-sm-10 --> 
+					            </div>
+					          </div>
+					          <div class="col-sm-6">
+					            <div class="row mgbt-xs-0">
+					              <label class="col-xs-5 control-label">Middle Name:</label>
+					              <div class="col-xs-7 controls"><%=@teacher.middle_name%></div>
+					              <!-- col-sm-10 --> 
+					            </div>
+					          </div>
+					          <div class="col-sm-6">
+					            <div class="row mgbt-xs-0">
+					              <label class="col-xs-5 control-label">Email:</label>
+					              <div class="col-xs-7 controls"><%=@teacher.email%></div>
+					              <!-- col-sm-10 --> 
+					            </div>
+					          </div>
+					          <div class="col-sm-6">
+					            <div class="row mgbt-xs-0">
+					              <label class="col-xs-5 control-label">City:</label>
+					              <div class="col-xs-7 controls"><%=@teacher.city%></div>
+					              <!-- col-sm-10 --> 
+					            </div>
+					          </div>
+
+					          <div class="col-sm-6">
+					            <div class="row mgbt-xs-0">
+					              <label class="col-xs-5 control-label">Gender:</label>
+					              <div class="col-xs-7 controls"><%=@teacher.gender%></div>
+					              <!-- col-sm-10 --> 
+					            </div>
+					          </div>
+
+					          <div class="col-sm-6">
+					            <div class="row mgbt-xs-0">
+					              <label class="col-xs-5 control-label">Address:</label>
+					              <div class="col-xs-7 controls"><%=@teacher.address%></div>
+					              <!-- col-sm-10 --> 
+					            </div>
+					          </div>
+					          <div class="col-sm-6">
+					            <div class="row mgbt-xs-0">
+					              <label class="col-xs-5 control-label">Birthday:</label>
+					              <div class="col-xs-7 controls"><%=@teacher.dateofbirth.strftime("%d-%m-%Y")%></div>
+					              <!-- col-sm-10 --> 
+					            </div>
+					          </div>
+					          
+					          <div class="col-sm-6">
+					            <div class="row mgbt-xs-0">
+					              <label class="col-xs-5 control-label">Phone:</label>
+					              <div class="col-xs-7 controls"><%=@teacher.contactno%></div>
+					              <!-- col-sm-10 --> 
+					            </div>
+					          </div>
+					        </div>
+
+</div>
