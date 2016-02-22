@@ -1,8 +1,6 @@
     
 Rails.application.routes.draw do
   root 'home#index'
-resource :students
-resource :teachers
     devise_for :admins,:skip => [:sessions]
     devise_scope :admin do  
     get 'admin/welcome'=> 'admins/sessions#welcome'
