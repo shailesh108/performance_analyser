@@ -17,5 +17,12 @@ validates_attachment_presence :avatar
 validates_attachment_size :avatar, :less_than => 300.kilobytes
 validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
 
+before_post_process :rename_avatar
+
+private
+  def rename_avatar
+    extension = File.extname(avatar_file_name).downcase
+    self.avatar.instance_write(:file_name, "#{first_name}#{last_name}#{extension}")
+  end
 
 end

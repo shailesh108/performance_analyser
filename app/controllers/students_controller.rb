@@ -16,9 +16,8 @@ class StudentsController < ApplicationController
 
 	def create
    @student=Student.new(student_params)
-	 if @student.avatar_file_name.present?
-     rename_avatar
-   end
+
+ 
    if @student.save
    
       no=Time.now.year.to_s+@student.standard_id.to_s+("0".*(4-@student.id.to_s.length))+@student.id.to_s
@@ -64,11 +63,4 @@ private
       params.require(:student).permit(:enrollment_no,:password,:email,:first_name,:middle_name,:last_name,:date_of_birth,:address,:city,:contactno,:standard_id,:gender,:avatar)
     end
   
-  def rename_avatar
- 
-    ext = File.extname(@student.avatar_file_name).downcase.to_s
-    @student.avatar_file_name = "#{@student.first_name}#{@student.last_name}#{ext}"
-
-  end
-
 end

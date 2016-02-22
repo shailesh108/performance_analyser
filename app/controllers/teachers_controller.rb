@@ -18,7 +18,6 @@ class TeachersController < ApplicationController
   end
 
 	def update
-		
 		if @teacher.update(teacher_params)
  	  	 redirect_to list_teachers_path
  	  else
@@ -29,10 +28,6 @@ class TeachersController < ApplicationController
 
   def create
     @teacher=Teacher.new(teacher_params)
-   if @teacher.avatar_file_name.present?
-     rename_avatar
-   end    
-	
   if @teacher.save
       redirect_to list_teachers_path
     else
@@ -56,11 +51,6 @@ private
 
  def teacher_params
       params.require(:teacher).permit(:email,:password,:password_confirmation,:first_name,:middle_name,:last_name,:dateofbirth,:address,:city,:contactno,:gender,:avatar)
-  end
-
-  def rename_avatar
-    ext = File.extname(@teacher.avatar_file_name).downcase
-    @teacher.avatar_file_name = "#{@teacher.first_name}#{@teacher.last_name}#{ext}"
   end
 
 end
