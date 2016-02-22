@@ -1,0 +1,91 @@
+<div class="container">
+  <% if @test.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%=pluralize(@test.errors.count, "error") %> prohibited this test from being saved:
+      </div>
+    </div>
+    <% end %>
+
+      <div class="form-horizontal">
+        <div class="row">
+          <div class="login-panel panel panel-default">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">Add Tests</h3>
+            </div>
+            <div class="panel-body">
+
+              <%=form_for @test  do |f| %>
+                <fieldset>
+
+                  <div class="form-group <%= 'has-error' if @test.errors.messages[:test_name].present? %>">
+                    <%=f .label :Test_name,class: "col-sm-4"%>
+                      <div class="col-sm-8">
+                        <%=f .text_field :test_name,class: "form-control" , placeholder: "Enter Test_name" %>
+                          <div class='text-danger'>
+                            <% if @test.errors.messages[:test_name].present? %>
+                              <%=@test.errors.full_messages_for(:test_name).first%>
+                                <% end %>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group <%= 'has-error' if @test.errors.messages[:test_datetime].present? %>">
+                    <%=f .label :Test_Datetime,class: "col-sm-4"%>
+                      <div class="col-sm-8">
+                        <%=f .text_field :test_datetime,class: "form-control" , placeholder: "Enter Test_DateTime" %>
+                          <div class='text-danger'>
+                            <% if @test.errors.messages[:test_datetime].present? %>
+                              <%=@test.errors.full_messages_for(:test_datetime).first%>
+                                <% end %>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group <%= 'has-error' if @test.errors.messages[:total_time].present? %>">
+                    <%=f .label :Time,class: "col-sm-4"%>
+                      <div class="col-sm-8">
+                        <%=f .text_field :total_time,class: "form-control" , placeholder: "Enter Test_Time" %>
+                          <div class='text-danger'>
+                            <% if @test.errors.messages[:total_time].present? %>
+                              <%=@test.errors.full_messages_for(:total_time).first%>
+                                <% end %>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group <%= 'has-error' if @test.errors.messages[:no_of_questions].present? %>">
+                    <%=f .label :TotalQuestion,class: "col-sm-4"%>
+                      <div class="col-sm-8">
+                        <%=f .text_field :no_of_questions,class: "form-control" , placeholder: "Enter No_oF_Question" %>
+                          <div class='text-danger'>
+                            <% if @test.errors.messages[:no_of_questions].present? %>
+                              <%=@test.errors.full_messages_for(:no_of_questions).first%>
+                                <% end %>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group <%= 'has-error' if @test.errors.messages[:status].present? %>">
+                    <%=f .label :Test_status,class: "col-sm-4"%>
+                      <div class="col-sm-8">
+                        <%=f .text_field :status,class: "form-control" , placeholder: "Enter Test_status" %>
+                          <div class='text-danger'>
+                            <% if @test.errors.messages[:status].present? %>
+                              <%=@test.errors.full_messages_for(:status).first%>
+                                <% end %>
+                          </div>
+                      </div>
+                  </div>
+                  
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="col-sm-12 text-center">
+
+          <%=f .submit "Add Test" ,:class=> "btn btn-success " %>
+
+        </div>
+      </div>
+      <% end %>

@@ -1,8 +1,13 @@
     
 Rails.application.routes.draw do
+  
   root 'home#index'
 resource :students
-resource :teachers
+resource :teachers 
+  resources :tests 
+    resources :questions 
+
+
     devise_for :admins,:skip => [:sessions]
     devise_scope :admin do  
     get 'admin/welcome'=> 'admins/sessions#welcome'
@@ -28,6 +33,7 @@ resource :teachers
         get 'teacher/student/show/:id'=>'students#show',as: :show_student
         patch 'teacher/student/edit/:id'=>'students#update',as: :update_student
         delete 'teacher/student/delete/:id'=>'students#destroy',as: :delete_student
+       
  
     end
 

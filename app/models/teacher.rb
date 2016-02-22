@@ -1,4 +1,8 @@
 class Teacher < ActiveRecord::Base
+
+has_many :teacher_standard_subjects
+has_many :tests
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,:trackable, :validatable,:registerable
