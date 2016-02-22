@@ -1,5 +1,6 @@
 class Teacher < ActiveRecord::Base
 
+
 has_many :teacher_standard_subjects
 has_many :tests
 
@@ -13,4 +14,7 @@ has_many :tests
 	validates:address,presence:true
 	validates:city,presence:true
 	validates:contactno,presence:true,numericality:{only_integer:true}
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  
 end
