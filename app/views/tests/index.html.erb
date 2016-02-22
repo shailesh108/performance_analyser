@@ -7,7 +7,7 @@
 			<%[que.option1,que.option2,que.option3,que.option4].each do |student|%>
 			<%=student%>
 
-			<%= radio_button_tag 'student',student %><br>
+			<%= radio_button_tag "student_#{que.id}",student %><br>
 
 
   		<% end %>
