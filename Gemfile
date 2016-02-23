@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'font-awesome-sass'
 gem 'devise'
+gem 'will_paginate-bootstrap'
+gem "paperclip"
+gem 'bootstrap-datepicker-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
@@ -22,6 +26,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+
+gem 'bootstrap-sass'
+
+gem 'autoprefixer-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
