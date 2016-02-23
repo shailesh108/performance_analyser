@@ -5,52 +5,53 @@ class TeachersController < ApplicationController
 
   def welcome
   end
-	
+
   def edit
-	end
-  
+  end
+
   def new
     @teacher=Teacher.new
   end
 
   def list
-   @teachers=Teacher.paginate(:page => params[:page], :per_page => 5)  
+    @teachers=Teacher.paginate(:page => params[:page], :per_page => 5)  
   end
 
-	def update
-		if @teacher.update(teacher_params)
- 	  	 redirect_to list_teachers_path
- 	  else
-  	  	render :edit
-   	end
+  def update
+    if @teacher.update(teacher_params)
+      redirect_to list_teachers_path
+    else
+      render :edit
+    end
 
   end
 
   def create
     @teacher=Teacher.new(teacher_params)
-  if @teacher.save
+    if @teacher.save
       redirect_to list_teachers_path
     else
       render :new
     end
   end
 
-	def destroy
+  def destroy
     @teacher.destroy
-     	redirect_to list_teachers_path
-   	end
-
-    def show
+    redirect_to list_teachers_path
   end
 
-private
-
- def set_teacher
-      @teacher = Teacher.find(params[:id])
+  def show
+    @avatar_path=("/avatars/teachers/originals/"+@teacher.avatar_file_name)
   end
 
- def teacher_params
-      params.require(:teacher).permit(:email,:password,:password_confirmation,:first_name,:middle_name,:last_name,:dateofbirth,:address,:city,:contactno,:gender,:avatar)
+  private
+
+  def set_teacher
+    @teacher = Teacher.find(params[:id])
+  end
+
+  def teacher_params
+    params.require(:teacher).permit(:email,:password,:password_confirmation,:first_name,:middle_name,:last_name,:dateofbirth,:address,:city,:contactno,:gender,:avatar)
   end
 
 end
