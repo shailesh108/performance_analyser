@@ -1,77 +1,42 @@
-<<<<<<< HEAD
-
 <div class="vcenter">
-<div class="row">
-<div class="col-md-4 col-md-offset-4">
-<div class="login-panel panel panel-default">
-
-<div class="panel-heading">
-<h3 class="panel-title">Teacher Login</h3>
-</div>
-
-<div class="panel-body">
-<%= render 'layouts/loginerror'%>
-
-<%= form_for(resource, as: resource_name, url: teacher_session_path(resource_name)) do |f| %>
- <fieldset>
-   <% if @teacher.errors.any? %>
-    <div id="error_explanation">
-           <div class="alert alert-danger">
-      <%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="login-panel panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Teacher Login</h3> </div>
+        <div class="panel-body">
+          <%=render 'layouts/loginerror'%>
+            <%=form_for(resource, as: resource_name, url: teacher_session_path(resource_name)) do |f| %>
+              <fieldset>
+                <% if @teacher.errors.any? %>
+                  <div id="error_explanation">
+                    <div class="alert alert-danger">
+                      <%=p luralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved: </div>
+                  </div>
+                  <% end %>
+                    <div class="form-group <%= 'has-error' if @teacher.errors.messages[:email].present? %>">
+                      <%=f .email_field :email, autofocus: true,:class=> "form-control",:placeholder => "abc@gmail.com" %>
+                        <div class='font-color-red'>
+                          <% if @teacher.errors.messages[:email].present? %>
+                            <%="Please Enter valid Email" %>
+                              <% end %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <%=f .password_field :password, autocomplete: "off",:class=> "form-control",:placeholder => "Password" %>
+                        <div class='font-color-red'>
+                          <% if @teacher.errors.messages[:password].present? %>
+                            <%="Please Enter Valid Password" %>
+                              <% end %>
+                        </div>
+                    </div>
+                    <div class="actions">
+                      <%=f .submit "Log in",:class=> "btn btn-lg btn-success btn-block" %> </div>
+              </fieldset>
+              <% end %>
+        </div>
+      </div>
     </div>
-    </div>
-    <% end %>
-
-  <div class="form-group <%= 'has-error' if @teacher.errors.messages[:email].present? %>">
-    <%= f.email_field :email, autofocus: true,:class => "form-control",:placeholder => "abc@gmail.com" %>
-      <div class='font-color-red'>
-      <% if @teacher.errors.messages[:email].present? %>
-      <%="Please Enter valid Email"%>
-      <% end %>
-    </div>
   </div>
-
-  <div class="form-group">
-    <%= f.password_field :password, autocomplete: "off",:class => "form-control",:placeholder => "Password" %>
-      <div class='font-color-red'>
-      <% if @teacher.errors.messages[:password].present? %>
-      <%="Please Enter Valid Password"%>
-      <% end %>
-    </div>
-  </div>
-
- 
-  <div class="actions">
-    <%= f.submit "Log in",:class => "btn btn-lg btn-success btn-block" %>
-  </div>
-
-</fieldset>
-<% end %>
-
 </div>
 </div>
-</div>                   
-</div>
-</div>
-</div>
-=======
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: teacher_session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
->>>>>>> develop

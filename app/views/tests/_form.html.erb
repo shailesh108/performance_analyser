@@ -1,25 +1,18 @@
 <div class="container">
   <% if @test.errors.any? %>
     <div id="error_explanation">
-      <div class="alert alert-danger">
-        <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <%=pluralize(@test.errors.count, "error") %> prohibited this test from being saved:
-      </div>
+      <div class="alert alert-danger"> <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%=pluralize(@test.errors.count, "error") %> prohibited this test from being saved: </div>
     </div>
     <% end %>
-
       <div class="form-horizontal">
         <div class="row">
           <div class="login-panel panel panel-default">
-
             <div class="panel-heading">
-              <h3 class="panel-title">Add Tests</h3>
-            </div>
+              <h3 class="panel-title">Add Tests</h3> </div>
             <div class="panel-body">
-
-              <%=form_for @test  do |f| %>
+              <%=form_for @test do |f| %>
                 <fieldset>
-
                   <div class="form-group <%= 'has-error' if @test.errors.messages[:test_name].present? %>">
                     <%=f .label :Test_name,class: "col-sm-4"%>
                       <div class="col-sm-8">
@@ -75,17 +68,12 @@
                           </div>
                       </div>
                   </div>
-                  
             </div>
           </div>
         </div>
       </div>
-
       <div class="actions">
         <div class="col-sm-12 text-center">
-
-          <%=f .submit "Add Test" ,:class=> "btn btn-success " %>
-
-        </div>
+          <%=f .submit "Add Test" ,:class=> "btn btn-success " %> </div>
       </div>
       <% end %>

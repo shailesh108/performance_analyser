@@ -1,196 +1,146 @@
-<%= form_for @student , class: "form-horizontal" do |f| %>
-<% if @student.errors.any? %>
-  <div id="error_explanation">
-    <div class="alert alert-danger">
-      <%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:
-    </div>
-     
-     <%end%>
- <!--error...............-->
-
-   <div class="form-horizontal">
-    <div class="row">
-
-  <div class="col-md-6">
-   <div class="form-group">
-<%= f.label :enrollment_no,class: "col-sm-4"%>
-     <div class="col-sm-6">
-  <%= f.text_field :enrollment_no,class: "form-control"  , placeholder: "Enter Enrollment_no" %>
-  <div class='font-color-red'>
-      <% if @student.errors.messages[:enrollment_no].empty?
-      else
-        %>
-      <%="Enrollment_no can't be blank and It should be 4 characters."%>
-      <% end %>
-    </div>
- </div>
-</div>
-
-  <div class="form-group">
-    <%= f.label :first_name,class:"col-sm-4" %>
-     <div class="col-sm-6">
-    <%= f.text_field :first_name, class: "form-control"  , placeholder: "Enter First_name" %>
-     <div class='font-color-red'>
-      <% if @student.errors.messages[:first_name].empty?
-      else
-        %>
-      <%="Please Enter Your First_name"%>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-  <div class="form-group">
-    <%= f.label :middle_name ,class:"col-sm-4"%>
-     <div class="col-sm-6">
-    <%= f.text_field :middle_name ,class: "form-control"  , placeholder: "Enter Middle_name" %>
-     <div class='font-color-red'>
-      <% if @student.errors.messages[:middle_name].empty?
-      else
-        %>
-      <%="Please Enter Your Middle_name"%>
-      <% end %>
-    </div>
-  </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :last_name,class:"col-sm-4"%>
-     <div class="col-sm-6">
-    <%= f.text_field :last_name ,class: "form-control"  , placeholder: "Enter Last_name" %>
-     <div class='font-color-red'>
-      <% if @student.errors.messages[:last_name].empty?
-      else
-        %>
-      <%="Please Enter Your Last_name"%>
-      <% end %>
-    </div>
-  </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :date_of_birth,class:"col-sm-4"%>
-       <div class="col-sm-6">
-     <%= f.date_select :date_of_birth ,class: "form-control"  , placeholder: "Enter Date_of_birth"%>
-      <div class='font-color-red'>
-      <% if @student.errors.messages[:date_of_birth].empty?
-      else
-        %>
-      <%="Please Enter Your date of birth "%>
-      <% end %>
-    </div>
-  </div>
-</div>
-   
-  <div class="form-group">
-    <%= f.label :address,class:"col-sm-4"%>
-     <div class="col-sm-6">
-    <%= f.text_area :address, class: "form-control"  , placeholder: "Enter Address"%>
-     <div class='font-color-red'>
-      <% if @student.errors.messages[:address].empty?
-      else
-        %>
-      <%="Please Enter Your Address"%>
-      <% end %>
-    </div>
-  </div>
-</div>
-</div>
-
-  <div class="col-md-6">
-  <div class="form-group">
-    <%= f.label :city,class:"col-sm-4"%>
-     <div class="col-sm-6">
-    <%= f.text_field :city ,class: "form-control"  , placeholder: "Enter City"%>
-     <div class='font-color-red'>
-      <% if @student.errors.messages[:city].empty?
-      else
-        %>
-      <%="Please Enter Your City"%>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-  <div class="form-group">
-    <%= f.label :contactno,class:"col-sm-4"%>
-     <div class="col-sm-6">
-    <%= f.telephone_field :contactno ,class: "form-control"  , placeholder: "Enter Contactno"%>
-     <div class='font-color-red'>
-      <% if @student.errors.messages[:first_name].empty?
-      else
-        %>
-      <%="Contact_number should be 10 characters and can't be blank"%>
-      <% end %>
-    </div>
-  </div>
-  </div>
-
- 
-
-  <div class="form-group">
-   <%= f.label :standard_id,class:"col-sm-4"%>
-    
-    <div class="col-sm-6">
-<%=f.select(:standard_id,options_for_select(Standard.pluck(:name))) %>
-  
-
-    <div class='font-color-red'>
-      <% if @student.errors.messages[:standard_id].empty?
-      else
-        %>
-      <%="Please select your Standard"%>
-      <% end %>
-    </div>
-
-
-  </div>
-</div>
-
-
-
-  <div class="form-group">
-    <%= f.label :password,class: "col-sm-4"%>
-    <div class="col-sm-6">
-    <%= f.password_field :password,class: "form-control"  , placeholder: "Enter Password" %>
-     <div class='font-color-red'>
-      <% if @student.errors.messages[:password].empty?
-      else
-        %>
-      <%="Please Enter Your Password"%>
-      <% end %>
-    </div>
-
-      </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :confirmation_password,class:"col-sm-4"%>
-    <div class="col-sm-6">
-    <%= f.password_field :password_confirmation ,class: "form-control"  , placeholder: "Enter Confirmation_password"%>
-     <div class='font-color-red'>
-      <% if @student.errors.messages[:first_name].empty?
-      else
-        %>
-      <%="Please Enter Your Confirmation password"%>
-      <% end %>
-    </div>
-  </div>
-  </div>
-</div>
-  
-  </div>
-
-  <div class="actions">
-     <div class="col-sm-6 text-center">
-    <%= f.submit class: "btn btn-success"%>
-    <%= link_to students_path , class: "btn btn-danger" do%>
-    <i>cancel</i>
-      
+<%=form_for @student , class: "form-horizontal" do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        <%=pluralize(@student.errors.count, "error") %> prohibited this student from being saved: </div>
       <%end%>
-  </div>
-</div>
-<% end %>
-</div>
-</div>
-</div>
+        <!--error...............-->
+        <div class="form-horizontal">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%=f .label :enrollment_no,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f .text_field :enrollment_no,class: "form-control" , placeholder: "Enter Enrollment_no" %>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:enrollment_no].empty? else %>
+                          <%="Enrollment_no can't be blank and It should be 4 characters." %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <%=f .label :first_name,class: "col-sm-4" %>
+                  <div class="col-sm-6">
+                    <%=f .text_field :first_name, class: "form-control" , placeholder: "Enter First_name" %>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:first_name].empty? else %>
+                          <%="Please Enter Your First_name" %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <%=f .label :middle_name ,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f .text_field :middle_name ,class: "form-control" , placeholder: "Enter Middle_name" %>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:middle_name].empty? else %>
+                          <%="Please Enter Your Middle_name" %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <%=f .label :last_name,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f .text_field :last_name ,class: "form-control" , placeholder: "Enter Last_name" %>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:last_name].empty? else %>
+                          <%="Please Enter Your Last_name" %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <%=f .label :date_of_birth,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f .date_select :date_of_birth ,class: "form-control" , placeholder: "Enter Date_of_birth"%>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:date_of_birth].empty? else %>
+                          <%="Please Enter Your date of birth " %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <%=f .label :address,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f .text_area :address, class: "form-control" , placeholder: "Enter Address"%>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:address].empty? else %>
+                          <%="Please Enter Your Address" %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%=f .label :city,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f .text_field :city ,class: "form-control" , placeholder: "Enter City"%>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:city].empty? else %>
+                          <%="Please Enter Your City" %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <%=f .label :contactno,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f .telephone_field :contactno ,class: "form-control" , placeholder: "Enter Contactno"%>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:first_name].empty? else %>
+                          <%="Contact_number should be 10 characters and can't be blank" %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <%=f .label :standard_id,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f.select(:standard_id,options_for_select(Standard.pluck(:name))) %>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:standard_id].empty? else %>
+                          <%="Please select your Standard" %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <%=f .label :password,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f .password_field :password,class: "form-control" , placeholder: "Enter Password" %>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:password].empty? else %>
+                          <%="Please Enter Your Password" %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <%=f .label :confirmation_password,class: "col-sm-4"%>
+                  <div class="col-sm-6">
+                    <%=f .password_field :password_confirmation ,class: "form-control" , placeholder: "Enter Confirmation_password"%>
+                      <div class='font-color-red'>
+                        <% if @student.errors.messages[:first_name].empty? else %>
+                          <%="Please Enter Your Confirmation password" %>
+                            <% end %>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="col-sm-6 text-center">
+              <%=f .submit class: "btn btn-success"%>
+                <%=link_to students_path , class: "btn btn-danger" do%> <i>cancel</i>
+                  <%end%>
+            </div>
+          </div>
+          <% end %>
+        </div>
+    </div>
+    </div>

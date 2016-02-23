@@ -1,5 +1,5 @@
 class Students::RegistrationsController < Devise::RegistrationsController
-before_filter: configure_sign_up_params, only: [: create]
+before_filter: configure_sign_up_params, only: [:create]
 def new
 super
 end
