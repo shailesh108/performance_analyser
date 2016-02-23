@@ -23,5 +23,5 @@ Rails.application.routes.draw do
 	get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
 	get 'teacher/welcome'=> 'teachers#welcome'
-  get 'test/question/add'=>'questions#new'
+  
 end
