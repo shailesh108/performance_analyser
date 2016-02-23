@@ -1,35 +1,34 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#">Logo</a> </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-           <ul class="nav navbar-nav">
-             <li class="active"><a href="#">Home</a>
-             </li>
-             <li><a href="#">About</a>
-             </li>
-             <li><a href="#">Projects</a>
-             </li>
-             <li><a href="#">Contact</a>
-             </li>
-            </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <% if student_signed_in? %>
-                <%=link_to "Logout", destroy_student_session_path, :method=> :delete %>
-              <%end%>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <% if student_signed_in? %>
+          <%= link_to "Logout",  destroy_student_session_path, :method => :delete   %>
+          <%end%>
+          <% if teacher_signed_in? %>
 
-              <% if teacher_signed_in? %>
-                 <%=link_to "Logout", destroy_teacher_session_path, :method=> :delete %>
-              <%end%>
-              
-              <% if admin_signed_in? %>
-                <%=link_to "Logout", destroy_admin_session_path, :method=> :delete %>
-              <%end%>
-              </a>
-            </li>
-          </ul>
-      </div>
+          <%= link_to "Logout",  destroy_teacher_session_path, :method => :delete   %>
+          <%end%>
+          <% if admin_signed_in? %>
+          <%= link_to "Logout",  destroy_admin_session_path, :method => :delete   %>
+          <%end%>
+        </a></li>
+      </ul>
     </div>
   </div>
 </nav>

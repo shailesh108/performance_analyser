@@ -1,179 +1,220 @@
 <div class="container">
   <% if @student.errors.any? %>
-    <div id="error_explanation">
-      <div class="alert alert-danger"> <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <%=pluralize(@student.errors.count, "error") %> prohibited this student from being saved: </div>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:
     </div>
-    <% end %>
+  </div>
+  <% end %>
 
-      <div class="form-horizontal">
-        <div class="row">
-          <div class="login-panel panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Students Details</h3> 
-            </div>
+  <div class="form-horizontal">
+    <div class="row">
+      <div class="login-panel panel panel-default">
 
-            <div class="panel-body">
-              <div class="col-md-6">
-                <div class="login-panel panel panel-default">
-                  <div class="panel-body">
-                    <div class="panel-form">
-                      <%=form_for @student, class: "form-horizontal" do |f| %>
-                        <fieldset>
-                          <div class="form-group <%= 'has-error' if @student.errors.messages[:email].present? %>">
-                            <%=f.label :email,class: "col-sm-4"%>
-                              <div class="col-sm-8">
-                                <%=f.text_field :email,class: "form-control" , placeholder: "abc@gmail.com" %>
-                                  <div class='text-danger'>
-                                    <% if @student.errors.messages[:email].present? %>
-                                      <%=@student.errors.full_messages_for(:email).first%>
-                                    <% end %>
-                                  </div>
-                              </div>
+        <div class="panel-heading">
+          <h3 class="panel-title">Students Details</h3>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-6">
+            <div class="login-panel panel panel-default">
+              <div class="panel-body">
+                <div class="panel-form">
+                  <%= form_for @student, :url=>students_path, :multipart => true, class: "form-horizontal" do |f| %>
+                  <fieldset>
+
+                    <div class="form-group <%= 'has-error' if @student.errors.messages[:email].present? %>">
+                      <%= f.label :email,class: "col-sm-4"%>
+                      <div class="col-sm-8">
+                        <%= f.text_field :email,class: "form-control" , placeholder: "abc@gmail.com" %>
+                        <div class='text-danger'>
+                          <% if @student.errors.messages[:email].present? %>
+                          <%=@student.errors.full_messages_for(:email).first%>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group <%= 'has-error' if @student.errors.messages[:standard_id].present? %>">
+                      <%= f.label :Standard_id,class: "col-sm-4"%>
+                      <div class="col-sm-8">
+                        <%=f.select(:standard_id,options_for_select(Standard.pluck(:name)),{},{class: "form-control"})%>   <div class='text-danger'>
+                        <% if @student.errors.messages[:standard_id].present? %>
+                        <%=@student.errors.full_messages_for(:standard_id).first%>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group <%= 'has-error' if @student.errors.messages[:first_name].present? %>">
+                    <%= f.label :First_Name,class: "col-sm-4"%>
+                    <div class="col-sm-8">
+                      <%= f.text_field :first_name,class: "form-control"  , placeholder: "First Name" %>
+                      <div class='text-danger'>
+                        <% if @student.errors.messages[:first_name].present? %>
+                        <%=@student.errors.full_messages_for(:first_name).first%>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group <%= 'has-error' if @student.errors.messages[:middle_name].present? %>">
+                    <%= f.label :Middle_Name,class: "col-sm-4"%>
+                    <div class="col-sm-8">
+                      <%= f.text_field :middle_name,class: "form-control"  , placeholder: "Middle Name" %>
+                      <div class='text-danger'>
+                        <% if @student.errors.messages[:middle_name].present? %>
+                        <%=@student.errors.full_messages_for(:middle_name).first%>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group <%= 'has-error' if @student.errors.messages[:last_name].present? %>">
+                    <%= f.label :Last_Name,class: "col-sm-4"%>
+                    <div class="col-sm-8">
+                      <%= f.text_field :last_name,class: "form-control"  , placeholder: "Last Name"%>
+                      <div class='text-danger'>
+                        <% if @student.errors.messages[:last_name].present? %>
+                        <%=@student.errors.full_messages_for(:last_name).first%>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group <%= 'has-error' if @student.errors.messages[:avatar].present? %>">
+                    <%= f.label :avatar,class: "col-sm-4"%>
+                    <div class="col-sm-8">
+                      <%= f.file_field :avatar,class: "btn btn-default" %>
+                      <div class='text-danger'>
+                        <% if @student.errors.messages[:avatar].present? %>
+                        <%=@student.errors.full_messages_for(:avatar).first%>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group <%= 'has-error' if @student.errors.messages[:gender].present? %>">
+                    <%= f.label :Gender,class: "col-sm-4"%>
+                    <div class="col-sm-8">
+                      <div class="radio radio-inline">
+                        <%=f.radio_button(:gender, "Male") %>
+                        <%= f.label(:gender_male, "Male") %></div>
+                        <div class="radio radio-inline">
+                          <%= f.radio_button(:gender, "Female") %>
+                          <%= f.label(:age_adult, "Female") %></div>
+                          <div class='text-danger'>
+                            <% if @student.errors.messages[:gender].present? %>
+                            <%=@student.errors.full_messages_for(:gender).first%>
+                            <% end %>
                           </div>
+                        </div>
+                      </div>
 
-                          <div class="form-group <%= 'has-error' if @student.errors.messages[:standard_id].present? %>">
-                            <%=f.label :Standard_id,class: "col-sm-4"%>
-                              <div class="col-sm-8">
-                                <%=f.select(:standard_id,options_for_select(Standard.pluck(:name)),{},{class: "form-control"})%>
-                                  <div class='text-danger'>
-                                    <% if @student.errors.messages[:standard_id].present? %>
-                                      <%=@student.errors.full_messages_for(:standard_id).first%>
-                                    <% end %>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="form-group <%= 'has-error' if @student.errors.messages[:first_name].present? %>">
-                            <%=f.label :First_Name,class: "col-sm-4"%>
-                              <div class="col-sm-8">
-                                <%=f.text_field :first_name,class: "form-control" , placeholder: "First_Name" %>
-                                  <div class='text-danger'>
-                                    <% if @student.errors.messages[:first_name].present? %>
-                                       <%=@student.errors.full_messages_for(:first_name).first%>
-                                    <% end %>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="form-group <%= 'has-error' if @student.errors.messages[:middle_name].present? %>">
-                            <%=f.label :Middle_Name,class: "col-sm-4"%>
-                              <div class="col-sm-8">
-                                <%=f.text_field :middle_name,class: "form-control" , placeholder: "Middle_Name" %>
-                                  <div class='text-danger'>
-                                    <% if @student.errors.messages[:middle_name].present? %>
-                                      <%=@student.errors.full_messages_for(:middle_name).first%>
-                                      <% end %>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="form-group <%= 'has-error' if @student.errors.messages[:last_name].present? %>">
-                            <%=f.label :Last_Name,class: "col-sm-4"%>
-                              <div class="col-sm-8">
-                                <%=f.text_field :last_name,class: "form-control" , placeholder: "Last_Name" %>
-                                  <div class='text-danger'>
-                                    <% if @student.errors.messages[:last_name].present? %>
-                                       <%=@student.errors.full_messages_for(:last_name).first%>
-                                    <% end %>
-                                  </div>
-                              </div>
-                          </div>
                     </div>
                   </div>
                 </div>
               </div>
-              </fieldset>
-              <div class="col-md-6">
-                <div class="login-panel panel panel-default">
-                  <div class="panel-body">
-                    <div class="panel-form">
-                      <fieldset>
-                        <div class="form-group <%= 'has-error' if @student.errors.messages[:date_of_birth].present? %>">
-                          <%=f.label :Date_Of_Birth,class: "col-sm-4"%>
-                            <div class="col-sm-8">
-                              <%=f.date_field :date_of_birth,class: "form-control" , placeholder: "dd/mm/yyyy" %>
-                                <div class='text-danger'>
-                                  <% if @student.errors.messages[:date_of_birth].present? %>
-                                     <%=@student.errors.full_messages_for(:date_of_birth).first%>
-                                     <% end %>
-                                </div>
-                            </div>
-                        </div>
+            </fieldset>
 
-                        <div class="form-group <%= 'has-error' if @student.errors.messages[:password].present? %>">
-                          <%=f .label :Password,class: "col-sm-4"%>
-                            <div class="col-sm-8">
-                              <%=f.password_field :password, autocomplete: "off",:class=> "form-control",:placeholder => "Password" %>
-                                <div class='text-danger'>
-                                  <% if @student.errors.messages[:password].present? %>
-                                      <%=@student.errors.full_messages_for(:password).first%>
-                                  <% end %>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-md-6">
+              <div class="login-panel panel panel-default">
+                <div class="panel-body">
+                  <div class="panel-form">
+                    <fieldset>
 
-                        <div class="form-group <%= 'has-error' if @student.errors.messages[:password_confirmation].present? %>">
-                          <%=f .label :Confirm_Password,class: "col-sm-4"%>
-                            <div class="col-sm-8">
-                              <%=f.password_field :password_confirmation, autocomplete: "off",:class=> "form-control",:placeholder => "Confirm Password"%>
-                                <div class='text-danger'>
-                                  <% if @student.errors.messages[:password_confirmation].present? %>
-                                      <%=@student.errors.full_messages_for(:password_confirmation).first%>
-                                  <% end %>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group <%= 'has-error' if @student.errors.messages[:address].present? %>">
-                          <%=f.label :Address,class: "col-sm-4"%>
-                            <div class="col-sm-8">
-                              <%=f.text_area :address,:class=> "form-control",:placeholder => "Address"%>
-                                <div class='text-danger'>
-                                  <% if @student.errors.messages[:address].present? %>
-                                      <%=@student.errors.full_messages_for(:address).first%>
-                                  <% end %>
-                                </div>
-                            </div>
+                      <div class="form-group <%= 'has-error' if @student.errors.messages[:date_of_birth].present? %>">
+                        <%= f.label :Date_Of_Birth,class: "col-sm-4"%>
+                        <div class="col-sm-8">
+                          <%= f.text_field :date_of_birth,class: "form-control datepicker" , placeholder: "DD-MM-YYYY" %>
+                          <div class='text-danger'>
+                            <% if @student.errors.messages[:date_of_birth].present? %>
+                            <%=@student.errors.full_messages_for(:date_of_birth).first%>
+                            <% end %>
+                          </div>
                         </div>
+                      </div>
 
-                        <div class="form-group <%= 'has-error' if @student.errors.messages[:city].present? %>">
-                          <%=f.label :City,class: "col-sm-4"%>
-                            <div class="col-sm-8">
-                              <%=f.text_field :city,:class=> "form-control",:placeholder => "City"%>
-                                <div class='text-danger'>
-                                  <% if @student.errors.messages[:city].present? %>
-                                      <%=@student.errors.full_messages_for(:city).first%>
-                                  <% end %>
-                                </div>
-                            </div>
+                      <div class="form-group <%= 'has-error' if @student.errors.messages[:password].present? %>">
+                        <%= f.label :Password,class: "col-sm-4"%>
+                        <div class="col-sm-8">
+                          <%= f.password_field :password, autocomplete: "off",:class => "form-control",:placeholder => "Password" %>
+                          <div class='text-danger'>
+                            <% if @student.errors.messages[:password].present? %>
+                            <%=@student.errors.full_messages_for(:password).first%>
+                            <% end %>
+                          </div>
                         </div>
+                      </div>
 
-                        <div class="form-group <%= 'has-error' if @student.errors.messages[:contactno].present? %>">
-                          <%=f.label :Contact_No,class: "col-sm-4"%>
-                            <div class="col-sm-8">
-                              <%=f.text_field :contactno,:class=> "form-control",:placeholder => "Contact No"%>
-                                <div class='text-danger'>
-                                  <% if @student.errors.messages[:contactno].present? %>
-                                      <%=@student.errors.full_messages_for(:contactno).first%>
-                                  <% end %>
-                                </div>
-                            </div>
+                      <div class="form-group <%= 'has-error' if @student.errors.messages[:password_confirmation].present? %>">
+                        <%= f.label :Confirm_Password,class: "col-sm-4"%>
+                        <div class="col-sm-8">
+                          <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control",:placeholder => "Confirm Password"%>
+                          <div class='text-danger'>
+                            <% if @student.errors.messages[:password_confirmation].present? %>
+                            <%=@student.errors.full_messages_for(:password_confirmation).first%>
+                            <% end %>
+                          </div>
                         </div>
+                      </div>
+
+
+                      <div class="form-group <%= 'has-error' if @student.errors.messages[:address].present? %>">
+                        <%= f.label :Address,class: "col-sm-4"%>
+                        <div class="col-sm-8">
+                          <%= f.text_area :address,:class => "form-control",:placeholder => "Address"%>
+                          <div class='text-danger'>
+                            <% if @student.errors.messages[:address].present? %>
+                            <%=@student.errors.full_messages_for(:address).first%>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group <%= 'has-error' if @student.errors.messages[:city].present? %>">
+                        <%= f.label :City,class: "col-sm-4"%>
+                        <div class="col-sm-8">
+                          <%= f.text_field :city,:class => "form-control",:placeholder => "City"%>
+                          <div class='text-danger'>
+                            <% if @student.errors.messages[:city].present? %>
+                            <%=@student.errors.full_messages_for(:city).first%>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group <%= 'has-error' if @student.errors.messages[:contactno].present? %>">
+                        <%= f.label :Contact_No,class: "col-sm-4"%>
+                        <div class="col-sm-8">
+                          <%= f.text_field :contactno,:class => "form-control",:placeholder => "Contact No"%>
+                          <div class='text-danger'>
+                            <% if @student.errors.messages[:contactno].present? %>
+                            <%=@student.errors.full_messages_for(:contactno).first%>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
+
                   </div>
                 </div>
               </div>
-              <div class="actions">
-                <div class="col-sm-12 text-center">
-                  <%=f .submit "Add student" ,:class=> "btn btn-success " %>
-                    <%=link_to "Cancel",list_student_path, class: "btn btn-danger"%>
-                </div>
+            </fieldset>
+            <div class="actions">
+              <div class="col-sm-12 text-center">
+                <%= f.submit "Add student",:class => "btn btn-success "  %>
+                <%= link_to "Cancel",list_students_path, class: "btn btn-danger"%>
               </div>
-              <% end %>
-                </fieldset>
             </div>
+            <% end %>
+
           </div>
         </div>
       </div>
+    </div>
+  </div>
 </div>
