@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  test_name: MyString
+  test_datetime: 2016-02-19 14:51:26
+  total_time: 2016-02-19 14:51:26
+  no_of_questions: 1
+  status: 1
+
+two:
+  test_name: MyString
+  test_datetime: 2016-02-19 14:51:26
+  total_time: 2016-02-19 14:51:26
+  no_of_questions: 1
+  status: 1

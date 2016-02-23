@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 	devise_for :teachers,:controllers => {:sessions => "teachers/sessions"}, :path => 'teacher', :path_names => { :sign_in => 'login', :sign_out => 'logout'}
 	devise_for :students,:controllers => {:sessions => "students/sessions"}, :path => 'student', :path_names => { :sign_in => 'login', :sign_out => 'logout'}
 
-
+	resources :tests 
+    resources :questions
 
 	resources :teachers,except: [:index],path: 'admin/teacher' do
 		collection do
@@ -22,5 +23,5 @@ Rails.application.routes.draw do
 	get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
 	get 'teacher/welcome'=> 'teachers#welcome'
-
+  get 'test/question/add'=>'questions#new'
 end

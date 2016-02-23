@@ -1,6 +1,7 @@
 <div class="container">
 	<% if student_signed_in? %>
-	<h1>welcome <%=current_student.enrollment_no%></h1>
-	<%= link_to "Logout",  destroy_student_session_path, :method => :delete   %>
+		<h1>welcome <%=current_student.enrollment_no%></h1>
+  		<%= link_to "Start test", tests_path %>
+  		<%= link_to "Logout",  destroy_student_session_path, :method => :delete   %>
 	<%end%>
 </div>
