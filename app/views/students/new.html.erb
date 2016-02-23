@@ -20,7 +20,7 @@
             <div class="login-panel panel panel-default">
               <div class="panel-body">
                 <div class="panel-form">
-                <%= form_for @student, :url=>students_path, :multipart => true, class: "form-horizontal" do |f| %>
+                  <%= form_for @student, :url=>students_path, :multipart => true, class: "form-horizontal" do |f| %>
                   <fieldset>
 
                     <div class="form-group <%= 'has-error' if @student.errors.messages[:email].present? %>">

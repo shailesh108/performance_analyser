@@ -1,13 +1,13 @@
 class Students::SessionsController < Devise::SessionsController
- layout 'login_layout'
- before_filter :configure_sign_in_params, only: [:create]
- def new
-   super
- end
+  layout 'login_layout'
+  before_filter :configure_sign_in_params, only: [:create]
+  def new
+    super
+  end
 
- def create
-   super
- end
+  def create
+    super
+  end
 
   def destroy
     super
