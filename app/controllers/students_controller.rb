@@ -12,8 +12,7 @@ class StudentsController < ApplicationController
 	end
 	def create
     	@student=Student.new(student_params)
-
-    	if @student.save
+       	if @student.save
     		 no=Time.now.year.to_s+""+@student.standard_id.to_s+""+@student.id.to_s
     		 puts "noooo--------->"+no.to_s
     		 @student.update_attributes(enrollment_no: no.to_s)
