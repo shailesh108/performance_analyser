@@ -5,41 +5,39 @@ class StudentsController < ApplicationController
   def edit
   end
   def show
-    
   end
   def new
     @student=Student.new
   end
   def create
-      @student=Student.new(student_params)
+    @student=Student.new(student_params)
       if @student.save
-      redirect_to list_student_path
+        redirect_to list_student_path
       else
-          render :new
+        render :new
       end
-    end
+  end
   def update
     if @student.update(student_params)
-          redirect_to list_student_path
-        else
-          render :edit
-        end
+      redirect_to list_student_path
+    else
+      render :edit
+    end
   end
   def welcome
   end
   def destroy
-      @student.destroy
+    @student.destroy
       redirect_to list_student_path
-    end
-    def list 
-     @students=Student.paginate(:per_page => 4, :page => params[:page])
-      # @students = Student.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 3, :page => params[:page])
   end
-private
+  def list 
+    @students=Student.paginate(:per_page => 4, :page => params[:page])
+  end
+  private
   def set_student
-      @student = Student.find(params[:id])
-    end
+    @student = Student.find(params[:id])
+  end
   def student_params
-      params.require(:student).permit(:enrollment_no,:password,:email,:first_name,:middle_name,:last_name,:date_of_birth,:address,:city,:contactno,:standard_id)
-    end
+    params.require(:student).permit(:enrollment_no,:password,:email,:first_name,:middle_name,:last_name,:date_of_birth,:address,:city,:contactno,:standard_id)
+  end
 end
