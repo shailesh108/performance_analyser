@@ -1,20 +1,8 @@
 class Student < ActiveRecord::Base
 	belongs_to:standard
-	#validates:enrollment_no,presence:true,uniqueness:true
-	validates:first_name,presence:true
-	validates:middle_name,presence:true
-	#validates:email,presence:true
-	validates:last_name,presence:true
-	validates:date_of_birth,presence:true
-	validates:address,presence:true
-	validates:city,presence:true
-	#validates:password_confirmation,presence:true
-	validates:contactno,presence:true,numericality:{only_integer:true}
-	validates:standard_id,presence:true
+	validates :first_name, :middle, :last_name, :date_of_birth, :address, :city, :contactno,numericality:{only_integer}, :standard_id,presence:true
   devise :database_authenticatable, :registerable,:trackable, :validatable, :authentication_keys=>[:enrollment_no]
   def email_required?
   false
 	end
-
-  
 end
