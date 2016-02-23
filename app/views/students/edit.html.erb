@@ -100,6 +100,50 @@
                       </div>
                     </div>
 
+
+
+                    <div class="form-group <%= 'has-error' if @student.errors.messages[:avatar].present? %>">
+                      <%= f.label :avatar,class: "col-sm-4"%>
+                      <div class="col-sm-8">
+                        <%= f.file_field :avatar,class: "btn btn-default" %>
+                        <div class='text-danger'>
+                          <% if @student.errors.messages[:avatar].present? %>
+                          <%=@student.errors.full_messages_for(:avatar).first%>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group <%= 'has-error' if @student.errors.messages[:contactno].present? %>">
+                      <%= f.label :Contact_No,class: "col-sm-4"%>
+                      <div class="col-sm-8">
+                        <%= f.text_field :contactno,:class => "form-control",:placeholder => "Contact No"%>
+                        <div class='text-danger'>
+                          <% if @student.errors.messages[:contactno].present? %>
+                          <%=@student.errors.full_messages_for(:contactno).first%>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <div class="col-sm-12 text-center">
+
+                <%= f.submit "Update student" ,:class => "btn btn-success"  %>
+                <%= link_to "Cancel",list_student_path, class: "btn btn-danger"%>
+              </div>
+            </div>
+            <% end %>
+          </fieldset>
+        </div>
+      </div>
+
+=======
                     <div class="form-group <%= 'has-error' if @student.errors.messages[:gender].present? %>">
                       <%= f.label :Gender,class: "col-sm-4"%>
                       <div class="col-sm-8">
@@ -199,6 +243,7 @@
 
         </div>
       </div>
+>>>>>>> develop
     </div>
   </div>
 </div>
