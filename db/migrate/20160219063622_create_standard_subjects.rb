@@ -1,4 +1,4 @@
-class CreateStandardSubjects < ActiveRecord::Migration
+	class CreateStandardSubjects < ActiveRecord::Migration
   def change
     create_table :standard_subjects do |t|
     	t.belongs_to :standard

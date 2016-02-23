@@ -1,58 +1,56 @@
 <div class="container">
-<div class="row">
-<div class="col-sm-12">
-<h1>Listing Student</h1>
- <div class="table-responsive">
-<table border="2"  class="table table-striped table-bordered table-hover" >
-  <thead>
-    
- 
-  <tr>
-    <th>Enrollment_no</th>
-    <th>Profile Pic</th>
-    <th>Standard</th>
-     <th> First name</th>
-     <th>Middle name</th>
-     <th>Last name</th>
-     <th>Date of Birth</th>
-     <th>Address</th>
-     <th>City</th>
-     <th>Contactno</th>
-     <th colspan="3">Action</th>
-     </tr> </thead>
-    <tbody>
-    <% @students.each do |student| %>
-      <tr><td><%= student.enrollment_no %></td>
- <td> <%= image_tag("pro.png",:width => 50, :height => 50,:class => "img-circle")%></td>
-<td><%= student.standard_id %></td>
- 
-  <td><%= student.first_name %></td>
-    <td><%= student.middle_name %></td>
-    <td><%= student.last_name %></td>
-  <td><%= student.date_of_birth.strftime("%d-%m-%Y")%></td>
-  <td><%= student.address %></td>
-  <td><%= student.city %></td>
-  <td><%= student.contactno %></td>
- 
- <td><%= link_to '<i class="glyphicon glyphicon-user" title="View"></i>'.html_safe, show_student_path(student)%>
-          </td>
-  
-      <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe, edit_student_path(student) %>
-         </td>
-    <td><%= link_to ' <i class="glyphicon glyphicon-remove" title="delete"></i>'.html_safe, delete_student_path(student),method: :delete,data: {confirm: 'Are you sure?'} %>
-     
-     </td>
-       
-</tr>
-    <% end %>
-  </tbody>
-</table>
- <%= will_paginate @students, renderer: BootstrapPagination::Rails,class: "pull-right"%>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Listing Student</h1>
+      <div class="table-responsive">
+        <table border="2"  class="table table-striped table-bordered table-hover" >
+          <thead>
 
-<br><%= link_to "New Student", new_students_path , class: "btn btn-success" %>
-   
-</div>
 
-</div>
-</div>
+            <tr>
+              <th>Enrollment_no</th>
+              <th>Standard</th>
+              <th>First name</th>
+              <th>Middle name</th>
+              <th>Last name</th>
+              <th>Gender</th>
+              <th>Date of Birth</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>Contactno</th>
+              <th colspan="3">Action</th>
+            </tr> </thead>
+            <tbody>
+              <% @students.each do |student| %>
+              <tr><td><%= student.enrollment_no %></td>
+                <td><%= student.standard_id %></td>
+                <td><%= student.first_name %></td>
+                <td><%= student.middle_name %></td>
+                <td><%= student.last_name %></td>
+                <td><%= student.gender %></td>
+                <td><%= student.date_of_birth.strftime("%d-%m-%Y")%></td>
+                <td><%= student.address %></td>
+                <td><%= student.city %></td>
+                <td><%= student.contactno %></td>
+
+                <td><%= link_to '<i class="glyphicon glyphicon-user" title="View"></i>'.html_safe,student_path(student)%>
+                </td>
+                <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe, edit_student_path(student) %>
+                </td>
+                <td><%= link_to ' <i class="glyphicon glyphicon-remove" title="delete"></i>'.html_safe,student_path(student),method: :delete,data: {confirm: 'Are you sure?'} %>
+
+                </td>
+
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= will_paginate @students, renderer: BootstrapPagination::Rails,class: "pull-right"%>
+
+          <br><%= link_to "New Student", new_student_path , class: "btn btn-success" %>
+
+        </div>
+
+      </div>
+    </div>
 </div>

@@ -1,0 +1,18 @@
+<div class="form-horizontal">
+  <div class="row">
+    <div class="panel-body">
+      <%=form_for Question.new do |f| %>
+        <% Question.all.each do |que| %>
+           <%=que.question%>
+            <br>
+              <%[que.option1,que.option2,que.option3,que.option4].each do |student|%>
+                <%=student%>
+                <%=radio_button_tag "student_#{que.id}",student %>
+             <br>
+              <% end %>
+           <% end %>
+      <% end %>
+      <%=link_to "Add Question" , new_question_path(@question) %>
+    </div>
+  </div>
+</div>

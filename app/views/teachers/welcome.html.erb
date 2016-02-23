@@ -1,9 +1,8 @@
 <div class="container">
-<% if teacher_signed_in? %>
-  <h1>welcome Teacher <%=current_teacher.email%></h1>
-<%= link_to "Add Student",  new_students_path   %>
-<%= link_to "List Student",  list_student_path   %>
-
-<%= link_to "Logout",  destroy_teacher_session_path, :method => :delete   %>
-<%end%>
-</div>
+  <% if teacher_signed_in? %>
+    <h1>welcome Teacher <%=current_teacher.email%></h1>
+    	<%=link_to "Add Student", new_students_path %>
+      <%=link_to "List Student", list_student_path %>
+       <%=link_to "Add Test", new_test_path %>
+       <%=link_to "Logout", destroy_teacher_session_path, :method=> :delete %>
+  <%end%>
