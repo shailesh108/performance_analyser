@@ -38,18 +38,19 @@
                 </td>
                 <td>
                   <%=link_to 'show',question_path(question) %>
-                    <td>
-                      <%=link_to 'Edit',edit_question_path(question) %>
-                    </td>
-                    <td>
-                      <%=link_to 'delete',question_path(question),method: :delete,data: {confirm: 'Are you sure?'} %>
-                    </td>
+                </td>
+                <td>
+                  <%=link_to 'Edit',edit_question_path(question) %>
+                </td>
+                <td>
+                  <%=link_to 'delete',question_path(question),method: :delete,data: {confirm: 'Are you sure?'} %>
+                </td>
               </tr>
-              <% end %>
+            <% end %>
           </tbody>
         </table>
         <br>
-        <%=link_to "New Question", new_question_path, class: "btn btn-success" %>
+          <%=link_to "New Question", new_question_path, class: "btn btn-success" %>
       </div>
     </div>
   </div>

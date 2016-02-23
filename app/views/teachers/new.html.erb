@@ -1,15 +1,18 @@
 <div class="container">
   <% if @teacher.errors.any? %>
     <div id="error_explanation">
-      <div class="alert alert-danger"> <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <%=pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved: </div>
+      <div class="alert alert-danger"> <a href="" class="close" data-dismiss="alert" aria-    label="close">&times;</a>
+          <%=pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:
+      </div>
     </div>
-    <%end%>
+   <%end%>
+
       <div class="form-horizontal">
         <div class="row">
           <div class="login-panel panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Teacher Details</h3> </div>
+              <h3 class="panel-title">Teacher Details</h3> 
+            </div>
             <div class="panel-body">
               <div class="col-md-6">
                 <div class="login-panel panel panel-default">
@@ -18,60 +21,64 @@
                       <%=form_for @teacher, class: "form-horizontal" do |f| %>
                         <fieldset>
                           <div class="form-group <%= 'has-error' if @teacher.errors.messages[:email].present? %>">
-                            <%=f .label :Email,class: "col-sm-4"%>
+                            <%=f.label :Email,class: "col-sm-4"%>
                               <div class="col-sm-8">
-                                <%=f .email_field :email, autofocus: true ,:class=> "form-control",:placeholder => "abc@example.com"%>
+                                <%=f.email_field :email, autofocus: true ,:class=> "form-control",:placeholder => "abc@example.com"%>
                                   <div class='text-danger'>
                                     <% if @teacher.errors.messages[:email].present? %>
                                       <%=@teacher.errors.full_messages_for(:email).first%>
-                                        <% end %>
+                                    <% end %>
                                   </div>
                               </div>
                           </div>
+
                           <div class="form-group <%= 'has-error' if @teacher.errors.messages[:first_name].present? %>">
-                            <%=f .label :First_Name,class: "col-sm-4"%>
+                            <%=f.label :First_Name,class: "col-sm-4"%>
                               <div class="col-sm-8">
-                                <%=f .text_field :first_name,:class=> "form-control",:placeholder => "First Name"%>
+                                <%=f.text_field :first_name,:class=> "form-control",:placeholder => "First Name"%>
                                   <div class='text-danger'>
                                     <% if @teacher.errors.messages[:first_name].present? %>
-                                      <%=@teacher.errors.full_messages_for(:first_name).first%>
-                                        <% end %>
+                                        <%=@teacher.errors.full_messages_for(:first_name).first%>
+                                    <% end %>
                                   </div>
                               </div>
                           </div>
+
                           <div class="form-group <%= 'has-error' if @teacher.errors.messages[:middle_name].present? %>">
-                            <%=f .label :Middle_Name,class: "col-sm-4"%>
+                            <%=f.label :Middle_Name,class: "col-sm-4"%>
                               <div class="col-sm-8">
-                                <%=f .text_field :middle_name,:class=> "form-control",:placeholder => "Middle Name"%>
+                                <%=f.text_field :middle_name,:class=> "form-control",:placeholder => "Middle Name"%>
                                   <div class='text-danger'>
                                     <% if @teacher.errors.messages[:middle_name].present? %>
-                                      <%=@teacher.errors.full_messages_for(:middle_name).first%>
-                                        <% end %>
+                                        <%=@teacher.errors.full_messages_for(:middle_name).first%>
+                                    <% end %>
                                   </div>
                               </div>
                           </div>
+
                           <div class="form-group <%= 'has-error' if @teacher.errors.messages[:last_name].present? %>">
-                            <%=f .label :Last_Name,class: "col-sm-4"%>
+                            <%=f.label :Last_Name,class: "col-sm-4"%>
                               <div class="col-sm-8">
-                                <%=f .text_field :last_name,:class=> "form-control",:placeholder => "Last Name"%>
+                                <%=f.text_field :last_name,:class=> "form-control",:placeholder => "Last Name"%>
                                   <div class='text-danger'>
                                     <% if @teacher.errors.messages[:last_name].present? %>
-                                      <%=@teacher.errors.full_messages_for(:last_name).first%>
-                                        <% end %>
+                                       <%=@teacher.errors.full_messages_for(:last_name).first%>
+                                    <% end %>
                                   </div>
                               </div>
                           </div>
+
                           <div class="form-group <%= 'has-error' if @teacher.errors.messages[:dateofbirth].present? %>">
-                            <%=f .label :Birth_date,class: "col-sm-4"%>
+                            <%=f.label :Birth_date,class: "col-sm-4"%>
                               <div class="col-sm-8">
-                                <%=f .date_field :dateofbirth,:class=> "form-control",:placeholder => "dd/mm/yy"%>
+                                <%=f.date_field :dateofbirth,:class=> "form-control",:placeholder => "dd/mm/yy"%>
                                   <div class='text-danger'>
-                                    <% if @teacher.errors.messages[:dateofbirth].present? %>
-                                      <%=@teacher.errors.full_messages_for(:dateofbirth).first%>
-                                        <% end %>
+                                      <% if @teacher.errors.messages[:dateofbirth].present? %>
+                                          <%=@teacher.errors.full_messages_for(:dateofbirth).first%>
+                                      <% end %>
                                   </div>
-                              </div>
-                          </div>
+                                </div>
+                             </div>
                         </fieldset>
                     </div>
                   </div>
@@ -88,52 +95,56 @@
                               <%=f .text_area :address,:class=> "form-control",:placeholder => "Address"%>
                                 <div class='text-danger'>
                                   <% if @teacher.errors.messages[:address].present? %>
-                                    <%=@teacher.errors.full_messages_for(:address).first%>
-                                      <% end %>
+                                      <%=@teacher.errors.full_messages_for(:address).first%>
+                                  <% end %>
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group <%= 'has-error' if @teacher.errors.messages[:city].present? %>">
                           <%=f .label :City,class: "col-sm-4"%>
                             <div class="col-sm-8">
                               <%=f .text_field :city,:class=> "form-control",:placeholder => "City"%>
                                 <div class='text-danger'>
                                   <% if @teacher.errors.messages[:city].present? %>
-                                    <%=@teacher.errors.full_messages_for(:city).first%>
-                                      <% end %>
+                                      <%=@teacher.errors.full_messages_for(:city).first%>
+                                  <% end %>
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group <%= 'has-error' if @teacher.errors.messages[:contactno].present? %>">
                           <%=f .label :Contact_No,class: "col-sm-4"%>
                             <div class="col-sm-8">
                               <%=f .text_field :contactno,:class=> "form-control",:placeholder => "Contact No"%>
                                 <div class='text-danger'>
                                   <% if @teacher.errors.messages[:contactno].present? %>
-                                    <%=@teacher.errors.full_messages_for(:contactno).first%>
-                                      <% end %>
+                                      <%=@teacher.errors.full_messages_for(:contactno).first%>
+                                  <% end %>
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group <%= 'has-error' if @teacher.errors.messages[:password].present? %>">
                           <%=f .label :Password,class: "col-sm-4"%>
                             <div class="col-sm-8">
                               <%=f .password_field :password, autocomplete: "off",:class=> "form-control",:placeholder => "Maximum 8 character" %>
                                 <div class='text-danger'>
                                   <% if @teacher.errors.messages[:password].present? %>
-                                    <%=@teacher.errors.full_messages_for(:password).first%>
-                                      <% end %>
+                                      <%=@teacher.errors.full_messages_for(:password).first%>
+                                  <% end %>
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group <%= 'has-error' if @teacher.errors.messages[:password_confirmation].present? %>">
                           <%=f .label :Confirm_Password,class: "col-sm-4"%>
                             <div class="col-sm-8">
                               <%=f .password_field :password_confirmation, autocomplete: "off",:class=> "form-control",:placeholder => "Repeat Password"%>
                                 <div class='text-danger'>
                                   <% if @teacher.errors.messages[:password_confirmation].present? %>
-                                    <%=@teacher.errors.full_messages_for(:password_confirmation).first%>
-                                      <% end %>
+                                      <%=@teacher.errors.full_messages_for(:password_confirmation).first%>
+                                  <% end %>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +158,7 @@
           <div class="actions">
             <div class="col-sm-12 text-center">
               <%=f .submit "Add Teacher" ,:class=> "btn btn-success" %>
-                <%=link_to "Cancel",admin_teacher_list_path, class: "btn btn-danger"%>
+              <%=link_to "Cancel",admin_teacher_list_path, class: "btn btn-danger"%>
             </div>
           </div>
           <% end %>

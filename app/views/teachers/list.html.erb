@@ -17,6 +17,7 @@
               <th colspan="3">Action</th>
             </tr>
           </thead>
+
           <tbody>
             <% @teachers.each do |teacher| %>
               <tr>
@@ -51,8 +52,9 @@
                   <%=link_to ' <i class="glyphicon glyphicon-remove" title="delete"></i>'.html_safe, delete_teacher_path(teacher),method: :delete,data: {confirm: 'Are you sure?'} %>
                 </td>
               </tr>
-              <% end %>
+           <% end %>
           </tbody>
+
         </table>
       </div>
       <%=will_paginate @teachers, renderer: BootstrapPagination::Rails,class: "pull-right"%>
