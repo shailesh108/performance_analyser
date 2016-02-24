@@ -1,39 +1,44 @@
 class QuestionsController < ApplicationController
-  before_action: authenticate_teacher!
+  before_action :authenticate_teacher!
+  before_action :set_question ,only: [:edit,:update,:destroy,:show]
+
   def index
-   @questions = Question.all
-   end
-   def new
-   @question = Question.new
-   end
-   def create
-   @question = Question.new(params_arg)
+    @questions = Question.all
+  end
+  def new
+    @question = Question.new
+  end
+  def create
+    @question = Question.new(question_params)
     if @question.save
-       render:'show'
-     else 
-         render:'new'
-       end
+     redirect_to questions_path
+    else 
+      render :new
     end
-    def edit
-	  @question = Question.find(params[: id])
+  end
+  def edit
+  end
+  def update
+    if @question.update(question_params)
+       redirect_to questions_path
+    else
+      render:'edit'
     end
-    def update
-	  @question = Question.find(params[: id])
-        if @question.update(params_arg)
-          render:'show'
-        else render:'edit'
-        end
-    end
-    def destroy
-	  @question = Question.find(params[: id])
-	  @question.destroy
-      redirect_to questions_path
-     end
-     def show
-	  @question = Question.find(params[: id])
-    end
-    private
-    def params_arg
-       params.require(:question).permit(:test_id, :question, :option1, :option2, :option3,:option4,:answer)
-    end
+  end
+
+  def destroy
+    @question.destroy
+    redirect_to questions_path
+  end
+
+  def show
+  end
+
+  private
+  def set_question
+    @question = Question.find(params[:id])
+  end
+  def question_params
+    params.require(:question).permit(:question, :option1, :option2, :option3,:option4,:answer,:test_id)
+  end
 end

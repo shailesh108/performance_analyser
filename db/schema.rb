@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219064959) do
+ActiveRecord::Schema.define(version: 20160219100036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,14 +49,11 @@ ActiveRecord::Schema.define(version: 20160219064959) do
   add_index "questions", ["test_id"], name: "index_questions_on_test_id", using: :btree
 
   create_table "standard_subjects", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.integer  "standard_id"
     t.integer  "subject_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "standard_subjects", ["standard_id"], name: "index_standard_subjects_on_standard_id", using: :btree
-  add_index "standard_subjects", ["subject_id"], name: "index_standard_subjects_on_subject_id", using: :btree
 
   create_table "standards", force: :cascade do |t|
     t.integer  "name"
@@ -65,6 +62,7 @@ ActiveRecord::Schema.define(version: 20160219064959) do
   end
 
   create_table "students", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -85,7 +83,6 @@ ActiveRecord::Schema.define(version: 20160219064959) do
     t.string   "city"
     t.string   "contactno"
     t.integer  "standard_id"
-    t.string   "email"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -93,6 +90,7 @@ ActiveRecord::Schema.define(version: 20160219064959) do
     t.string   "gender"
   end
 
+  add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["enrollment_no"], name: "index_students_on_enrollment_no", using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
 
@@ -111,7 +109,6 @@ ActiveRecord::Schema.define(version: 20160219064959) do
 
   add_index "teacher_standard_subjects", ["standard_subject_id"], name: "index_teacher_standard_subjects_on_standard_subject_id", using: :btree
   add_index "teacher_standard_subjects", ["teacher_id"], name: "index_teacher_standard_subjects_on_teacher_id", using: :btree
-
 
   create_table "teachers", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -159,11 +156,8 @@ ActiveRecord::Schema.define(version: 20160219064959) do
   add_index "tests", ["teacher_id"], name: "index_tests_on_teacher_id", using: :btree
 
   add_foreign_key "questions", "tests"
-  add_foreign_key "standard_subjects", "standards"
-  add_foreign_key "standard_subjects", "subjects"
   add_foreign_key "teacher_standard_subjects", "standard_subjects"
   add_foreign_key "teacher_standard_subjects", "teachers"
   add_foreign_key "tests", "standard_subjects"
   add_foreign_key "tests", "teachers"
-
 end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 	devise_for :students,:controllers => {:sessions => "students/sessions"}, :path => 'student', :path_names => { :sign_in => 'login', :sign_out => 'logout'}
 
 	resources :tests 
-    resources :questions
+  resources :questions
 
 	resources :teachers,except: [:index],path: 'admin/teacher' do
 		collection do
