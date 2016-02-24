@@ -1,21 +1,21 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  username: postgres
-  password: postgres
-  host: localhost
-  pool: 5
+ adapter: postgresql
+ encoding: unicode
+ username: postgres
+ password: postgres
+ host: localhost
+ pool: 5
 
 development:
-  <<: *default
-  database: performance_analyser_development
+ <<: *default
+ database: performance_analyser_development
 
 test:
-  <<: *default
-  database: performance_analyser_test
+ <<: *default
+ database: performance_analyser_test
 
 production:
-  <<: *default
-  database: performance_analyser_production
-  username: performance_analyser
-  password: <%= ENV['PERFORMANCE_ANALYSER_DATABASE_PASSWORD'] %>
+ <<: *default
+ database: performance_analyser_production
+ username: performance_analyser
+ Ppassword: <%= ENV['PERFORMANCE_ANALYSER_DATABASE_PASSWORD'] %>
