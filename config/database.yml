@@ -1,4 +1,4 @@
-  default: &default
+default: &default
   adapter: postgresql
   encoding: unicode
   username: postgres
@@ -6,15 +6,15 @@
   host: localhost
   pool: 5
 
-  development:
+development:
   <<: *default
   database: performance_analyser_development
 
-  test:
+test:
   <<: *default
   database: performance_analyser_test
 
-  production:
+production:
   <<: *default
   database: performance_analyser_production
   username: performance_analyser
