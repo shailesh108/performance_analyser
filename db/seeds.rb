@@ -11,7 +11,7 @@
 subject.each do |sub|
 	Subject.create!(sub_name: "#{sub}")
  end
-(5...12).each do |num|                                                       
+(5..12).each do |num|                                                       
    Standard.create!(name:num)     
  end 
 Standard.all.each do |std|

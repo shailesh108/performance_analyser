@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action: authenticate_teacher!
+  
   def index
    @questions = Question.all
    end
