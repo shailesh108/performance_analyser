@@ -7,9 +7,15 @@ class QuestionsController < ApplicationController
   end
   def new
     @question = Question.new
+    if params[:t_id].present? 
+       session[:test_id]=params[:t_id]
+     end
+   # puts "session"+session[:test_id]
+   # byebug
   end
   def create
     @question = Question.new(question_params)
+    @question.test_id=session[:test_id]
     if @question.save
      redirect_to questions_path
     else 
