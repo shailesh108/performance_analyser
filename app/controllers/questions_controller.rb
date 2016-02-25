@@ -2,20 +2,23 @@ class QuestionsController < ApplicationController
   before_action :authenticate_teacher!
   before_action :set_question ,only: [:edit,:update,:destroy,:show]
 
-  def index
-    @questions = Question.all
-  end
-  def new
-    @question = Question.new
+  def set_id
     if params[:t_id].present? 
        session[:test_id]=params[:t_id]
      end
-   # puts "session"+session[:test_id]
-   # byebug
   end
+  def index
+      set_id   
+      @questions = Question.where(:test_id=>session[:test_id])
+  end
+  def new
+      set_id
+       @question = Question.new
+    end
   def create
     @question = Question.new(question_params)
     @question.test_id=session[:test_id]
+
     if @question.save
      redirect_to questions_path
     else 
