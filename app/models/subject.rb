@@ -1,4 +1,4 @@
 class Subject < ActiveRecord::Base
-	has_many :standard_subjects
+	belongs_to :standard_subject
 	validates :sub_name ,presence: true
 end

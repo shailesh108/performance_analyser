@@ -1,11 +1,10 @@
 /*
 *= require admin/login
 *= require student/form
-*= require bootstrap-datepicker
- *= require_self
-
+*= require_self
 */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 @import "font-awesome-sprockets";
 @import "font-awesome";
