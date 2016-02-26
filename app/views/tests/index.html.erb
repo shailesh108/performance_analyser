@@ -28,7 +28,7 @@
               <td><%= test.no_of_questions %></td>
               <td><%= test.teacher.first_name %></td>
 
-              <td><%= link_to '<i class="glyphicon glyphicon-plus" title="Add Questions"></i>'.html_safe, new_question_path %>
+              <td><%= link_to '<i class="glyphicon glyphicon-plus" title="Add Questions"></i>'.html_safe,  new_test_question_path(test) %>
               </td>
 
               <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe, edit_test_path(test) %>

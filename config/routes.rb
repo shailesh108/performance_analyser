@@ -17,9 +17,10 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resources :tests,path: 'teacher/test'
-	resources :questions,path: 'test/question'
-	
+	resources :tests, except: [:show], path: 'test' do
+			resources :questions, except: [:show], path: 'question'
+	end
+
 	get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
 	get 'teacher/welcome'=> 'teachers#welcome'
