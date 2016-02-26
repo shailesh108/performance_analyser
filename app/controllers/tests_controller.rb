@@ -4,7 +4,7 @@ class TestsController < ApplicationController
   before_action :set_test,except: [:index, :new, :create]
 
   def index
-     @tests=Test.paginate(:per_page => 5, :page => params[:page])
+    @tests=current_teacher.tests.paginate(:per_page => 5, :page => params[:page])
   end
 
   def new
@@ -12,10 +12,11 @@ class TestsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
-    if @test.update(test_params)
+    if @test.update(test_params.merge(set_extra_params))
       redirect_to tests_path
     else
       render:'edit'
@@ -31,8 +32,7 @@ class TestsController < ApplicationController
   end
 
   def create
-    #byebug
-    @test=Test.new(test_params)
+    @test = Test.new(test_params.merge(set_extra_params))
     if @test.save
       redirect_to tests_path 
     else
@@ -42,10 +42,15 @@ class TestsController < ApplicationController
 
   private
   def test_params
-    params.require(:test).permit(:test_name,:test_datetime,:total_time,:no_of_questions,:status,:standard_subject_id,:teacher_id)
+    params.require(:test).permit(:test_name,:test_datetime,:total_time,:no_of_questions)
   end
 
   def set_test
     @test = Test.find(params[:id])
+  end
+
+  def set_extra_params
+    stand_subj_id = StandardSubject.where(standard_id: params[:standard_id], subject_id: params[:subject_id]).take.id
+    extra_params = {:standard_subject_id => stand_subj_id, :teacher_id => current_teacher.id, :status => 0}
   end
 end

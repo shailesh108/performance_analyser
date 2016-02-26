@@ -18,15 +18,16 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.test_id=session[:test_id]
-
     if @question.save
      redirect_to questions_path
     else 
       render :new
     end
   end
+
   def edit
   end
+  
   def update
     if @question.update(question_params)
        redirect_to questions_path

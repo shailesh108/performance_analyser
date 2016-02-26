@@ -49,11 +49,14 @@ ActiveRecord::Schema.define(version: 20160224094639) do
   add_index "questions", ["test_id"], name: "index_questions_on_test_id", using: :btree
 
   create_table "standard_subjects", force: :cascade do |t|
-    t.integer  "standard_id"
-    t.integer  "subject_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "standard_id"
+    t.integer  "subject_id"
   end
+
+  add_index "standard_subjects", ["standard_id"], name: "index_standard_subjects_on_standard_id", using: :btree
+  add_index "standard_subjects", ["subject_id"], name: "index_standard_subjects_on_subject_id", using: :btree
 
   create_table "standards", force: :cascade do |t|
     t.integer  "name"
@@ -156,6 +159,8 @@ ActiveRecord::Schema.define(version: 20160224094639) do
   add_index "tests", ["teacher_id"], name: "index_tests_on_teacher_id", using: :btree
 
   add_foreign_key "questions", "tests"
+  add_foreign_key "standard_subjects", "standards"
+  add_foreign_key "standard_subjects", "subjects"
   add_foreign_key "teacher_standard_subjects", "standard_subjects"
   add_foreign_key "teacher_standard_subjects", "teachers"
   add_foreign_key "tests", "standard_subjects"

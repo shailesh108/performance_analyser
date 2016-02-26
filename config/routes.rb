@@ -19,8 +19,7 @@ Rails.application.routes.draw do
 
 	resources :tests,path: 'teacher/test'
 	resources :questions,path: 'test/question'
-	
-	get 'admin/welcome'=> 'admins#welcome'
+		get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
 	get 'teacher/welcome'=> 'teachers#welcome'
 
