@@ -18,7 +18,10 @@ Rails.application.routes.draw do
 	end
 
 	resources :tests,path: 'teacher/test'
-	resources :questions,path: 'test/question'
+	resources :questions,path: 'test/question' do
+  collection { post :import }
+	end
+
 		get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
 	get 'teacher/welcome'=> 'teachers#welcome'

@@ -25,7 +25,7 @@
               <td><%= test.test_name %></td>
               <td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %></td>
               <td><%= test.total_time %> Minutes</td>
-              <td><%= test.no_of_questions %></td>
+              <td><%= test.no_of_questions   %></td>
               <td><%= test.teacher.first_name %></td>
 
                 <td><% if  question_counter(test)%> <%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe,new_question_path(:t_id=>test.id),

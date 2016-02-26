@@ -14,7 +14,11 @@ class QuestionsController < ApplicationController
   def new
       set_id
        @question = Question.new
-    end
+  end
+  def import
+    Question.import(params[:file],session[:test_id])
+    redirect_to questions_path
+  end
   def create
     @question = Question.new(question_params)
     @question.test_id=session[:test_id]
