@@ -1,3 +1,7 @@
 $(document).ready(function(){
-	$('.datepicker').datepicker({format: 'dd-mm-yyyy'});
+	$('.datepicker').datetimepicker({format: 'DD-MM-YYYY'});
+	$('.datetimepicker').datetimepicker({format: 'DD-MM-YYYY h:mm A'});
+});
+$(document).on("ready page:change", function() {
+    $('.tag-tooltip').tooltip();
 });
