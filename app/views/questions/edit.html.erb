@@ -1,5 +1,97 @@
-<div class="col-sm-10 text-left">
-  <h1>Edit Question</h1>
-    <%=render 'form' %>
-   <%=link_to 'Back',questions_path %>
-</div>
+<div class = "container">
+  <% if @question.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger"> <a href="" class="close" data-dismiss="alert" aria- label="close">&times;</a>
+      <%=pluralize(@question.errors.count, "error") %> prohibited this student from being saved: </div>
+    </div>
+    <% end %>
+    <div class="form-horizontal">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="login-panel panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Update Question</h3> 
+            </div>
+            <div class="panel-body">
+              <%=form_for @question,:url => test_question_path(@test_id,@question), class: "form-horizontal" do |f| %>
+              <fieldset>
+                <div class="form-group <%= 'has-error' if @question.errors.messages[:question].present? %>">
+                  <%=f.label :Question,class: "col-sm-4"%>
+                  <div class="col-sm-8">
+                    <%=f.text_area :question, class: "form-control", placeholder: "Enter question" %>
+                    <div class='text-danger'>
+                      <% if @question.errors.messages[:question].present? %>
+                      <%=@question.errors.full_messages_for(:question).first%>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group <%= 'has-error' if @question.errors.messages[:option1].present? %>">
+                  <%=f.label :A,class: "col-sm-4"%>
+                  <div class="col-sm-8">
+                    <%=f.text_field :option1,class: "form-control" , placeholder: "option1" %>
+                    <div class='text-danger'>
+                      <% if @question.errors.messages[:option1].present? %>
+                      <%=@question.errors.full_messages_for(:option1).first%>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group <%= 'has-error' if @question.errors.messages[:option2].present? %>">
+                  <%=f.label :B,class: "col-sm-4"%>
+                  <div class="col-sm-8">
+                    <%=f.text_field :option2,class: "form-control" , placeholder: "option2" %>
+                    <div class='text-danger'>
+                      <% if @question.errors.messages[:option2].present? %>
+                      <%=@question.errors.full_messages_for(:option2).first%>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group <%= 'has-error' if @question.errors.messages[:option3].present? %>">
+                  <%=f.label :C,class: "col-sm-4"%>
+                  <div class="col-sm-8">
+                    <%=f.text_field :option3,class: "form-control" , placeholder: "option3" %>
+                    <div class='text-danger'>
+                      <% if @question.errors.messages[:option3].present? %>
+                      <%=@question.errors.full_messages_for(:option3).first%>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group <%= 'has-error' if @question.errors.messages[:option4].present? %>">
+                  <%=f.label :D,class: "col-sm-4"%>
+                  <div class="col-sm-8">
+                    <%=f.text_field :option4,class: "form-control" , placeholder: "option4" %>
+                    <div class='text-danger'>
+                      <% if @question.errors.messages[:option4].present? %>
+                      <%=@question.errors.full_messages_for(:option4).first%>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group <%= 'has-error' if @question.errors.messages[:answer].present? %>">
+                <%=f.label :answer,class: "col-sm-4"%>
+                <div class="col-sm-8">
+                  <%=f.select(:answer,{'A'=>"A",'B'=>"B",'C'=>"C",'D'=>"D"},{},{class: "form-control"})%> <div class='text-danger'>
+                  <% if @question.errors.messages[:answer].present? %>
+                  <%=@question.errors.full_messages_for(:answer).first%>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+                <div class="actions">
+                  <div class="col-sm-12 text-center"> 
+                    <%=f.submit "Update", :class=> "btn btn-success" %>
+                    <%=f.submit "Cancel", :class=> "btn btn-danger" %>
+                     </div>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>

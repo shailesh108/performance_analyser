@@ -5,7 +5,7 @@
 	<% if admin_signed_in? %>
 	<h1>welcome <%=current_admin.email%></h1>
 
-	<%= link_to "Logoussst",  destroy_admin_session_path, :method => :delete   %>
+	<%= link_to "Logout",  destroy_admin_session_path, :method => :delete   %>
 	<%end%>
 
 	<% if teacher_signed_in? %>

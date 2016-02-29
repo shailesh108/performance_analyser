@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
   before_action :authenticate_student!,only: [:welcome]
   before_action :set_student,except: [:welcome,:list,:new,:create]
 
+
   def edit
   end
 

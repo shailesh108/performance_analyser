@@ -17,12 +17,13 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resources :tests,path: 'teacher/test'
-	resources :questions,path: 'test/question' do
-  collection { post :import }
+	resources :tests, except: [:show], path: 'test' do
+			resources :questions, except: [:show], path: 'question'do
+			collection { post :import }
+		end
 	end
 
-		get 'admin/welcome'=> 'admins#welcome'
+	get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
 	get 'teacher/welcome'=> 'teachers#welcome'
 

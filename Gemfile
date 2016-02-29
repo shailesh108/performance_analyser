@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 gem 'roo'
 gem 'roo-xls'
-gem 'iconv'
 gem 'font-awesome-sass'
 gem 'devise'
 gem 'will_paginate-bootstrap'

@@ -1,60 +1,53 @@
 <div class="container">
+<%= @er %>
   <div class="row">
-    <div class="col-sm-8">
-      <h1>Questions</h1>
+    <div class="col-sm-12">
+      <h1>Listing Questions</h1>
       <div class="table-responsive">
         <table border="2" class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th class="text-center">No</th>
-              <th class="text-center">Question</th>
-              <th class="text-center">A</th>
-              <th class="text-center">B</th>
-              <th class="text-center"> C</th>
-              <th class="text-center">D</th>
-              <th class="text-center">Answer</th>
+              <th>Question</th>
+              <th>A</.present?th>
+              <th>B</th>
+              <th>C</th>
+              <th>D</th>
+              <th>Answer</th>
               <th colspan="3">Action</th>
             </tr>
           </thead>
-          <tbody><%c=0%>
-            <%@questions.each do |question| %>
-              <tr>
-                <td class="text-center"><%= c=c+1%> </td>
-                <td class="text-left">
-                  <%=question.question %>
-                </td>
-                <td class="text-left">
-                  <%=question.option1 %>
-                </td>
-                <td class="text-left">
-                  <%=question.option2 %>
-                </td>
-                <td class="text-left">
-                  <%=question.option3 %>
-                </td>
-                <td class="text-left">
-                  <%=question.option4 %>
-                </td>
-                <td class="text-center">
-                  <%=question.answer %>
-                </td>
-                <td class="text-center">
-                  <%=link_to '<i class="glyphicon glyphicon-eye-open" title="View"></i>'.html_safe,question_path(question) %>
-                </td>
-                <td class="text-center">
-                  <%=link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe,edit_question_path(question) %>
-                </td>
-                <td class="text-center">
-                  <%=link_to ' <i class="glyphicon glyphicon-trash" title="delete"></i>'.html_safe,question_path(question),method: :delete,data: {confirm: 'Are you sure?'} %>
-                </td>
+          <tbody>
+            <% @questions.each do |question| %>
+            <tr>
+              <td>
+                <%=question.question %>
+              </td>
+              <td>
+                <%=question.option1 %>
+              </td>
+              <td>
+                <%=question.option2 %>
+              </td>
+              <td>
+                <%=question.option3 %>
+              </td>
+              <td>
+                <%=question.option4 %>
+              </td>
+              <td>
+                <%=question.answer %>
+              </td>
+
+              <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe, edit_test_question_path(@test_id, question) %>
+              </td>
+              <td><%= link_to '<i class="glyphicon glyphicon-trash" title="delete"></i>'.html_safe,  test_question_path(@test_id, question), method: :delete, data: {confirm: 'Are you sure?'} %>
+
               </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <br>
-          <%=link_to "New Question", new_question_path, class: "btn btn-success" %>
-           <%= link_to "Cancel",tests_path, class: "btn btn-danger"%>
+              <% end %>
+            </tbody>
+          </table>
+          <%= link_to "Tests", tests_path, class: "btn btn-info" %>
+        </div>
       </div>
     </div>
   </div>
-</div>

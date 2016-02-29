@@ -32,7 +32,9 @@ class TestsController < ApplicationController
   end
 
   def create
+
     @test = Test.new(test_params.merge(set_extra_params))
+
     if @test.save
       redirect_to tests_path 
     else

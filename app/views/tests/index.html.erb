@@ -25,44 +25,27 @@
               <td><%= test.test_name %></td>
               <td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %></td>
               <td><%= test.total_time %> Minutes</td>
-              <td><%= test.no_of_questions   %></td>
+              <td><%= test.no_of_questions %></td>
               <td><%= test.teacher.first_name %></td>
 
-                <td><% if  question_counter(test)%> <%= link_to '<i class="glyphicon glyphicon-plus"></i>'.html_safe,new_question_path(:t_id=>test.id),
-                     class: "tag-tooltip",
-                    :data => {:toggle=>"tooltip"},
-                    'data-original-title' => "Add Questions",
-                    'data-placement' => 'right'%>
-                    <%end%>
-                  </td>
-
-                  <td><%= link_to '<i class="glyphicon glyphicon-eye-open"></i>'.html_safe,questions_path(:t_id=>test.id),class: "tag-tooltip",
+              <td><%= add_question_glyphicon(test) %></td>
+               
+              <td><%= link_to '<i class="glyphicon glyphicon-list" ></i>'.html_safe, test_questions_path(test),
+              class: "tag-tooltip",
                       :data => {:toggle=>"tooltip"},
                       'data-original-title' => question_link(test),
-                      'data-placement' => 'right'%>
-                    </td>
-                    <td><%= link_to '<i class="fa fa-pencil-square-o" ></i>'.html_safe, edit_test_path(test),
-                        class: "tag-tooltip",
-                        :data => {:toggle=>"tooltip"},
-                        'data-original-title' => "Edit Test",
-                        'data-placement' => 'right'%>
+                      'data-placement' => 'right'%></td>
+              <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe, edit_test_path(test) %>
               </td>
-                      <td><%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, test_path(test), method: :delete, data: {confirm: 'Are you sure?'} ,
-                          class: "tag-tooltip",
-                          :data => {:toggle=>"tooltip"},
-                          'data-original-title' => "Delete ",
-                          'data-placement' => 'right' %>
-                        </td>
+              <td><%= link_to '<i class="glyphicon glyphicon-trash" title="delete"></i>'.html_safe, test_path(test), method: :delete, data: {confirm: 'Are you sure?'} %>
+              </td>
             </tr>
             <% end %>
           </tbody>
         </table>
         <%= will_paginate @tests, renderer: BootstrapPagination::Rails, class: "pull-right"%>
-
         <br><%= link_to "New Test", new_test_path, class: "btn btn-success" %>
-
       </div>
-
     </div>
   </div>
 </div>
