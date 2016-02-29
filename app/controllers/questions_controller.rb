@@ -13,16 +13,11 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(questions_params.merge(:test_id => params[:test_id]))
-
-    if @question.save
-      respond_to do |format|
+    respond_to do |format|
+      if @question.save  
         format.js
       end
-
-    else 
-      render:'new'
     end
-
   end
     def import
      Question.import(params[:file],@test_id.id)

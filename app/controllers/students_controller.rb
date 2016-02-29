@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_teacher!,except: [:welcome]
+  before_action :authenticate_teacher_or_admin,except: [:welcome]
   before_action :authenticate_student!,only: [:welcome]
   before_action :set_student,except: [:welcome,:list,:new,:create]
 
@@ -63,4 +63,9 @@ class StudentsController < ApplicationController
     params.require(:student).permit(:enrollment_no,:password,:email,:first_name,:middle_name,:last_name,:date_of_birth,:address,:city,:contactno,:standard_id,:gender,:avatar)
   end
 
+  def authenticate_teacher_or_admin
+    unless (current_teacher || current_admin)
+      redirect_to root_path
+    end
+  end
 end
