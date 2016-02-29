@@ -74,35 +74,33 @@
               <div class="form-group <%= 'has-error' if @question.errors.messages[:answer].present? %>">
                 <%=f.label :answer,class: "col-sm-4"%>
                 <div class="col-sm-8">
-                  <%=f.text_field :answer,class: "form-control" , placeholder: "Answer" %>
-                  <div class='text-danger'>
-                    <% if @question.errors.messages[:answer].present? %>
-                    <%=@question.errors.full_messages_for(:answer).first%>
-                    <% end %>
-                  </div>
+                  <%=f.select(:answer,{'A'=>"A",'B'=>"B",'C'=>"C",'D'=>"D"},{},{class: "form-control"})%> <div class='text-danger'>
+                  <% if @question.errors.messages[:answer].present? %>
+                  <%=@question.errors.full_messages_for(:answer).first%>
+                  <% end %>
                 </div>
               </div>
-
-              <div class="actions">
-                <div class="col-sm-12 text-center"> 
-                  <%= add_question_button(f) %>
-                </div>
+            </div>
+            <div class="actions">
+              <div class="col-sm-12 text-center"> 
+                <%= add_question_button(f) %>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-sm-6">
-          <div class="login-panel panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Questions</h3> 
-            </div>
-            <div class="panel-body">
-              <%= render 'create' %>
-            </div>
+      <div class="col-sm-6">
+        <div class="login-panel panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Questions</h3> 
+          </div>
+          <div class="panel-body">
+            <%= render 'create' %>
           </div>
         </div>
-      </fieldset>
-    </div>
-    <% end %>
+      </div>
+    </fieldset>
   </div>
+  <% end %>
+</div>

@@ -19,10 +19,11 @@ Rails.application.routes.draw do
 
 	resources :tests, except: [:show], path: 'test' do
 			resources :questions, except: [:show], path: 'question'
+			collection { post :import }
 	end
 
 	get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
 	get 'teacher/welcome'=> 'teachers#welcome'
-	get 'test/question/add'=>'questions#new'
+
 end

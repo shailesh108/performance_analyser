@@ -4,7 +4,7 @@ class TestsController < ApplicationController
   before_action :set_test,except: [:index, :new, :create]
 
   def index
-    @tests=Test.paginate(:per_page => 5, :page => params[:page])
+    @tests=current_teacher.tests.paginate(:per_page => 5, :page => params[:page])
   end
 
   def new

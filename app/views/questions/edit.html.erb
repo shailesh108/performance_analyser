@@ -71,20 +71,21 @@
                   </div>
                 </div>
                 <div class="form-group <%= 'has-error' if @question.errors.messages[:answer].present? %>">
-                  <%=f.label :answer,class: "col-sm-4"%>
-                  <div class="col-sm-8">
-                    <%=f.text_field :answer,class: "form-control" , placeholder: "Answer" %>
-                    <div class='text-danger'>
-                      <% if @question.errors.messages[:answer].present? %>
-                      <%=@question.errors.full_messages_for(:answer).first%>
-                      <% end %>
-                    </div>
-                  </div>
+                <%=f.label :answer,class: "col-sm-4"%>
+                <div class="col-sm-8">
+                  <%=f.select(:answer,{'A'=>"A",'B'=>"B",'C'=>"C",'D'=>"D"},{},{class: "form-control"})%> <div class='text-danger'>
+                  <% if @question.errors.messages[:answer].present? %>
+                  <%=@question.errors.full_messages_for(:answer).first%>
+                  <% end %>
                 </div>
+              </div>
+            </div>
 
                 <div class="actions">
                   <div class="col-sm-12 text-center"> 
-                    <%=f.submit "Update", :class=> "btn btn-success" %> </div>
+                    <%=f.submit "Update", :class=> "btn btn-success" %>
+                    <%=f.submit "Cancel", :class=> "btn btn-danger" %>
+                     </div>
                   </div>
                   <% end %>
                 </div>
