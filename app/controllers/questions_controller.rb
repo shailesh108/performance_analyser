@@ -16,11 +16,13 @@ class QuestionsController < ApplicationController
 
     if @question.save
       respond_to do |format|
-      format.js
-     end
-   else 
+        format.js
+      end
+
+    else 
       render:'new'
     end
+
   end
 
   def edit

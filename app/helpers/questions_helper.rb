@@ -7,11 +7,11 @@ module QuestionsHelper
 		end
 	end
 
-	def link_to_new_question
-		unless (@test_id.questions.count >= @test_id.no_of_questions) 
-			return	"#{link_to 'Add Question' , new_test_question_path, :class => "btn btn-success"}".html_safe	
+	def add_question_glyphicon(test)
+		unless (test.questions.count >= test.no_of_questions)
+			return	"#{link_to "<i class='glyphicon glyphicon-plus' title='Add Questions'></i>".html_safe, new_test_question_path(test)}".html_safe
 		else
-			return "<h4>All Questions Added</h4>".html_safe
+			return "<i class='glyphicon glyphicon-thumbs-up' title='all Questions Added'></i>".html_safe
 		end
 	end
 end
