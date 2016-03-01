@@ -16,7 +16,7 @@
               <th>Address</th>
               <th>City</th>
               <th>Contactno</th>
-              <th colspan="3">Action</th>
+              <th colspan="4">Action</th>
             </tr> </thead>
             <tbody>
               <% @teachers.each do |teacher| %>
@@ -30,20 +30,17 @@
                 <td><%= teacher.city %></td>
                 <td><%= teacher.contactno %></td>
 
-
+                <td><%= link_to '<i class="glyphicon glyphicon-plus" title="Assign Standard and Subject"></i>'.html_safe, assign_teacher_path(teacher) %>
+                </td>
                 <td><%= link_to '<i class="glyphicon glyphicon-user" title="View"></i>'.html_safe,teacher_path(teacher)%>
                 </td>
-
                 <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe,edit_teacher_path(teacher)%></td>   
                 <td><%= link_to '<i class="glyphicon glyphicon-trash title="delete"></i>'.html_safe, teacher_path(teacher),method: :delete,data: {confirm: 'Are you sure?'} %>
-
                 </td>
-
               </tr>
               <% end %>
             </tbody>
           </table>
-
         </div>
 
         <%= will_paginate @teachers, renderer: BootstrapPagination::Rails,class: "pull-right"%>

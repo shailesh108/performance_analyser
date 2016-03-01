@@ -7,7 +7,6 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @avatar_path=("/avatars/students/originals/"+@student.avatar_file_name)
   end
 
   def new
