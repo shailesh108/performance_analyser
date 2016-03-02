@@ -34,7 +34,7 @@
                 </td>
                 <td><%= link_to '<i class="glyphicon glyphicon-user" title="View"></i>'.html_safe,teacher_path(teacher)%>
                 </td>
-                <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe,edit_teacher_path(teacher)%></td>   
+                <td><%= link_to '<i class="glyphicon glyphicon-pencil" title="Edit"></i>'.html_safe,edit_teacher_path(teacher)%></td>   
                 <td><%= link_to '<i class="glyphicon glyphicon-trash title="delete"></i>'.html_safe, teacher_path(teacher),method: :delete,data: {confirm: 'Are you sure?'} %>
                 </td>
               </tr>

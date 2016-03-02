@@ -37,7 +37,7 @@
                 <%=question.answer %>
               </td>
 
-              <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe, edit_test_question_path(@test_id, question) %>
+              <td><%= link_to '<i class="glyphicon glyphicon-pencil" title="Edit"></i>'.html_safe, edit_test_question_path(@test_id, question) %>
               </td>
               <td><%= link_to '<i class="glyphicon glyphicon-trash" title="delete"></i>'.html_safe,  test_question_path(@test_id, question), method: :delete, data: {confirm: 'Are you sure?'} %>
 

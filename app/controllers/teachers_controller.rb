@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
   before_action :authenticate_admin!,except: [:welcome]
-  before_action :set_teacher, except: [:welcome,:list,:new,:create]
+  before_action :set_teacher, except: [:welcome,:list,:new,:create,:search,:search_result]
   before_action :authenticate_teacher!,only: [:welcome]
 
   def welcome
@@ -58,6 +58,21 @@ class TeachersController < ApplicationController
     teacher_standard_subject = TeacherStandardSubject.find(params[:assigned_id])
     teacher_standard_subject.destroy
     redirect_to assign_teacher_path
+  end
+
+  def search
+  end
+
+  def search_result
+    if params[:standard_id] and params[:subject_id]!=nil
+      stand_subj = StandardSubject.where(standard_id: params[:standard_id], subject_id: params[:subject_id]).take
+      @standard = stand_subj.standard.name
+      @subject = stand_subj.subject.sub_name
+      
+      stand_subj_id = stand_subj.id    
+      teacher_assigned = TeacherStandardSubject.find_by(standard_subject_id: stand_subj_id)
+      @teacher_profile = teacher_assigned.teacher
+    end   
   end
 
   private

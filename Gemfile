@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 gem 'roo'
-gem 'font-awesome-sass'
 gem 'devise'
 gem 'will_paginate-bootstrap'
 gem "paperclip"

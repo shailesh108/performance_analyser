@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 	resources :teachers,except: [:index],path: 'admin/teacher' do
 		collection do
 			get 'list'
+			get 'search'
+			get "search_result" => 'teachers#search_result'
+	
 		end		
 		member do
 			get 'assign'
