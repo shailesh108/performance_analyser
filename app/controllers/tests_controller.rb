@@ -1,6 +1,6 @@
 class TestsController < ApplicationController
   before_action :authenticate_teacher! ,only: [:edit,:update,:destory,:create]
-  before_action :authenticate_student! ,only: [:show]
+  before_action :authenticate_student! ,only: :show
   def index
     @tests=Test.all
   end

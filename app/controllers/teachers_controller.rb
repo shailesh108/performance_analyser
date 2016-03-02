@@ -1,7 +1,7 @@
 class TeachersController < ApplicationController
-  before_action :authenticate_admin!,except: [:welcome]
+  before_action :authenticate_admin!,except: :welcome
   before_action :set_teacher, except: [:welcome,:list,:new,:create]
-  before_action :authenticate_teacher!,only: [:welcome]
+  before_action :authenticate_teacher!,only: :welcome
 
   def welcome
   end
