@@ -21,5 +21,5 @@
     extension = File.extname(avatar_file_name).downcase
     self.avatar.instance_write(:file_name, "#{first_name}#{last_name}#{extension}")
   end
- pg_search_scope :search_by_standard_name, :against => [:standard_id]
+ pg_search_scope :search_by_standard_name, :against => [:standard_id, :enrollment_no]
 end
