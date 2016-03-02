@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224094639) do
+ActiveRecord::Schema.define(version: 20160302094347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 20160224094639) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -86,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160224094639) do
     t.string   "city"
     t.string   "contactno"
     t.integer  "standard_id"
+    t.string   "email"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -93,7 +93,6 @@ ActiveRecord::Schema.define(version: 20160224094639) do
     t.string   "gender"
   end
 
-  add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["enrollment_no"], name: "index_students_on_enrollment_no", using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
 
@@ -138,6 +137,7 @@ ActiveRecord::Schema.define(version: 20160224094639) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "gender"
+    t.string   "sub_name"
   end
 
   add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true, using: :btree

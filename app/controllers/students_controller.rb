@@ -65,8 +65,12 @@ end
   end
 
   def list 
+  if params[:query].blank?
     @students=Student.paginate(:per_page => 5, :page => params[:page])
+  else
+    @students = Student.search_by_standard_name(params[:query]).paginate(:per_page => 5, :page => params[:page])
   end
+end
 
   private
 

@@ -1,4 +1,13 @@
 <div class="container">
+  <%= form_for :search_by_standard_name, :url => {:controller => 'students', :action => 'list'}, :html => {:method => 'get'} do |f| %>
+    <%=f.label :Standard%>
+    <%= text_field_tag :query %>
+   
+    
+    <br/>
+    <%= f.submit "Search" %>
+<% end %>
+
   <div class="row">
     <div class="col-sm-12">
       <h1>Listing Student</h1>

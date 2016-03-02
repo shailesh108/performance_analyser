@@ -170,6 +170,17 @@
                   </div>
                 </div>
 
+                <div class="form-group <%= 'has-error' if @teacher.errors.messages[:sub_name].present? %>">
+                  <%= f.label :Subject,class: "col-sm-4"%>
+                    <div class="col-sm-8">
+                      <%=f.select(:sub_name,options_for_select(Subject.pluck(:sub_name)),{},{class: "form-control"})%>  
+                        <div class='text-danger'>
+                          <% if @teacher.errors.messages[:sub_name].present? %>
+                          <%=@teacher.errors.full_messages_for(:sub_name).first%>
+                          <% end %>
+                        </div>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
