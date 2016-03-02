@@ -7,17 +7,7 @@ class StudentsController < ApplicationController
 
   def edit
   end
-def result
-  @attempt=params.size-6
-  @cnt=0
-  qu=Question.where(:test_id=>params[:id])
-  @total=qu.count
-  qu.each do |q|
-  if params[q.id.to_s]==q.answer
-    @cnt=@cnt+1    
-  end
-end
-end
+
   def show
     @avatar_path=("/avatars/students/originals/"+@student.avatar_file_name)
   end
@@ -44,6 +34,7 @@ end
     end
   end
   def starttest
+    
     @ques=@test.questions
   end
 

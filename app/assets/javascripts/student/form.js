@@ -5,3 +5,13 @@ $(document).ready(function(){
 $(document).on("ready page:change", function() {
     $('.tag-tooltip').tooltip();
 });
+$(function () {
+
+    $('.toggle').click(function (event) {
+        event.preventDefault();
+        var target = $(this).attr('href');
+        $(target).toggleClass('hidden show');
+    });
+
+});
+

@@ -15,10 +15,10 @@ Rails.application.routes.draw do
 		collection do
 			get 'list'
 			get 'starttest/:id'=>'students#starttest',as: :starttest
-			post 'result/:id'=>'students#result',as: :result
+			
 		end
 	end
-
+post 'result/:id'=>'results#test_result',as: :result
 	resources :tests, except: [:show], path: 'test' do
 			resources :questions, except: [:show], path: 'question'do
 			collection { post :import }
