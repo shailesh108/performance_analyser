@@ -1,18 +1,51 @@
-<div class="form-horizontal">
+<div class="container">
   <div class="row">
-    <div class="panel-body">
-      <%=form_for Question.new do |f| %>
-        <% Question.all.each do |que| %>
-           <%=que.question%>
-            <br>
-              <%[que.option1,que.option2,que.option3,que.option4].each do |student|%>
-                <%=student%>
-                <%=radio_button_tag "student_#{que.id}",student %>
-             <br>
-              <% end %>
-           <% end %>
-      <% end %>
-      <%=link_to "Add Question" , new_question_path(@question) %>
+    <div class="col-sm-12">
+      <h1>Tests</h1>
+      <div class="table-responsive">
+        <table border="2"  class="table table-striped table-bordered table-hover" >
+          <thead>
+
+            <tr>
+              <th>Standard</th>
+              <th>Subject</th>
+              <th>Test Name</th>
+              <th>Test Date and Time</th>
+              <th>Total time</th>
+              <th colspan="2">No. of Questions</th>
+              <th>Teacher Name</th>
+              <th colspan="4">Action</th>
+            </tr> 
+          </thead>
+          <tbody>
+            <% @tests.each do |test| %>
+            <tr>
+              <td><%= test.standard_subject.standard.name %></td>
+              <td><%= test.standard_subject.subject.sub_name %></td>
+              <td><%= test.test_name %></td>
+              <td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %></td>
+              <td><%= test.total_time %> Minutes</td>
+              <td><%= test.no_of_questions %></td><td> <%= count_no_of_questions_remaining(test) %></td>
+              <td><%= test.teacher.first_name %></td>
+
+              <td><%= change_add_question_glyphicon(test) %></td>
+               
+              <td><%= link_to '<i class="glyphicon glyphicon-list" ></i>'.html_safe, test_questions_path(test),
+              class: "tag-tooltip",
+                      :data => {:toggle=>"tooltip"},
+                      'data-original-title' => question_link(test),
+                      'data-placement' => 'right'%></td>
+              <td><%= link_to '<i class="fa fa-pencil-square-o" title="Edit"></i>'.html_safe, edit_test_path(test) %>
+              </td>
+              <td><%= link_to '<i class="glyphicon glyphicon-trash" title="delete"></i>'.html_safe, test_path(test), method: :delete, data: {confirm: 'Are you sure?'} %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= will_paginate @tests, renderer: BootstrapPagination::Rails, class: "pull-right"%>
+        <br><%= link_to "New Test", new_test_path, class: "btn btn-success" %>
+      </div>
     </div>
   </div>
 </div>

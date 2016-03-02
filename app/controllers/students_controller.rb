@@ -1,11 +1,23 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_teacher!,except: :welcome
-  before_action :authenticate_student!,only: :welcome
-  before_action :set_student,except: [:welcome,:list,:new,:create]
+  before_action :authenticate_teacher_or_admin,except: [:welcome,:starttest,:result]
+  before_action :authenticate_student!,only: [:welcome,:starttest,:result]
+  before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result]
+  before_action :set_test,only: [:starttest]
+
 
   def edit
   end
-
+def result
+  @attempt=params.size-6
+  @cnt=0
+  qu=Question.where(:test_id=>params[:id])
+  @total=qu.count
+  qu.each do |q|
+  if params[q.id.to_s]==q.answer
+    @cnt=@cnt+1    
+  end
+end
+end
   def show
     @avatar_path=("/avatars/students/originals/"+@student.avatar_file_name)
   end
@@ -31,6 +43,9 @@ class StudentsController < ApplicationController
 
     end
   end
+  def starttest
+    @ques=@test.questions
+  end
 
   def update
     if @student.update(student_params)
@@ -41,6 +56,7 @@ class StudentsController < ApplicationController
   end
 
   def welcome
+    @tests=current_student.standard.tests.order(:test_datetime)
   end
 
   def destroy
@@ -57,9 +73,16 @@ class StudentsController < ApplicationController
   def set_student
     @student = Student.find(params[:id])
   end
-
+  def set_test
+    @test=Test.find(params[:id])
+  end
   def student_params
     params.require(:student).permit(:enrollment_no,:password,:email,:first_name,:middle_name,:last_name,:date_of_birth,:address,:city,:contactno,:standard_id,:gender,:avatar)
   end
 
+  def authenticate_teacher_or_admin
+    unless (current_teacher || current_admin)
+      redirect_to root_path
+    end
+  end
 end
