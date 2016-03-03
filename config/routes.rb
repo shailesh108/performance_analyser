@@ -27,9 +27,11 @@ Rails.application.routes.draw do
 		end
 	end
 post 'result/:id'=>'results#test_result',as: :result
+
 	resources :tests, except: [:show], path: 'test' do
-		resources :questions, except: [:show], path: 'question'
+		resources :questions, except: [:show], path: 'question' do
 		collection { post :import }
+		end
 	end
 
 	get 'admin/welcome'=> 'admins#welcome'

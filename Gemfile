@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 gem 'roo-xls'
-
+gem 'chartkick'
+gem 'groupdate'
+gem 'active_median'
 gem 'font-awesome-sass'
 gem 'devise'
 gem 'will_paginate-bootstrap'

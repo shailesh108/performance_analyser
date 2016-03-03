@@ -40,6 +40,19 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+  <div class="col-xs-6">
+    <h3>Total Test is <%= @tests.count%></h3>
+   
+    <% 
+    	attmp=current_student.results.count
+    	total= @tests.count == attmp ? 0 : @tests.count-attmp
+	    data ={"Test Attended"=>attmp,"Not Attended Test"=>total}
+    %>
+
+<%= column_chart data , width: "300px", height: "200px" %>
+  </div>
+</div>
 </div>
 
 
