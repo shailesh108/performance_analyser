@@ -8,6 +8,14 @@ Rails.application.routes.draw do
 	resources :teachers,except: [:index],path: 'admin/teacher' do
 		collection do
 			get 'list'
+			get 'search'
+			get "search_result" => 'teachers#search_result'
+	
+		end		
+		member do
+			get 'assign'
+			post 'assign' => 'teachers#assign_teacher'
+			delete "assign/:assigned_id" => 'teachers#delete_assignment',as: :delete_assigned				
 		end
 	end
 
@@ -20,13 +28,11 @@ Rails.application.routes.draw do
 	end
 post 'result/:id'=>'results#test_result',as: :result
 	resources :tests, except: [:show], path: 'test' do
-			resources :questions, except: [:show], path: 'question'do
-			collection { post :import }
-		end
+		resources :questions, except: [:show], path: 'question'
+		collection { post :import }
 	end
 
 	get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
 	get 'teacher/welcome'=> 'teachers#welcome'
-
 end

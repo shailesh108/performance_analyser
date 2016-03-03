@@ -1,5 +1,7 @@
 class Teacher < ActiveRecord::Base
   has_many :tests
+  has_many :teacher_standard_subjects, dependent: :destroy
+
   devise :database_authenticatable,:trackable, :validatable
   validates :first_name, :middle_name, :last_name, :dateofbirth, :address, :city, presence:true
   validates :contactno, presence:true, numericality:{only_integer:true}

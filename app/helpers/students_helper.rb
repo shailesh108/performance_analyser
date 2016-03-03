@@ -1,4 +1,4 @@
-module StudentsHelper
+
   def test_status(test)
     if (test.test_datetime>DateTime.now)
       return  "#{link_to "Pending",starttest_students_path(test),class: "btn btn-danger btn-xs"}".html_safe
@@ -14,3 +14,9 @@ module StudentsHelper
     end
   end
 end
+
+	def get_student_avatar
+		image_tag("/avatars/students/originals/" + @student.avatar_file_name)
+	end
+end
+

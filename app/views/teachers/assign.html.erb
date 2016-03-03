@@ -1,0 +1,86 @@
+<div class = "container">
+	<div class="row">
+		<div class="form-horizontal">
+			<div class="col-sm-6">
+				<div class="login-panel panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Teacher Profile</h3> 
+					</div>
+
+					<div class="panel-body">
+						<div class="col-xs-6">
+							<%= get_teacher_avatar %>
+						</div>
+						<div class="col-xs-6">
+							Name :	<%= display_full_teacher_name %>
+						</div>
+						<div class="col-xs-6">
+							Email :	<%= @teacher.email %>
+						</div>
+						<div class="col-xs-6">
+							Total Subjects Assigned :	<%= display_total_subjects %>
+						</div>
+					</div>
+				</div>
+
+				<div class="login-panel panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Assign Standard and Subject</h3> 
+					</div>
+
+					<div class="panel-body">
+
+						<%=form_for @teacher_standard_subject, :url=>assign_teacher_path do |f| %>
+						<div class="form-group">
+							<%= f.label "Standard", class:"col-sm-4"%>	
+
+							<div class="col-sm-8">
+
+								<%= select_tag 'standard_id', options_from_collection_for_select(Standard.all, 'id', 'name'), {class: "form-control"} %>   
+							</div>
+						</div>
+						<div class="form-group">
+							<%= f.label "Subject",class: "col-sm-4"%>	
+							<div class="col-sm-8">
+								<%=select_tag 'subject_id',	options_from_collection_for_select(Subject.all, 'id', 'sub_name'), {class: "form-control"}%>
+							</div>
+						</div>
+
+						<div class="actions">
+							<div class="col-sm-12 text-center">
+								<%= submit_tag "Assign Teacher", :class=> "btn btn-success" %>
+								<%= link_to "Cancel", list_teachers_path, :class => "btn btn-danger" %> 
+							</div>
+						</div>
+						<%end%>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-6">
+
+			<h1>Assigned Stnadards and Subjects</h1>
+			<div class="table-responsive">
+				<table border="2" class="table table-striped table-bordered table-hover" >
+					<thead>
+						<tr>            
+							<th>Standard</th>
+							<th>Subject</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @teacher.teacher_standard_subjects.each do |tea_std_sub| %>
+						<tr>
+							<td><%= return_standard(tea_std_sub) %></td>
+							<td><%= return_subject(tea_std_sub) %></td>
+							<td><%= link_to '<i class="glyphicon glyphicon-trash title="delete"></i>'.html_safe, delete_assigned_teacher_path(@teacher,tea_std_sub), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+						</tr>
+						<%end%>
+					</tbody>	
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
