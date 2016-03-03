@@ -2,11 +2,11 @@
   <div class="container">
   <%= form_for :search_by_subject, :url => {:controller => 'teachers', :action => 'list'}, :html => {:method => 'get'} do |f| %>
     <div class="form-group">
-      <%= text_field_tag :query, placeholder = "Search by Subject,Name or email_id",:class => "form-control" %>
+      <%= text_field_tag :query,nil, placeholder: "Search", title:"Search by Subject,Name or email_id", class: "form-control" %>
       <br/>
     </div>
     
-      <%= f.submit "Search", :class => "btn btn-primary"%>
+     <!--  <%= f.submit "Search", :class => "btn btn-primary"%> -->
       
   
 <% end %>

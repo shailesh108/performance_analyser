@@ -3,7 +3,7 @@
   <div id="error_explanation">
     <div class="alert alert-danger">
       <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:
+      <%= pluralize(@student.errors.count, "error") %> There are errors while saving details. Please see inline messages.
     </div>
   </div>
   <% end %>
@@ -38,7 +38,7 @@
                     <div class="form-group <%= 'has-error' if @student.errors.messages[:standard_id].present? %>">
                       <%= f.label :Standard_id,class: "col-sm-4"%>
                       <div class="col-sm-8">
-                        <%=f.select(:standard_id,options_for_select(Standard.pluck(:name)),{},{class: "form-control"})%>  
+                        <%=f.select(:standard_id,options_for_select(Standard.all.map{|c| [c.name, c.id]} ),{},{class: "form-control"})%>
                          <div class='text-danger'>
                         <% if @student.errors.messages[:standard_id].present? %>
                         <%=@student.errors.full_messages_for(:standard_id).first%>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302094347) do
+ActiveRecord::Schema.define(version: 20160303043903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,9 @@ ActiveRecord::Schema.define(version: 20160302094347) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "gender"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   add_index "students", ["enrollment_no"], name: "index_students_on_enrollment_no", using: :btree
@@ -157,6 +160,20 @@ ActiveRecord::Schema.define(version: 20160302094347) do
 
   add_index "tests", ["standard_subject_id"], name: "index_tests_on_standard_subject_id", using: :btree
   add_index "tests", ["teacher_id"], name: "index_tests_on_teacher_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                           null: false
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 
   add_foreign_key "questions", "tests"
   add_foreign_key "standard_subjects", "standards"

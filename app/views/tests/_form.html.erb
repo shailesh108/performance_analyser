@@ -1,7 +1,7 @@
 <% if @test.errors.any? %>
 <div id="error_explanation">
   <div class="alert alert-danger"> <a href="" class="close" data-dismiss="alert" aria-    label="close">&times;</a>
-    <%=pluralize(@test.errors.count, "error") %> prohibited this test from being save
+    <%=pluralize(@test.errors.count, "error") %> There are errors while saving details. Please see inline messages.
   </div>
 </div>
 <% end %>
@@ -19,7 +19,7 @@
             <%= f.label "Standard",class: "col-sm-4"%>
             <div class="col-sm-8">
 
-              <%=select_tag 'standard_id',options_from_collection_for_select(Standard.all,'id','name',select_standard),{class: "form-control"}%>   
+              <%=f.select(:standard_id,options_for_select(Standard.all.map{|c| [c.name, c.id]} ),{},{class: "form-control"})%>
               <div class='text-danger'>
                 <% if @test.errors.messages[:standard_id].present? %>
                 <%=@test.errors.full_messages_for(:standard_id).first%>

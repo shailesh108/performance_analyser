@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+ 
+  get "logout" => "sessions#destroy", :as => "logout"
+	get "login" => "sessions#new", :as => "login"
+	get "signup" => "students#new", :as => "signup"
 	root 'home#index'
+	resources :students
+	resources :sessions
+	resources :password_resets
 
 	devise_for :admins,:controllers => {:sessions => "admins/sessions"}, :path => 'admin', :path_names => { :sign_in => 'login', :sign_out => 'logout'}
 	devise_for :teachers,:controllers => {:sessions => "teachers/sessions"}, :path => 'teacher', :path_names => { :sign_in => 'login', :sign_out => 'logout'}

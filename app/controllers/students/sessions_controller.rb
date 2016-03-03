@@ -5,13 +5,31 @@ class Students::SessionsController < Devise::SessionsController
     super
   end
 
-  def create
-    super
-  end
+  
 
-  def destroy
-    super
+def create
+  super
+  student = Student.find_by_email(params[:email])
+  if student && student.authenticate(params[:password])
+    if params[:remember_me]
+      cookies.permanent[:auth_token] = student.auth_token
+    else
+      cookies[:auth_token] = student.auth_token
+    end
+    redirect_to root_url, :notice => "Logged in!"
+  else
+    flash.now.alert = "Invalid email or password"
+
   end
+end
+
+def destroy
+  super
+  cookies.delete(:auth_token)
+  
+end
+
+
 
   protected
 
