@@ -18,9 +18,10 @@ $(function () {
 $(document).ready(function() {
     $('input').change(function(){
         var yes = $('.yes:checked').length
-        
+        var no_ques=$('.ques').text()
         $('.yes_results').text(yes)
         var elem = document.getElementById('chart');
-        elem.style.width = yes*10 + "%";                   
+        elem.style.width = ((yes*100)/no_ques) + "%";                   
+       
     })
 });
