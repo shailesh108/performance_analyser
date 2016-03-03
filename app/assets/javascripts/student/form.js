@@ -15,3 +15,12 @@ $(function () {
 
 });
 
+$(document).ready(function() {
+    $('input').change(function(){
+        var yes = $('.yes:checked').length
+        
+        $('.yes_results').text(yes)
+        var elem = document.getElementById('chart');
+        elem.style.width = yes*10 + "%";                   
+    })
+});

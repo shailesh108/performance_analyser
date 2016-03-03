@@ -21,7 +21,7 @@ class StudentsController < ApplicationController
 
     if @student.save
 
-      enrolment_no=Time.now.year.to_s+@student.standard_id.to_s+("0".*(4-@student.id.to_s.length))+@student.id.to_s
+      enrolment_no=Time.now.year.to_s+@student.standard.name.to_s+("0".*(4-@student.id.to_s.length))+@student.id.to_s
 
       @student.update_attributes(enrollment_no: enrolment_no)
 
@@ -47,6 +47,7 @@ class StudentsController < ApplicationController
   end
 
   def welcome
+     @avatar_path=("/avatars/students/originals/"+current_student.avatar_file_name)
     @tests=current_student.standard.tests.order(:test_datetime)
   end
 

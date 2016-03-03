@@ -21,7 +21,7 @@
             <tbody>
               <% @students.each do |student| %>
               <tr><td><%= student.enrollment_no %></td>
-                <td><%= student.standard_id %></td>
+                <td><%= student.standard.name %></td>
                 <td><%= student.first_name %></td>
                 <td><%= student.middle_name %></td>
                 <td><%= student.last_name %></td>

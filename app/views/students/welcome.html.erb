@@ -3,8 +3,6 @@
 	<h1>welcome <%=current_student.first_name%></h1>
 
 	<%end%>
-
-
 	<div class="row">
 		<div class="col-sm-12">
 			<h1>Tests</h1>
@@ -28,7 +26,8 @@
 						<td ><%= c=c+1 %></td>
 							<td><%=test.standard_subject.subject.sub_name%></td>
 							<td><%= test.test_name %></td>
-							<td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %> <span class="badge"><%=days_remain(test)%></span></td>
+							<td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %> 
+							<span class="badge"><%=days_remain(test)%></span></td>
 							<td><span class="badge"><%= test.total_time %>:00 </span>  Minutes</td>
 							<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
 							<td><%= test.teacher.first_name %></td>
@@ -43,4 +42,4 @@
 	</div>
 </div>
 
-</div>
+
