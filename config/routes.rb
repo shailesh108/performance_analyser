@@ -9,13 +9,12 @@ Rails.application.routes.draw do
 		collection do
 			get 'list'
 			get 'search'
-			get "search_result" => 'teachers#search_result'
-	
+			get "search_result" => 'teachers#search_result'	
 		end		
 		member do
 			get 'assign'
 			post 'assign' => 'teachers#assign_teacher'
-			delete "assign/:assigned_id" => 'teachers#delete_assignment',as: :delete_assigned				
+			delete "assign/:assigned_id" => 'teachers#delete_assignment',as: :delete_assigned					
 		end
 	end
 
