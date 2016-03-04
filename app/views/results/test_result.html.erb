@@ -1,4 +1,4 @@
-<div class="container">
+ <div class="container">
 	<div class="row">
 <div class="col-sm-offset-2 col-sm-5">
 				
@@ -18,7 +18,35 @@
   <li class="list-group-item list-group-item-danger">
     <span class="badge"><%=@result.incorrect_question%></span>
     Inorrect Questions
+
   </li>
+  <li class="list-group-item list-group-item-info">
+    <span class="badge"><%=(100*@result.correct_question.to_i)/(@result.correct_question.to_i+@result.incorrect_question.to_i)%></span>
+      persentage
 </ul>
 </div>
-</div></div>
+</div>
+ 
+<% graph_data = {
+  "Attempted Questions"=> @result.attempted_question,
+  "Correct Question"=> @result.correct_question,
+  "Incorrect Question"=> @result.incorrect_question,
+  } %>
+<%= pie_chart graph_data %>
+
+<%
+  att=current_student.results
+     sum=0
+    att.each do |t|
+  
+      c=t.percentage
+     puts sum+=c
+    end
+    sum/Test.count
+%>
+
+    
+          
+            
+
+                   

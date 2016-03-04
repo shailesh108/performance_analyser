@@ -1,78 +1,76 @@
 <div class="container">
-	<div class="row" >
-			<div class="well well-lg" >
-				<div class="col-sm-offset-2 col-sm-10">
-					<div class="row">
-						<div class="col-sm-3">
+	<div class="row"  > 
+		<div class="col-sm-offset-5 ol-sm-3" style="position:fixed; top:5%; left:45%;" >
+		<h2><span id="countdown" class="timer label label-danger"></span></h2><br>
+		</div>
+	</div>
 
-							<p><span class="glyphicon glyphicon glyphicon-user"></span> Name : <%=current_student.first_name.capitalize.to_s+" "+current_student.last_name.capitalize.to_s%></p></div>
-							<div class="col-sm-2">
-								<span class="glyphicon glyphicon glyphicon-book"></span> Test: <%=@test.test_name.capitalize%>
-							</div>
-							<div class="col-sm-3"> 
-								<span class="glyphicon glyphicon glyphicon-tasks"></span> Total Questions : <%=@test.no_of_questions%></p></div>
-								<div class="col-sm-3"> 
-									<span class="glyphicon glyphicon glyphicon-time"></span> Time : 
-
-										<span id="countdown" class="timer"></span>
-									  </p></div>
-								</div>
-							
-						</div>
-					</div>
+	<div class="row">
+		<div class=" col-sm-2" >
+			<ul class="list-group" style="position:fixed;top:15;left:4%;">
+				<li class="list-group-item">
+					<span class="glyphicon glyphicon glyphicon-user"></span>	Name : <%=current_student.first_name.capitalize.to_s+" "+current_student.last_name.capitalize.to_s%>
+				</li>
+				<li class="list-group-item">
+					<span class="glyphicon glyphicon glyphicon-book"></span> Test: <%=@test.test_name.capitalize%>
+				</li>
+				<li class="list-group-item">
+					<span class=" badge"> <%=@test.no_of_questions%></span>
+					Total Questions
+				</li>
+				<li class="list-group-item">
+					<span class="yes_results badge"> 0</span>
+					Question Attempt
+				</li>
+			</ul>
+		</div>
+		<div class=" col-sm-7">
+			<%c=0%>
+			<%= form_tag(result_path, :id => 'form',method: "post") do %>
+			<% @ques.each do |que| %>
+			<%c=c+1%>
+			<div class="panel panel-default">
+				<div class="panel-heading"><%=c.to_s+") "+ que.question%></div>
+				<div class="panel-body">
+					<label class="radio-inline"><%= radio_button_tag que.id, "A",false,class:"yes"%><%= que.option1%></label>
+					<label class="radio-inline"><%= radio_button_tag(que.id, "B",false,class:"yes" )%><%= que.option2%></label>
+					<label class="radio-inline"><%= radio_button_tag(que.id, "C",false,class:"yes" )%><%= que.option3%></label>
+					<label class="radio-inline"><%= radio_button_tag(que.id, "D",false,class:"yes" )%><%= que.option4%></label>
 				</div>
-				<div class="row">
-					<div class="col-sm-offset-2 col-sm-7">
-						<%c=0%>
-						<%= form_tag(result_path, :id => 'form',method: "post") do %>
-						<% @ques.each do |que| %>
-						<%c=c+1%>
-						<div class="panel panel-default">
-							<div class="panel-heading"><%=c.to_s+") "+ que.question%></div>
-							<div class="panel-body">
-								<label class="radio-inline"><%= radio_button_tag(que.id, "A") %><%= que.option1%></label>
-								<label class="radio-inline"><%= radio_button_tag(que.id, "B") %><%= que.option2%></label>
-								<label class="radio-inline"><%= radio_button_tag(que.id, "C") %><%= que.option3%></label>
-								<label class="radio-inline"><%= radio_button_tag(que.id, "D") %><%= que.option4%></label>
-							</div>
-						</div>
-						<% end %>
-						<%= submit_tag "Submit", class: "btn btn-success "%>
-						<%end%>
-					</div><div class="col-sm-4" style="position:fixed; top:25%; right:-8%; ">
-						<p></span><a href="#credits" class="toggle btn btn-primary"><span class="glyphicon glyphicon glyphicon-pencil">RoughTextArea</p></a>
-						<div id="credits" >
-							<%= text_area_tag "comment", nil,:rows => 20, :cols => 30 %>
-						</div>
-					</div>
-					<div></div>
-				</div>
-
-
 			</div>
-			<script>
-var seconds = 10;
-function secondPassed() {
-    var minutes = Math.round((seconds - 30)/60);
-    var remainingSeconds = seconds % 60;
-    if (remainingSeconds < 10) {
-        remainingSeconds = "0" + remainingSeconds;  
-    }
-    document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
-   
-    if(seconds<6)
-    {
-    	 document.getElementById("countdown").style.color = "red";
-    }
-    if (seconds == 0) {
-        clearInterval(countdownTimer);
-        document.getElementById('countdown').innerHTML = "Time is Up";
-       //window.alert("Time is Up Test is Submited");
-        //$('#form').submit();
-    }
-     else {
-        seconds--;
-    }
+
+			<% end %>
+			<%= submit_tag "Submit", class: "btn btn-success "%>
+			<%end%>
+		</div><div class="col-sm-4" style="position:fixed; top:23%; right:-6%; ">
+		<p></span><a href="#credits" class="toggle btn btn-primary"><span class="glyphicon glyphicon glyphicon-pencil">NoteBook</p></a>
+		<div id="credits" >
+			<%= text_area_tag "comment", nil,:rows => 20, :cols => 35,:class=>"notebook" %>
+		</div>
+	</div>
+
+
+
+
+</div>
+<script>
+	var seconds = 10;
+	function secondPassed() {
+		var minutes = Math.round((seconds - 30)/60);
+		var remainingSeconds = seconds % 60;
+		if (remainingSeconds < 10) {
+			remainingSeconds = "0" + remainingSeconds;  
+		}
+		document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+		if (seconds == 0) {
+			clearInterval(countdownTimer);
+			document.getElementById('countdown').innerHTML = "Time is Up";
+//window.alert("Time is Up Test is Submited");
+//$('#form').submit();
+}
+else {
+	seconds--;
+}
 }
 var countdownTimer = setInterval('secondPassed()', 1000);
 </script>

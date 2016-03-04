@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
   belongs_to:standard
+  has_many :results, dependent: :destroy
   validates :first_name, :middle_name, :last_name, :date_of_birth, :address, :city, :contactno, :standard_id, presence:true
   validates :contactno,numericality:{only_integer: true}
   has_attached_file :avatar, :styles => {:original => "150x150"},

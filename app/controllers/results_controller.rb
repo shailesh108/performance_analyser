@@ -5,6 +5,7 @@ class ResultsController < ApplicationController
     def show_result
 
     end
+
   def test_result
     @result=Result.new
     @result.student_id=current_student.id
@@ -20,10 +21,12 @@ class ResultsController < ApplicationController
     end
     @result.correct_question=correct
     @result.incorrect_question=total.to_i-correct.to_i
-    if @result.save
+    @result.percentage=(100*@result.correct_question.to_i)/total.to_i
+        if @result.save
     else
     end
   end 
+
 
 private
   def set_test

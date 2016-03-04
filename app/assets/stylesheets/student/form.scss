@@ -10,3 +10,40 @@
 .panel-form{
 	height:420px;
 }
+textarea.notebook {
+      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      padding: 5px 0px;
+      margin-bottom: 20px;
+      resize: vertical;
+      font-size: 13px;
+      line-height: 20px;
+      border-bottom: 2px solid;
+     -webkit-appearance: none;
+      border-radius: 0;
+      background: url( asset-path("notebook.png"));
+}
+
+.easy-pie-chart {
+    position: relative;
+    width: 110px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: center;
+}
+easy-pie-chart .percent {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 110px;
+    z-index: 2;
+    }
+
+easy-pie-chart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+canvas{
+    display: inline-block;
+    vertical-align: baseline;
+}

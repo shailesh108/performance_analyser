@@ -28,7 +28,8 @@
 						<td ><%= c=c+1 %></td>
 							<td><%=test.standard_subject.subject.sub_name%></td>
 							<td><%= test.test_name %></td>
-							<td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %> <span class="badge"><%=days_remain(test)%></span></td>
+							<td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %> 
+							<span class="badge"><%=days_remain(test)%></span></td>
 							<td><span class="badge"><%= test.total_time %>:00 </span>  Minutes</td>
 							<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
 							<td><%= test.teacher.first_name %></td>
@@ -42,5 +43,21 @@
 		</div>
 	</div>
 </div>
+ <h3>Total Test is <%= @tests.count%></h3>
+   
+    <% 
+    	attmp=current_student.results.count
+    	total= @tests.count == attmp ? 0 : @tests.count-attmp
+	    data ={"Test Attended"=>attmp,"Not Attended Test"=>total}
+    %>
+
+<%= column_chart data , width: "300px", height: "200px" %>
+	<%
+              att=current_student.results
+              @data1 = att.pluck(:Test_id,:percentage) %>
+       %>
+        <%= pie_chart @data1 %>
+   
+
 
 </div>

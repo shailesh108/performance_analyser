@@ -3,3 +3,7 @@
 <h1>Total Question is <%=@total%></h1>
 <h1>Attempt Question is <%=@attempt%>
 <h2>Correct Question is <%=@cnt%>
+
+	<% data = Result.pluck(:attempted_question,:correct_question,:incorrect_question) %>
+	puts data
+<%= bar_chart data,  {discrete: true}%>

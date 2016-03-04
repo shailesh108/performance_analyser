@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302062436) do
+ActiveRecord::Schema.define(version: 20160303173943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160302062436) do
     t.datetime "updated_at",         null: false
     t.integer  "student_id"
     t.integer  "test_id"
+    t.integer  "percentage"
   end
 
   add_index "results", ["student_id"], name: "index_results_on_student_id", using: :btree
@@ -78,7 +79,6 @@ ActiveRecord::Schema.define(version: 20160302062436) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160302062436) do
     t.string   "city"
     t.string   "contactno"
     t.integer  "standard_id"
+    t.string   "email"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -106,7 +107,6 @@ ActiveRecord::Schema.define(version: 20160302062436) do
     t.string   "gender"
   end
 
-  add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["enrollment_no"], name: "index_students_on_enrollment_no", using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
 

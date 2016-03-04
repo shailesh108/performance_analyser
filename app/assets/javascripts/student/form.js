@@ -15,3 +15,11 @@ $(function () {
 
 });
 
+$(document).ready(function() {
+    $('input').change(function(){
+        var yes = $('.yes:checked').length
+        
+        $('.yes_results').text(yes)
+                             
+    })
+});
