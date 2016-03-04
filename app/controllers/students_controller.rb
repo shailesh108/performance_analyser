@@ -47,7 +47,11 @@ class StudentsController < ApplicationController
 
   def welcome
      @avatar_path=("/avatars/students/originals/"+current_student.avatar_file_name)
-    @tests=current_student.standard.tests.order(:test_datetime)
+    @complete_tests=current_student.standard.tests.joins(:results)
+    @upcoming_tests=current_student.standard.tests.where('test_datetime >= ?',DateTime.now)
+    @not_attended_tests=current_student.standard.tests.reject {|test| test.results.present? == (test.test_datetime<DateTime.now)}
+     #std.standard.tests.reject {|test| test.results.present?}
+
   end
 
   def destroy

@@ -20,10 +20,13 @@ class ResultsController < ApplicationController
     end
     @result.correct_question=correct
     @result.incorrect_question=total.to_i-correct.to_i
+    check_record=Result.where(:student_id=>current_student.id,:test_id=>params[:id])
+  if  check_record.empty?   
     if @result.save
     else
     end
   end 
+end
 
 private
   def set_test

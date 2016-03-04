@@ -8,7 +8,6 @@ class Student < ActiveRecord::Base
   validates_attachment_presence :avatar
   validates_attachment_size :avatar, :less_than => 300.kilobytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
-
   devise :database_authenticatable, :trackable, :validatable, :authentication_keys=>[:enrollment_no]
 
   def email_required?
