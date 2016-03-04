@@ -1,10 +1,10 @@
 class ResultsController < ApplicationController
-   before_action :authenticate_student!,only: [:test_result]
-   before_action :set_test,only: [:show_result]
+  before_action :authenticate_student!,only: [:test_result]
+  before_action :set_test,only: [:show_result]
 
-    def show_result
-
-    end
+  def show_result
+  end
+  
   def test_result
     @result=Result.new
     @result.student_id=current_student.id
@@ -25,7 +25,7 @@ class ResultsController < ApplicationController
     end
   end 
 
-private
+  private
   def set_test
     @test = Test.find(params[:id])
   end

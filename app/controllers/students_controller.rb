@@ -32,8 +32,8 @@ class StudentsController < ApplicationController
 
     end
   end
-  def starttest
-    
+
+  def starttest  
     @ques=@test.questions
   end
 
