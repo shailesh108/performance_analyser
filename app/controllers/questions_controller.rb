@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_teacher!
-  before_action :set_question, except: [:new,:index,:create]
+  before_action :set_question, except: [:new,:index,:create,:import]
   before_action :set_test,except: [:show,:destroy]
   before_action :set_questions, only: [:index,:new,:create]
 
@@ -19,7 +19,10 @@ class QuestionsController < ApplicationController
       end
     end
   end
-
+    def import
+     Question.import(params[:file],@test_id.id)
+     redirect_to test_questions_path
+  end
   def edit
   end
 

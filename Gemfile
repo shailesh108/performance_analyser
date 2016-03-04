@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
-gem 'roo'
+gem 'roo-xls'
+gem 'chartkick'
+gem 'groupdate'
+gem 'active_median'
 gem 'devise'
 gem 'will_paginate-bootstrap'
 gem "paperclip"

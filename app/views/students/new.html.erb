@@ -38,7 +38,7 @@
                     <div class="form-group <%= 'has-error' if @student.errors.messages[:standard_id].present? %>">
                       <%= f.label :Standard_id,class: "col-sm-4"%>
                       <div class="col-sm-8">
-                        <%=f.select(:standard_id,options_for_select(Standard.pluck(:name)),{},{class: "form-control"})%>  
+                        <%=f.select(:standard_id,options_for_select(Standard.all.map{|std| [std.name, std.id]} ),{},{class: "form-control"})%>  
                          <div class='text-danger'>
                         <% if @student.errors.messages[:standard_id].present? %>
                         <%=@student.errors.full_messages_for(:standard_id).first%>

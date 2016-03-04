@@ -1,4 +1,6 @@
 class Standard < ActiveRecord::Base
-	belongs_to :standard_subject
-	validates :name ,presence: true
+	has_many :standard_subjects
+  has_many :subjects, through: :standard_subjects
+  has_many :tests, through: :standard_subjects
+  validates :name ,presence: true
 end
