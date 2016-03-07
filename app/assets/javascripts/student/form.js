@@ -5,3 +5,22 @@ $(document).ready(function(){
 $(document).on("ready page:change", function() {
     $('.tag-tooltip').tooltip();
 });
+$(function () {
+
+    $('.toggle').click(function (event) {
+        event.preventDefault();
+        var target = $(this).attr('href');
+        $(target).toggleClass('hidden show');
+    });
+
+});
+
+$(document).ready(function() {
+    $('input').change(function(){
+        var yes = $('.yes:checked').length
+        
+        $('.yes_results').text(yes)
+        var elem = document.getElementById('chart');
+        elem.style.width = yes*10 + "%";                   
+    })
+});

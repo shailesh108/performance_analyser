@@ -1,6 +1,7 @@
  class Student < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   belongs_to:standard
+  has_many :results
   include PgSearch
   validates :first_name, :middle_name, :last_name, :date_of_birth, :address, :city, :contactno, :standard_id, presence:true
   validates :contactno,numericality:{only_integer: true}

@@ -7,17 +7,7 @@ class StudentsController < ApplicationController
 
   def edit
   end
-def result
-  @attempt=params.size-6
-  @cnt=0
-  qu=Question.where(:test_id=>params[:id])
-  @total=qu.count
-  qu.each do |q|
-  if params[q.id.to_s]==q.answer
-    @cnt=@cnt+1    
-  end
-end
-end
+
   def show
     @avatar_path=("/avatars/students/originals/"+@student.avatar_file_name)
   end
@@ -31,7 +21,7 @@ end
 
     if @student.save
 
-      enrolment_no=Time.now.year.to_s+@student.standard_id.to_s+("0".*(4-@student.id.to_s.length))+@student.id.to_s
+      enrolment_no=Time.now.year.to_s+@student.standard.name.to_s+("0".*(4-@student.id.to_s.length))+@student.id.to_s
 
       @student.update_attributes(enrollment_no: enrolment_no)
 
@@ -44,6 +34,7 @@ end
     end
   end
   def starttest
+    
     @ques=@test.questions
   end
 
@@ -56,6 +47,7 @@ end
   end
 
   def welcome
+     @avatar_path=("/avatars/students/originals/"+current_student.avatar_file_name)
     @tests=current_student.standard.tests.order(:test_datetime)
   end
 

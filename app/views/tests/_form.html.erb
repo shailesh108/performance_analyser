@@ -19,7 +19,7 @@
             <%= f.label "Standard",class: "col-sm-4"%>
             <div class="col-sm-8">
 
-              <%=f.select(:standard_id,options_for_select(Standard.all.map{|c| [c.name, c.id]} ),{},{class: "form-control"})%>
+              <%=select_tag 'standard_id',options_from_collection_for_select(Standard.all,'id','name',select_standard),{class: "form-control"}%>
               <div class='text-danger'>
                 <% if @test.errors.messages[:standard_id].present? %>
                 <%=@test.errors.full_messages_for(:standard_id).first%>

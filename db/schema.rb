@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303043903) do
+ActiveRecord::Schema.define(version: 20160304063902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,21 @@ ActiveRecord::Schema.define(version: 20160303043903) do
   end
 
   add_index "questions", ["test_id"], name: "index_questions_on_test_id", using: :btree
+
+  create_table "results", force: :cascade do |t|
+    t.string   "attempted_question"
+    t.string   "correct_question"
+    t.string   "incorrect_question"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "student_id"
+    t.integer  "test_id"
+    t.integer  "percentage"
+    t.integer  "total_result"
+  end
+
+  add_index "results", ["student_id"], name: "index_results_on_student_id", using: :btree
+  add_index "results", ["test_id"], name: "index_results_on_test_id", using: :btree
 
   create_table "standard_subjects", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -176,6 +191,8 @@ ActiveRecord::Schema.define(version: 20160303043903) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 
   add_foreign_key "questions", "tests"
+  add_foreign_key "results", "students"
+  add_foreign_key "results", "tests"
   add_foreign_key "standard_subjects", "standards"
   add_foreign_key "standard_subjects", "subjects"
   add_foreign_key "teacher_standard_subjects", "standard_subjects"
