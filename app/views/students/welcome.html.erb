@@ -24,7 +24,6 @@
 						<%test_no = 0%>
 						<% @tests.each do |test| %>
 						<tr>
-						<%=test.test_datetime + test.total_time.minutes%>
 						<td ><%= test_no = test_no + 1 %></td>
 							<td><%=test.standard_subject.subject.sub_name%></td>
 							<td><%= test.test_name %></td>
