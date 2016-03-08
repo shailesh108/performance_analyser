@@ -1,7 +1,6 @@
 <div class="container">
 	<% if student_signed_in? %>
 	<h1>welcome <%=current_student.first_name%></h1>
-
 	<%end%>
 	<div class="row">
 		<div class="col-sm-12">
@@ -24,23 +23,50 @@
 						<%test_no = 0%>
 						<% @tests.each do |test| %>
 						<tr>
-						<td ><%= test_no = test_no + 1 %></td>
+							<td ><%= test_no = test_no + 1 %></td>
 							<td><%=test.standard_subject.subject.sub_name%></td>
 							<td><%= test.test_name %></td>
 							<td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %> 
-							<span class="badge"><%=days_remain(test)%></span></td>
-							<td><span class="badge"><%= test.total_time %>:00 </span>  Minutes</td>
-							<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
-							<td><%= test.teacher.first_name %></td>
-							<td><%= test_status(test) %></td>
+								<span class="badge"><%=days_remain(test)%></span></td>
+								<td><span class="badge"><%= test.total_time %>:00 </span>  Minutes</td>
+								<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
+								<td><%= test.teacher.first_name %></td>
+								<td id="<%=test.id%>"><%= test_status(test) %></td>
 
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
+								<script type="text/javascript">
+
+									function updateClock(){
+										var currentTime = new Date ( );
+										var currentDate = currentTime.getDate ( );
+										var currentMonth = currentTime.getMonth ( ) + 1;
+										var currentYear = currentTime.getFullYear ( );
+										var currentHours = currentTime.getHours ( );
+										var currentMinutes = currentTime.getMinutes ( );
+										var currentSeconds = currentTime.getSeconds ( );
+
+										currentDate = ( currentDate < 10 ? "0" : "" ) + currentDate;
+										currentMonth = ( currentMonth < 10 ? "0" : "" ) + currentMonth;
+										currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+										currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+
+										var currentTimeString = currentDate + "-" + currentMonth + "-" + currentYear + " " + currentHours + ":" + currentMinutes + ":" + currentSeconds;
+
+										var test_date_time = $.parseJSON(<%=get_test_time(test).dump.html_safe %>);
+
+										console.log(test_date_time);
+
+										if (currentTimeString.match(test_date_time))
+										{
+											window.location.reload();
+										}
+									}
+								</script>
+
+								<% end %>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
-

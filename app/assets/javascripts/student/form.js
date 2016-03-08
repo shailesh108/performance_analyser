@@ -12,8 +12,14 @@ $(function () {
 });
 
 $(document).ready(function() {
+   clock = setInterval(function(){
+          updateClock();
+  },1000);
+
+  $("#status_button").attr("disabled",true);
   $('.datepicker').datetimepicker({format: 'DD-MM-YYYY'});
   $('.datetimepicker').datetimepicker({format: 'DD-MM-YYYY h:mm A'});
+
   $('input').change(function(){
     var yes = $('.yes:checked').length
     var no_ques=$('.ques').text()
