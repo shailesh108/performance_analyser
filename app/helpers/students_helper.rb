@@ -24,7 +24,7 @@ module StudentsHelper
   end
 
   def get_test_time
-     Test.order(test_datetime: :desc).pluck(:test_datetime).last.strftime("%d-%m-%Y %H:%M:%S").to_json
+     return Test.order(test_datetime: :desc).pluck(:test_datetime).last.strftime("%d-%m-%Y %H:%M:%S").to_json
   end
 
   def get_test_finish_time

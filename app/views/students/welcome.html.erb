@@ -1,5 +1,4 @@
 <script type="text/javascript">
-
 	function updateClock(){
 		var currentTime = new Date ( );
 		var currentDate = currentTime.getDate ( );
@@ -18,7 +17,6 @@
 
 		test_date_time = $.parseJSON(<%=get_test_time.dump.html_safe %>);
 		test_finish_time = $.parseJSON(<%=get_test_finish_time.dump.html_safe %>);
-		
 		if (currentTimeString.match(test_date_time) || currentTimeString.match(test_finish_time))
 		{
 			window.location.reload();
