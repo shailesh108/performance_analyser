@@ -1,3 +1,30 @@
+<script type="text/javascript">
+
+	function updateClock(){
+		var currentTime = new Date ( );
+		var currentDate = currentTime.getDate ( );
+		var currentMonth = currentTime.getMonth ( ) + 1;
+		var currentYear = currentTime.getFullYear ( );
+		var currentHours = currentTime.getHours ( );
+		var currentMinutes = currentTime.getMinutes ( );
+		var currentSeconds = currentTime.getSeconds ( );
+
+		currentDate = ( currentDate < 10 ? "0" : "" ) + currentDate;
+		currentMonth = ( currentMonth < 10 ? "0" : "" ) + currentMonth;
+		currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+		currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+
+		var currentTimeString = currentDate + "-" + currentMonth + "-" + currentYear + " " + currentHours + ":" + currentMinutes + ":" + currentSeconds;
+
+		test_date_time = $.parseJSON(<%=get_test_time.dump.html_safe %>);
+		test_finish_time = $.parseJSON(<%=get_test_finish_time.dump.html_safe %>);
+		
+		if (currentTimeString.match(test_date_time) || currentTimeString.match(test_finish_time))
+		{
+			window.location.reload();
+		}
+	}
+</script>
 <div class="container">
 	<% if student_signed_in? %>
 	<h1>welcome <%=current_student.first_name%></h1>
@@ -31,37 +58,7 @@
 								<td><span class="badge"><%= test.total_time %>:00 </span>  Minutes</td>
 								<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
 								<td><%= test.teacher.first_name %></td>
-								<td id="<%=test.id%>"><%= test_status(test) %></td>
-
-								<script type="text/javascript">
-
-									function updateClock(){
-										var currentTime = new Date ( );
-										var currentDate = currentTime.getDate ( );
-										var currentMonth = currentTime.getMonth ( ) + 1;
-										var currentYear = currentTime.getFullYear ( );
-										var currentHours = currentTime.getHours ( );
-										var currentMinutes = currentTime.getMinutes ( );
-										var currentSeconds = currentTime.getSeconds ( );
-
-										currentDate = ( currentDate < 10 ? "0" : "" ) + currentDate;
-										currentMonth = ( currentMonth < 10 ? "0" : "" ) + currentMonth;
-										currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-										currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-
-										var currentTimeString = currentDate + "-" + currentMonth + "-" + currentYear + " " + currentHours + ":" + currentMinutes + ":" + currentSeconds;
-
-										var test_date_time = $.parseJSON(<%=get_test_time(test).dump.html_safe %>);
-
-										console.log(test_date_time);
-
-										if (currentTimeString.match(test_date_time))
-										{
-											window.location.reload();
-										}
-									}
-								</script>
-
+								<td><%= test_status(test) %></td>
 								<% end %>
 							</tr>
 						</tbody>

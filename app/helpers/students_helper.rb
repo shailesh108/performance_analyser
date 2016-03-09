@@ -23,8 +23,13 @@ module StudentsHelper
     image_tag("/avatars/students/originals/" + @student.avatar_file_name)
   end
 
-  def get_test_time(test)
-     test.test_datetime.strftime("%d-%m-%Y %H:%M:%S").to_json
+  def get_test_time
+     Test.order(test_datetime: :desc).pluck(:test_datetime).last.strftime("%d-%m-%Y %H:%M:%S").to_json
   end
 
+  def get_test_finish_time
+    test = Test.order(test_datetime: :desc).last
+    total_time = test.total_time
+    return test_finish_time = (test.test_datetime + total_time.minutes).strftime("%d-%m-%Y %H:%M:%S").to_json
+  end
 end
