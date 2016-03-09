@@ -64,8 +64,8 @@
 			<%end%>
 		</div>
 		<div class="col-sm-4" style="position:fixed; top:23%; right:-6%; ">
-			<p><a href="#credits" class="toggle btn btn-primary"><span class="glyphicon glyphicon glyphicon-pencil">NoteBook</p></a>
-			<div id="credits" >
+			<p><button class="btn btn-primary" data-toggle="collapse" data-target="#credits"><span class="glyphicon glyphicon glyphicon-pencil">NoteBook</p></button>
+			<div id="credits" class="collapse in">
 				<%= text_area_tag "comment", nil,:rows => 20, :cols => 35,:class=>"notebook" %>
 			</div>
 		</div>

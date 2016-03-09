@@ -46,12 +46,16 @@ class StudentsController < ApplicationController
   end
 
   def welcome
+    @results=nil;
      @avatar_path=("/avatars/students/originals/"+current_student.avatar_file_name)
-    @complete_tests=current_student.standard.tests.joins(:results)
-    @upcoming_tests=current_student.standard.tests.where('test_datetime >= ?',DateTime.now)
-    @not_attended_tests=current_student.standard.tests.reject {|test| test.results.present? == (test.test_datetime<DateTime.now)}
-     #std.standard.tests.reject {|test| test.results.present?}
+    @complete_tests=current_student.standard.tests.joins(:results).where(:results =>{student_id:current_student.id})
 
+    @upcoming_tests=current_student.standard.tests.where('test_datetime >= ?',DateTime.now)
+    @not_attended_tests=current_student.standard.tests.reject {|test| test.results.where(student_id:current_student.id).present? == (test.test_datetime<DateTime.now)}
+     #std.standard.tests.reject {|test| test.results.present?}
+    if params[:test_id].present?
+          @result_of_test=current_student.results.where(:test_id=>params[:test_id])
+    end
   end
 
   def destroy
@@ -60,8 +64,12 @@ class StudentsController < ApplicationController
   end
 
   def list 
+  if params[:query].blank?
     @students=Student.paginate(:per_page => 5, :page => params[:page])
+  else
+    @students = Student.search_by_standard_name(params[:query]).paginate(:per_page => 5, :page => params[:page])
   end
+end
 
   private
 

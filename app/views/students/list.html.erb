@@ -1,4 +1,13 @@
 <div class="container">
+  <div class="col-md-5">
+  <%= form_for :search_by_standard_name, :url => {:controller => 'students', :action => 'list'}, :html => {:method => 'get'} do |f| %>
+      <%= text_field_tag 'query', nil, class: "form-control", placeholder: "search",title: "Enter Standard_id or Enrollment_no" %>
+        
+        <button class="btn btn-flat" type="submit"><i class="fa fa-search"></i></button>
+
+    
+<% end %>
+</div>
   <div class="row">
     <div class="col-sm-12">
       <h1>Listing Student</h1>

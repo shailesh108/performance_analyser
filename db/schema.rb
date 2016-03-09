@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302062436) do
+ActiveRecord::Schema.define(version: 20160304063902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20160302062436) do
     t.datetime "updated_at",         null: false
     t.integer  "student_id"
     t.integer  "test_id"
+    t.integer  "percentage"
+    t.integer  "total_result"
   end
 
   add_index "results", ["student_id"], name: "index_results_on_student_id", using: :btree
@@ -104,6 +106,9 @@ ActiveRecord::Schema.define(version: 20160302062436) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "gender"
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
@@ -151,6 +156,7 @@ ActiveRecord::Schema.define(version: 20160302062436) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "gender"
+    t.string   "sub_name"
   end
 
   add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true, using: :btree

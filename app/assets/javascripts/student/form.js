@@ -25,3 +25,12 @@ $(document).ready(function() {
        
     })
 });
+
+$(function() {
+  $('a#trigger').hover(function() {
+    $('div#pop-up').show();
+  }, function() {
+    $('div#pop-up').hide();
+  });
+});
+

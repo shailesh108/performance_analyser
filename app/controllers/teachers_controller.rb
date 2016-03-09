@@ -1,7 +1,9 @@
 class TeachersController < ApplicationController
+
   before_action :authenticate_admin!,except: [:welcome]
   before_action :set_teacher, except: [:welcome,:list,:new,:create,:search,:search_result]
   before_action :authenticate_teacher!,only: [:welcome]
+
 
   def welcome
   end
@@ -13,8 +15,12 @@ class TeachersController < ApplicationController
     @teacher=Teacher.new
   end
 
-  def list
-    @teachers=Teacher.paginate(:page => params[:page], :per_page => 5)  
+  def list 
+    if params[:query].blank?
+    @teachers=Teacher.paginate(:per_page => 5, :page => params[:page])
+  else
+    @teachers = Teacher.search_by_subject(params[:query]).paginate(:per_page => 5, :page => params[:page])
+  end
   end
 
   def update
@@ -41,6 +47,7 @@ class TeachersController < ApplicationController
   end
 
   def show
+    @avatar_path=("/avatars/teachers/originals/"+@teacher.avatar_file_name)
   end
 
   def assign
@@ -82,7 +89,7 @@ class TeachersController < ApplicationController
   end
 
   def teacher_params
-    params.require(:teacher).permit(:email, :password, :password_confirmation, :first_name, :middle_name, :last_name, :dateofbirth, :address, :city, :contactno, :gender, :avatar)
+    params.require(:teacher).permit(:email,:password,:password_confirmation,:first_name,:middle_name,:last_name,:dateofbirth,:address,:city,:contactno,:gender,:avatar,:sub_name)
   end
 
   def assign_params
