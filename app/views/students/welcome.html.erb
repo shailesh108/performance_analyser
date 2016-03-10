@@ -1,8 +1,34 @@
+	<!-- Student Result modal  -->
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Test Result</h4>
+			</div>
+			<div class="modal-body">
 
+				<div id="resultdata">
+					<%= render 'resultdata' %>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+			</div>
+		</div>
 
+	</div>
+</div>
+<!-- End of Modal-->
 <div class="container" >
-
+<div class="row">
+<button type="button" class="btn btn-danger btn-lg pull-right" ><i class="glyphicon glyphicon-king"></i>
+												Class Rank <%=all_test_rank%>
+											</button>
+</div>
 	<div class="row profile ">
+	
 		<div class="col-md-3">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
@@ -24,8 +50,10 @@
 				<div class="profile-userbuttons">
 					<canvas id="demo-3" style="demo" width="100" height="100"></canvas>
 					<div class="profile-usertitle-job">
-						Test Performance Ranking
-						<span class="average" style="visibility:hidden"><%=test_avg_performance%></span>
+					 Test Performance Level
+						 <span class="average" style="visibility:hidden"><%=test_avg_performance%></span>
+						
+
 					</div>
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
@@ -76,6 +104,7 @@
 						</ul>
 					</div>
 					<!-- END MENU -->
+
 				</div>
 			</div>
 			<div class="col-md-9">
@@ -122,6 +151,7 @@
 									<p>All The Test Information </p>
 									<p>Total Test Attempted </p>
 									<p></p>
+									
 								</div>
 								<ul class="nav nav-tabs">
 									<li class="active"><a data-toggle="tab" href="#home">
@@ -166,7 +196,7 @@
 												<td><span class="badge"><%= test.total_time %>:00 </span>  Minutes</td>
 												<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
 												<td><%= test.teacher.first_name %></td>
-												<td><%= link_to "Complete","#",class: "btn btn-success btn-xs".html_safe %></td>
+												<td><%= link_to "Result",student_resultdata_path(:t_id=>test.id),remote: true,"data-toggle"=>"modal","data-target"=>"#myModal",class: "btn btn-success btn-xs".html_safe %></td>
 
 											</tr>
 											<% end %>
@@ -248,9 +278,10 @@
 				</div>
 			</div>
 		</div>
-		<div class=" col-lg-4">
-		</div>
+
+
 		<script>
 			$('#demo-3').waterbubble({txt: $('.average').text()+"%",});
 		</script>		
+	
 	</div>

@@ -23,22 +23,39 @@ def profile_student_avatar
 end
 end
 
+def individual_test_rank(res)
+  per=Result.where(:test_id=>res.test_id).pluck(:percentage)
+  per.reverse
+  return per.index(res.percentage)+1
+end
+def all_test_rank
+  per=Student.where(:standard_id=>current_student.standard_id).joins(:results).distinct.map{|stu| stu.results.map{|per| per.percentage}}
+  rank=per.map{|p| p.sum/p.size}
+  rank.sort!
+  t=rank.reverse!
+  #byebug
+  return t.index(test_avg_performance).to_i+1
+  end
+
+
 #----------Student Charts------------------
 
 def total_test_chart
-                    attmp=@complete_tests.count
-                    total= @not_attended_tests.count
-                    data ={"Test Attended"=>attmp,"Not Attended Test"=>total}
-                    return "#{column_chart data , width: "230px", height: "200px" }".html_safe
+  attmp=@complete_tests.count
+  total= @not_attended_tests.count
+  data ={"Test Attended"=>attmp,"Not Attended Test"=>total}
+  return "#{column_chart data , width: "230px", height: "200px" }".html_safe
 end
-
 def all_test_performance_chart
     att=current_student.results
-    @data1 = att.pluck(:test_id,:percentage)
-    return "#{area_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , height: "200px"}".html_safe
+    testname=att.pluck(:test_id,:percentage).map{|a,k| Test.find(a).test_name}
+    per = att.pluck(:percentage)
+    @data1=testname.zip(per)
+    return "#{area_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , height: "200px",discrete: true}".html_safe
 end
 def test_avg_performance
   att=current_student.results
     data1 = att.pluck(:percentage)
     return data1.sum/data1.size
 end
+

@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_teacher_or_admin,except: [:welcome,:starttest,:result]
-  before_action :authenticate_student!,only: [:welcome,:starttest,:result]
-  before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result]
+  before_action :authenticate_teacher_or_admin,except: [:welcome,:starttest,:result,:resultdata]
+  before_action :authenticate_student!,only: [:welcome,:starttest,:result,:resultdata]
+  before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result,:resultdata]
   before_action :set_test,only: [:starttest]
 
 
@@ -53,9 +53,15 @@ class StudentsController < ApplicationController
     @upcoming_tests=current_student.standard.tests.where('test_datetime >= ?',DateTime.now)
     @not_attended_tests=current_student.standard.tests.reject {|test| test.results.where(student_id:current_student.id).present? == (test.test_datetime<DateTime.now)}
      #std.standard.tests.reject {|test| test.results.present?}
-    if params[:test_id].present?
-          @result_of_test=current_student.results.where(:test_id=>params[:test_id])
-    end
+     
+  
+      
+  end
+  def resultdata
+    @st=Result.find_by(:student_id=>current_student.id,:test_id=>params[:t_id])
+      respond_to do |format|
+        format.js    
+      end
   end
 
   def destroy

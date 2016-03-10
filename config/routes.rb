@@ -44,5 +44,7 @@ post 'result/:id'=>'results#test_result',as: :result
 
 	get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
+	get 'student/resultdata'=> 'students#resultdata'
+	
 	get 'teacher/welcome'=> 'teachers#welcome'
 end
