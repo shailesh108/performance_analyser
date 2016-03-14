@@ -7,23 +7,18 @@
           <h3 class="panel-title"> <i class="glyphicon glyphicon-equalizer"></i> Performance Chart</h3>
         </div>
         <div class="panel-body">
-
-          <div class="col-md-4">
+           <div class="col-md-4">
             <div class="thumbnail">
-              <% stu_1=Student.find(1).first_name 
-              stu_1_res=Student.find(1).results 
-              percentage=stu_1_res.average(:percentage) 
-              stu_2=Student.find(2).first_name
-              stu_2_res=Student.find(2).results 
-              percentage1=stu_2_res.average(:percentage) %>
-                <% graph_data={ stu_1=> percentage, stu_2=> percentage1, } %>
-                  <%=column_chart graph_data ,width: "250px", height: "200px"%>
-                    <div class="caption">
-                      <button type="button" class="btn btn-success btn-sm btn-block">
-                        Two Student Performance Compare
-                      </button>
-                    </div>
+              <% g_data=current_teacher.tests.joins(:results).distinct.group(:test_name).count(:student_id) %>
+                <%=column_chart g_data ,label: "Attended Test",width: "250px", height: "200px" %>
+                  <div class="caption">
+                    <button type="button" class="btn btn-success btn-sm btn-block">
+                      how many student attend the test
+                    </button>
+                   </div>
             </div>
+          
+         
           </div>
 
           <div class="col-md-5">
@@ -52,18 +47,20 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <div class="thumbnail">
-              <% g_data=current_teacher.tests.joins(:results).distinct.group(:test_name).count(:student_id) %>
-                <%=column_chart g_data ,label: "Attended Test",width: "250px", height: "200px" %>
-                  <div class="caption">
-                    <button type="button" class="btn btn-success btn-sm btn-block">
-                      how many student attend the test
-                    </button>
+              <div class="thumbnail">
+                <%data1=Result.group(:student_id).average(:percentage)%>
 
-                  </div>
+                  <%=column_chart data1 ,width: "250px", height: "200px" %>
+                    <div class="caption">
+                      <button type="button" class="btn btn-success btn-sm btn-block">
+                        all student result average
+                      </button>
+
+                    </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6">
+
+        <div class="col-md-5">
             <h1>Student name and percentage</h1>
             <div class="table-responsive">
 
@@ -93,18 +90,41 @@
             </div>
           </div>
         </div>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <%data1=Result.group(:student_id).average(:percentage)%>
+      
 
-                  <%=column_chart data1 ,width: "250px", height: "200px" %>
+          <div class="row">
+
+
+
+ <div class="col-md-4">
+            <div class="thumbnail">
+              <% stu_1=Student.find(1).first_name 
+              stu_1_res=Student.find(1).results 
+              percentage=stu_1_res.average(:percentage) 
+              stu_2=Student.find(2).first_name
+              stu_2_res=Student.find(2).results 
+              percentage1=stu_2_res.average(:percentage) %>
+                <% graph_data={ stu_1=> percentage, stu_2=> percentage1, } %>
+                  <%=column_chart graph_data ,width: "250px", height: "200px"%>
                     <div class="caption">
                       <button type="button" class="btn btn-success btn-sm btn-block">
-                        all student result average
+                        Two Student Performance Compare
                       </button>
-
                     </div>
-              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
           </div>

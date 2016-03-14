@@ -25,10 +25,10 @@
       percentage
 </ul>
 
-  <% if @result.percentage <=35 %>
+  <% if @result.percentage < 35 %>
   <li class="list-group-item list-group-item-danger">Oops!You are not clear the Exam</li>
   <%end%>
-   <% if @result.percentage >=35 %>
+   <% if @result.percentage >= 35 %>
   <li class="list-group-item list-group-item-success">Congratulation!!! you are clear the exam</li>
   <%end%>  
 

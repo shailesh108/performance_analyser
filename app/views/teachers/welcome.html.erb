@@ -1,9 +1,6 @@
 <div class="container">
-  <% if teacher_signed_in? %>
-    <h1>welcome Teacher <%=current_teacher.email%></h1>
-  <%end%>
 
-<div class="col-md-11">
+<div class="col-md-12">
   <div class="profile-content">
     <div class="row">
       <div class="panel panel-default">
@@ -19,7 +16,7 @@
             </div>
           </div>
           <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-6">
            <div class="row mgbt-xs-0">
                 <label class="col-xs-3 control-label">Enrollment No:</label><%=student.enrollment_no%>
            </div>

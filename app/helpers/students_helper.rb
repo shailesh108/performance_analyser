@@ -21,7 +21,6 @@ end
 def profile_student_avatar
   image_tag("/avatars/students/originals/" + current_student.avatar_file_name, :class=>"img-responsive")
 end
-end
 
 def individual_test_rank(res)
   per=Result.where(:test_id=>res.test_id).pluck(:percentage)

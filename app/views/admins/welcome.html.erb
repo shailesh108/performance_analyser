@@ -1,10 +1,4 @@
 <div class="container">
-	<div class="col-md-4">
-	<% if admin_signed_in? %>
-	<h1>welcome Admin <%=current_admin.email%></h1>
-	<%end%>
-</div>
- 
 <div class="col-md-11">
   <div class="profile-content">
     <div class="row">
@@ -21,7 +15,7 @@
             </div>
           </div>
           <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-6">
           	<h2 class="font-semibold mgbt-xs-5"><%=teacher.first_name%> <%=teacher.last_name%></h2>
             <div class="row mgbt-xs-0">
               <label class="col-xs-3 control-label">First Name:</label><%=teacher.first_name%>
