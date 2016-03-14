@@ -33,7 +33,6 @@ def all_test_rank
   rank=per.map{|p| p.sum/p.size}
   rank.sort!
   t=rank.reverse!
-  #byebug
   return t.index(test_avg_performance).to_i+1
   end
 
@@ -44,7 +43,7 @@ def total_test_chart
   attmp=@complete_tests.count
   total= @not_attended_tests.count
   data ={"Test Attended"=>attmp,"Not Attended Test"=>total}
-  return "#{column_chart data , width: "230px", height: "200px" }".html_safe
+  return "#{column_chart data , width: "230px", height: "200px"}".html_safe
 end
 def all_test_performance_chart
     att=current_student.results
