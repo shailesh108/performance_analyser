@@ -1,8 +1,9 @@
 /*
 *= require admin/login
 *= require student/form
+*= require student/welcom
+*= require admin/header
 *= require_self
-
 */
 @import "bootstrap-sprockets";
 @import "bootstrap";

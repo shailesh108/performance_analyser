@@ -2,6 +2,8 @@ class Teacher < ActiveRecord::Base
   has_many :tests
   has_many :teacher_standard_subjects, dependent: :destroy
 
+
+
   devise :database_authenticatable,:trackable, :validatable
   validates :first_name, :middle_name, :last_name, :dateofbirth, :address, :city, presence:true
   validates :contactno, presence:true, numericality:{only_integer:true}
@@ -12,7 +14,8 @@ class Teacher < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
 
   before_post_process :rename_avatar
-
+  include PgSearch
+  pg_search_scope :search_by_subject, :against => [:sub_name, :first_name, :email]
   private
   def rename_avatar
     extension = File.extname(avatar_file_name).downcase

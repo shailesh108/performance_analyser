@@ -4,7 +4,7 @@
       <div class="login-panel panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="panel-title">Teacher Login</h3>
+          <h3 class="panel-title header"><%= image_tag("pa.jpg", :class => "img-circle")%>Teacher Login</h3>
         </div>
 
         <div class="panel-body">
@@ -15,7 +15,7 @@
             <% if @teacher.errors.any? %>
             <div id="error_explanation">
               <div class="alert alert-danger">
-                <%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:
+                <%= pluralize(@teacher.errors.count, "error") %> There are errors while saving details. Please see inline messages.
               </div>
             </div>
             <% end %>

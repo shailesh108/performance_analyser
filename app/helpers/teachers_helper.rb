@@ -18,4 +18,5 @@ module TeachersHelper
 	def display_total_subjects
 		return @teacher.teacher_standard_subjects.count
 	end
+	
 end

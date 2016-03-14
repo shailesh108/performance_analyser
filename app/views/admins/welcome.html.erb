@@ -1,12 +1,42 @@
 <div class="container">
+	<div class="col-md-4">
 	<% if admin_signed_in? %>
 	<h1>welcome Admin <%=current_admin.email%></h1>
-
-	<%= link_to "Logout",  destroy_admin_session_path, :method => :delete   %>
-	<%= link_to "Add Teacher",  new_teacher_path %>
-	<%= link_to "list teachers", list_teachers_path%>
-	<%= link_to "Search teachers", search_teachers_path%>
-
 	<%end%>
 </div>
+ 
+<div class="col-md-11">
+  <div class="profile-content">
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"> <i class="glyphicon glyphicon-th-list"></i> Teacher List Profile</h3>
+        </div>
+        <% Teacher.all.each do |teacher| %>
+        <div class="panel-body">
 
+          <div class="col-md-2">
+            <div class="thumbnail">
+              <%=  image_tag("/avatars/teachers/originals/" + teacher.avatar_file_name) %> 
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-5">
+          	<h2 class="font-semibold mgbt-xs-5"><%=teacher.first_name%> <%=teacher.last_name%></h2>
+            <div class="row mgbt-xs-0">
+              <label class="col-xs-3 control-label">First Name:</label><%=teacher.first_name%>
+            </div>
+           <div class="row mgbt-xs-0">
+              <label class="col-xs-3 control-label">Last Name:</label><%=teacher.last_name%>
+           </div>
+           <div class="row mgbt-xs-0">      
+             <label class="col-xs-3 control-label">Email ID:</label><%=teacher.email%>
+           </div>
+           <div class="row mgbt-xs-0">
+                <label class="col-xs-3 control-label">Contact No:</label><%=teacher.contactno%>
+           </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>

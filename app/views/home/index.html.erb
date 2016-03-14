@@ -16,7 +16,8 @@
 
 	<%unless admin_signed_in? or teacher_signed_in?%>
 	<div align="center">
-		<h1> Sign In </h1>
+
+		<h1>Sign In </h1>
 
 		<%= link_to "Admin Login",new_admin_session_path, class: "btn btn-primary"%>
 		<%= link_to "Teacher Login",new_teacher_session_path, class: "btn btn-primary"%>
