@@ -1,4 +1,4 @@
- class Student < ActiveRecord::Base
+class Student < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   belongs_to:standard
   has_many :results

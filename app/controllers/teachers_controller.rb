@@ -1,11 +1,12 @@
 class TeachersController < ApplicationController
 
-  before_action :authenticate_admin!,except: [:welcome]
-  before_action :set_teacher, except: [:welcome,:list,:new,:create,:search,:search_result]
+  before_action :authenticate_admin!,except: [:welcome, :graph]
+  before_action :set_teacher, except: [:welcome,:list,:new,:create,:search,:search_result, :graph]
   before_action :authenticate_teacher!,only: [:welcome]
 
 
   def welcome
+   @avatar_path=("/avatars/teachers/originals/"+current_teacher.avatar_file_name)
   end
 
   def edit
@@ -22,7 +23,9 @@ class TeachersController < ApplicationController
     @teachers = Teacher.search_by_subject(params[:query]).paginate(:per_page => 5, :page => params[:page])
   end
   end
+def graph
 
+end
   def update
     if @teacher.update(teacher_params)
       redirect_to list_teachers_path

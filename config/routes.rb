@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 		collection do
 			get 'list'
 			get 'search'
+
 			get "search_result" => 'teachers#search_result'
 	
 		end		
@@ -47,4 +48,5 @@ post 'result/:id'=>'results#test_result',as: :result
 	get 'student/resultdata'=> 'students#resultdata'
 	
 	get 'teacher/welcome'=> 'teachers#welcome'
+	get 'teacher/graph'=> 'teachers#graph'
 end

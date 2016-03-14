@@ -25,7 +25,7 @@ class StudentsController < ApplicationController
       @student.update_attributes(enrollment_no: enrolment_no)
 
       redirect_to list_students_path
-
+      
     else
 
       render :new
