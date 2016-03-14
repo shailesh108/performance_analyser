@@ -26,4 +26,8 @@ module TestsHelper
 			return "<i class='glyphicon glyphicon-thumbs-up' title='all Questions Added'></i>".html_safe
 		end
 	end
+
+	def test_name(id1)
+		return Test.find_by(:id=>id1).test_name
+	end
 end

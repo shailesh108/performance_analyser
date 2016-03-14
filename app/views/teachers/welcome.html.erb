@@ -1,8 +1,39 @@
 <div class="container">
   <% if teacher_signed_in? %>
     <h1>welcome Teacher <%=current_teacher.email%></h1>
-    	<%=link_to "Add Student", new_student_path %>
-      <%=link_to "List Student", list_students_path %>
-       <%=link_to "test",tests_path%>
-       <%=link_to "Logout", destroy_teacher_session_path, :method=> :delete %>
   <%end%>
+
+<div class="col-md-11">
+  <div class="profile-content">
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"> <i class="glyphicon glyphicon-th-list"></i> Student List Profile</h3>
+        </div>
+        <% Student.all.each do |student| %>
+        <div class="panel-body">
+
+          <div class="col-md-2">
+            <div class="thumbnail">
+              <%=  image_tag("/avatars/students/originals/" + student.avatar_file_name) %> 
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-5">
+           <div class="row mgbt-xs-0">
+                <label class="col-xs-3 control-label">Enrollment No:</label><%=student.enrollment_no%>
+           </div>
+            <div class="row mgbt-xs-0">
+              <label class="col-xs-3 control-label">First Name:</label><%=student.first_name%>
+            </div>
+           <div class="row mgbt-xs-0">
+              <label class="col-xs-3 control-label">Last Name:</label><%=student.last_name%>
+           </div>
+           <div class="row mgbt-xs-0">      
+             <label class="col-xs-3 control-label">Email ID:</label><%=student.email%>
+           </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>

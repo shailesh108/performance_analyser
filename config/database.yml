@@ -1,4 +1,5 @@
 default: &default
+
  adapter: postgresql
  encoding: unicode
  username: postgres
@@ -19,3 +20,4 @@ production:
  database: performance_analyser_production
  username: performance_analyser
  Ppassword: <%= ENV['PERFORMANCE_ANALYSER_DATABASE_PASSWORD'] %>
+
