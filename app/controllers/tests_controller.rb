@@ -4,7 +4,8 @@ class TestsController < ApplicationController
   before_action :set_test,except: [:index, :new, :create]
 
   def index
-    @tests=current_teacher.tests.paginate(:per_page => 5, :page => params[:page])
+    @tests=current_teacher.tests.where("test_datetime>=?",DateTime.now).paginate(:per_page => 4, :page => params[:page])
+    @tests_completed=current_teacher.tests.where("test_datetime<=?",DateTime.now)
   end
 
   def new

@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   before_action :authenticate_teacher_or_admin,except: [:welcome,:starttest,:result,:resultdata]
   before_action :authenticate_student!,only: [:welcome,:starttest,:result,:resultdata]
-  before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result,:resultdata]
+  before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result,:resultdata,:studentcompare]
   before_action :set_test,only: [:starttest]
 
 
@@ -63,6 +63,19 @@ class StudentsController < ApplicationController
         format.js    
       end
   end
+  def studentcompare
+    stu_1=Student.find(params[:first_stud][:id]).first_name 
+    stu_1_res=Student.find(params[:first_stud][:id]).results 
+    percentage=stu_1_res.average(:percentage) 
+    stu_2=Student.find(params[:second_stud][:id]).first_name
+    stu_2_res=Student.find(params[:second_stud][:id]).results 
+    percentage1=stu_2_res.average(:percentage) 
+    @graph={ stu_1=> percentage, stu_2=> percentage1} 
+    respond_to do |format|
+        format.js    
+      end
+  end
+  
 
   def destroy
     @student.destroy

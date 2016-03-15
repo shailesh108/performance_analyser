@@ -14,7 +14,7 @@
       <div class="login-panel panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="panel-title"> <i class="glyphicon glyphicon-pencil"></i> Edit Student <%= @student.first_name%>     <%=@student.middle_name %> 
+          <h3 class="panel-title"> Edit Student <%= @student.first_name%>     <%=@student.middle_name %> 
             <%=@student.last_name %></h3>
           </div>
           <div class="panel-body">
@@ -42,7 +42,7 @@
                       <div class="form-group <%= 'has-error' if @student.errors.messages[:standard_id].present? %>">
                         <%= f.label :Standard_id,class: "col-sm-4"%>
                         <div class="col-sm-8">
-                          <%=f.select(:standard_id,options_for_select(Standard.all.map{|c| [c.name, c.id]} ),{},{class: "form-control"})%>
+                          <%=f.select(:standard_id,options_for_select(Standard.pluck(:name)),{},{class: "form-control"})%>   <div class='text-danger'>
                           <% if @student.errors.messages[:standard_id].present? %>
                           <%=@student.errors.full_messages_for(:standard_id).first%>
                           <% end %>
@@ -202,3 +202,4 @@
     </div>
   </div>
 </div>
+Status 

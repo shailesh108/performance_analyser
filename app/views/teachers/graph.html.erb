@@ -1,110 +1,120 @@
-<div class="col-md-10">
-
-  <div class="profile-content">
-    <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"> <i class="glyphicon glyphicon-equalizer"></i> Performance Chart</h3>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Student Comparison</h4>
+      </div>
+      <div class="modal-body">
+        <div id="studentcompare">
+          <%= render 'students/studentcompare' %>
         </div>
-        <div class="panel-body">
-
-          <div class="col-md-4">
-            <div class="thumbnail">
-              <% stu_1=Student.find(1).first_name 
-              stu_1_res=Student.find(1).results 
-              percentage=stu_1_res.average(:percentage) 
-              stu_2=Student.find(2).first_name
-              stu_2_res=Student.find(2).results 
-              percentage1=stu_2_res.average(:percentage) %>
-                <% graph_data={ stu_1=> percentage, stu_2=> percentage1, } %>
-                  <%=column_chart graph_data ,width: "250px", height: "200px"%>
-                    <div class="caption">
-                      <button type="button" class="btn btn-success btn-sm btn-block">
-                        Two Student Performance Compare
-                      </button>
-                    </div>
-            </div>
-          </div>
-
-          <div class="col-md-5">
-            <h1>Test Data</h1>
-            <div class="table-responsive">
-              <table border="2" class="table table-striped table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th>Test_Name</th>
-                    <th>No of Student Attempted</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% current_teacher.tests.joins(:results).distinct.each do |test| %>
-                    <tr>
-                      <td>
-                        <%=test.test_name %>
-                      </td>
-                      <td>
-                        <%=Test.where(:id=>test.id).joins(:results).count%></td>
-                      <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="thumbnail">
-              <% g_data=current_teacher.tests.joins(:results).distinct.group(:test_name).count(:student_id) %>
-                <%=column_chart g_data ,label: "Attended Test",width: "250px", height: "200px" %>
-                  <div class="caption">
-                    <button type="button" class="btn btn-success btn-sm btn-block">
-                      how many student attend the test
-                    </button>
-
-                  </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <h1>Student name and percentage</h1>
-            <div class="table-responsive">
-
-              <table border="2" class="table table-striped table-bordered table-hover">
-                <thead>
-
-                  <tr>
-                    <th>First Name</th>
-
-                    <th>Percentage</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <% Result.joins(:student).select(:first_name).group(:first_name,:student_id).average(:percentage).each do |k,v| %>
-                    <tr>
-                      <td>
-                        <%=k [0] %>
-                      </td>
-
-                      <td>
-                        <%=v %>
-                      </td>
-
-                      <% end %>
-              </table>
-            </div>
-          </div>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"> <i class="glyphicon glyphicon-equalizer"></i> Performance Chart</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="nav nav-tabs">
+        <li ><a data-toggle="tab" href="#testattend">Test Attendence</a></li>
+        <li><a data-toggle="tab" href="#compare">Compare Student</a></li>
+        <li class="active"><a data-toggle="tab" href="#all_student">Students Performance</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="testattend" class="tab-pane fade">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-8">
               <div class="thumbnail">
-                <%data1=Result.group(:student_id).average(:percentage)%>
-
-                  <%=column_chart data1 ,width: "250px", height: "200px" %>
-                    <div class="caption">
-                      <button type="button" class="btn btn-success btn-sm btn-block">
-                        all student result average
-                      </button>
-
-                    </div>
+                <%=all_test_attendance_chart%>
+                <div class="caption">
+                  <button type="button" class="btn btn-success btn-sm btn-block">
+                    how many student attend the test
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="table-responsive">
+                <table border="1" class="table table-striped table-bordered table-hover table-fixed">
+                  <thead>
+                    <tr>
+                      <th>Test_Name</th>
+                      <th>No of Student Attempted</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @g_data.each do |test| %>
+                    <tr>
+                      <td>
+                        <%=test.first %>
+                      </td>
+                      <td>
+                        <%=test.second%>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
+        </div>
+        <div id="compare" class="tab-pane fade">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="row">
+                    <%=form_tag(student_compare_path, method: "get",remote:true)   do  %>
+                    <div class="col-sm-5">Select Enrollment No
+                      <%= collection_select :first_stud,:id, Student.all, :id, :enrollment_no,class: "form-control" %>
+                    </div>
+                    <div class="col-sm-3">
+                      <%= collection_select :second_stud,:id, Student.all, :id, :enrollment_no ,class: "form-control"%>
+                    </div>
+                    <div class="col-sm-3">
+                      <%= submit_tag "Compare",:class => "btn btn-success ","data-toggle"=>"modal" ,"data-target"=>"#myModal" %>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+          </div>
+        </div>
+        <div id="all_student" class="tab-pane fade in active">
+          <div class="row"><br>
+            <%=form_tag(teacher_perfromance_path, method: "post")   do  %>
+            <div class="col-sm-3">Select Enrollment No
+              <%= collection_select :stud,:id, Student.all, :id, :enrollment_no,class: "form-control" %>
+            </div>
+            <div class="col-sm-">
+            <%= submit_tag "Perfromance",:class => "btn btn-success "%>
+            </div>
+            <% end %>
+          </div><br>
+          <div class="row">
+            <% if @data1.present?%>
+            <%=area_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , width:"700px",height: "200px",discrete: true%>
+                      <%end%>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
