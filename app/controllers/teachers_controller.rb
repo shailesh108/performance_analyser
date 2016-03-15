@@ -6,7 +6,7 @@ class TeachersController < ApplicationController
 
 
   def welcome
-   @avatar_path=("/avatars/teachers/originals/"+current_teacher.avatar_file_name)
+    redirect_to list_students_path
   end
 
   def edit

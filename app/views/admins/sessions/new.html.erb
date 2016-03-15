@@ -1,13 +1,19 @@
 <div class="container">
+	<div class="back_image">
 	<div class="vcenter">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
+
+					
 				<div class="login-panel panel panel-default">
+					
 					<div class="panel-heading">
 						<h3 class="panel-title header"><%= image_tag("pa.jpg", :class => "img-circle")%>Admin Login</h3>
 					</div>
 					<div class="panel-body">
+						
 						<%= render 'layouts/loginerror'%>
+
 						<%= form_for(resource, as: resource_name, url: admin_session_path) do |f| %>
 						<fieldset>
 							<div class="form-group">
@@ -24,6 +30,7 @@
 							</div>
 						</fieldset>
 						<% end %>
+					</div>
 					</div>
 				</div>
 			</div>
