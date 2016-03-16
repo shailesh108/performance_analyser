@@ -9,14 +9,19 @@
       </button>
       <a class="navbar-brand" href="index.html">Performance Analyzer</a>
     </div>
-    <%if teacher_signed_in? || admin_signed_in? %>
+
       <ul class="nav navbar-nav">
+      <li class="dropdown">
+     <%=home%>
+      </li>
         <li class="dropdown">
+
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             </i>
             <%=user%><b class="caret"></b>
           </a>
           <ul class="dropdown-menu alert-dropdown">
+          
             <li>
               <a href="#">
                 <%=add_user_path %>
@@ -27,12 +32,18 @@
                 <%=list_user_path %>
               </a>
             </li>
+             <li>
+              <a href="#">
+                <%=test_path %>
+              </a>
+            </li>
 
           </ul>
         </li>
+
       </ul>
 
-      <%end%>
+
         <%if teacher_signed_in? %>
           <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -67,14 +78,13 @@
                 </li>
               </ul>
               <%end%>
-                
-                  <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                       <li class="navbar-brand"><i class="glyphicon glyphicon-user"></i>
                         <%=user_name%>
                       </li>
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <%=user_img %><b class="caret"></b>
+                      <a href="#" class="dropdown" data-toggle="dropdown">
+                        <%=user_img %>
                       </a>
 
                       <ul class="dropdown-menu">

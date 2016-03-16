@@ -46,16 +46,12 @@ class StudentsController < ApplicationController
   end
 
   def welcome
-    @results=nil;
-     @avatar_path=("/avatars/students/originals/"+current_student.avatar_file_name)
-    @complete_tests=current_student.standard.tests.joins(:results).where(:results =>{student_id:current_student.id})
+       
+       @avatar_path=("/avatars/students/originals/"+current_student.avatar_file_name)
+    @complete_tests=current_student.standard.tests.joins(:results).where(:results =>{student_id:current_student.id}).order(test_datetime: :desc)
 
     @upcoming_tests=current_student.standard.tests.where('test_datetime >= ?',DateTime.now)
-    @not_attended_tests=current_student.standard.tests.reject {|test| test.results.where(student_id:current_student.id).present? == (test.test_datetime<DateTime.now)}
-     #std.standard.tests.reject {|test| test.results.present?}
-     
-  
-      
+    @not_attended_tests=current_student.standard.tests.order(test_datetime: :desc).reject {|test| test.results.where(student_id:current_student.id).present? == (test.test_datetime<DateTime.now)}
   end
   def resultdata
     @st=Result.find_by(:student_id=>current_student.id,:test_id=>params[:t_id])

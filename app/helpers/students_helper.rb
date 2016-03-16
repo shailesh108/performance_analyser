@@ -1,17 +1,35 @@
 module StudentsHelper
-def test_status(test)
-  if (test.test_datetime>DateTime.now)
-   # return  "#{link_to "Pending","#",class: "btn btn-danger btn-xs"}".html_safe
-   return  "#{link_to "Pending",starttest_students_path(test),class: "btn btn-danger btn-xs"}".html_safe
-   
+ def test_status(test)
+    time_now = Time.now.strftime("%d-%m-%Y %H:%M %p")
+    test_start_time = test.test_datetime.strftime("%d-%m-%Y %H:%M %p")
+    test_finish_time = (test.test_datetime + test.total_time.minutes).strftime("%d-%m-%Y %H:%M %p")
+    if (test_start_time > time_now)
+      return "<button id='test_status' class='btn btn-danger btn-xs disabled'>Pending</button>".html_safe     
+    elsif (test_start_time <= time_now && time_now < test_finish_time)
+      return link_to("Pending".html_safe,starttest_students_path(test),:class => "btn btn-danger btn-xs")
+    else
+      return "<button class='btn btn-success btn-xs'>Finish</button>".html_safe 
+    end
   end
-end
+
+   def get_test_time
+    return Test.order(test_datetime: :desc).pluck(:test_datetime).last.strftime("%d-%m-%Y %H:%M:%S").to_json
+  end
+def get_test_finish_time
+    test = Test.order(test_datetime: :desc).last
+    total_time = test.total_time
+    return test_finish_time = (test.test_datetime + total_time.minutes).strftime("%d-%m-%Y %H:%M:%S").to_json
+  end
 
 def days_remain(test)
   days=(test.test_datetime.to_date-DateTime.now.to_date).to_i
   if days>0
     return  days.to_s+"  Days to Go"
   end
+  if days==0
+     return  "Today"
+  end
+
 end
 
 
@@ -20,7 +38,6 @@ def get_student_avatar
 end
 def profile_student_avatar
   image_tag("/avatars/students/originals/" + current_student.avatar_file_name, :class=>"img-responsive")
-end
 end
 
 def individual_test_rank(res)
@@ -58,3 +75,4 @@ def test_avg_performance
     return data1.sum/data1.size
 end
 
+end

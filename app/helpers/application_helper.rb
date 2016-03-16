@@ -13,7 +13,10 @@ module ApplicationHelper
   		
   	elsif admin_signed_in?
   		link_to "Add Teacher",new_teacher_path
+    else
+      link_to "Attended Tests",student_testlist_path(:id1=>1)
   	end	
+
   end
 
   def list_user_path
@@ -21,15 +24,34 @@ module ApplicationHelper
   		link_to "List Student", list_students_path 
   	elsif admin_signed_in?
   		link_to "List Teacher", list_teachers_path 
+    else
+      link_to "Not Atttended Tests", student_testlist_path(:id1=>2) 
   	end
+  end
+  def test_path
+    if student_signed_in?
+      link_to "Up comming tests", student_testlist_path(:id1=>3)
+    end
   end
   def user
   	if teacher_signed_in?
   		return "Student"
   	elsif admin_signed_in?
   		return "Teacher"
+    else
+      return "Tests"
   	end
   end
+  def home
+    if student_signed_in?
+      link_to "Home", student_welcome_path
+    elsif admin_signed_in?
+    link_to "Home" , list_teachers_path 
+  elsif teacher_signed_in?
+    link_to "Home" , list_students_path 
+    end
+ 
+end
   def about_test
   	if teacher_signed_in?
   		link_to "Add Test",  new_test_path 

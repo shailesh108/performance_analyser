@@ -71,45 +71,45 @@
         <div id="compare" class="tab-pane fade">
           <div class="row">
             <div class="col-md-8">
-              <div class="panel panel-default">
-                <div class="panel-body">
+              
+                <br>
                   <div class="row">
                     <%=form_tag(student_compare_path, method: "get",remote:true)   do  %>
                     <div class="col-sm-5">Select Enrollment No
                       <%= collection_select :first_stud,:id, Student.all, :id, :enrollment_no,class: "form-control" %>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                       <%= collection_select :second_stud,:id, Student.all, :id, :enrollment_no ,class: "form-control"%>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                       <%= submit_tag "Compare",:class => "btn btn-success ","data-toggle"=>"modal" ,"data-target"=>"#myModal" %>
                     </div>
                     <% end %>
                   </div>
-                </div>
-              </div>
+               
             </div>
-            <div class="col-md-4">
-            </div>
+            
           </div>
         </div>
         <div id="all_student" class="tab-pane fade in active">
           <div class="row"><br>
-            <%=form_tag(teacher_perfromance_path, method: "post")   do  %>
-            <div class="col-sm-3">Select Enrollment No
-              <%= collection_select :stud,:id, Student.all, :id, :enrollment_no,class: "form-control" %>
+             <%=form_tag(teacher_perfromance_path, method: "post")   do  %>
+            <div class="col-sm-4">Select Enrollment No
+               <%= collection_select :stud,:id, Student.all, :id, :enrollment_no,class: "form-control" %>
             </div>
-            <div class="col-sm-">
-            <%= submit_tag "Perfromance",:class => "btn btn-success "%>
+            <div class="col-sm-1">
+              <%= submit_tag "Perfromance",:class => "btn btn-success "%>
             </div>
             <% end %>
-          </div><br>
+          </div>
+          <br>
           <div class="row">
             <% if @data1.present?%>
             <%=area_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , width:"700px",height: "200px",discrete: true%>
                       <%end%>
-          </div>
-          
+          </div> 
+        </div>
+        </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 class TestsController < ApplicationController
-  before_action :authenticate_teacher!
-  before_action :authenticate_student! ,only: [:show]
-  before_action :set_test,except: [:index, :new, :create]
+  before_action :authenticate_teacher!,except:[:testslist]
+  before_action :authenticate_student! ,only: [:show,:testslist]
+  before_action :set_test,except: [:index, :new, :create,:testslist]
 
   def index
     @tests=current_teacher.tests.where("test_datetime>=?",DateTime.now).paginate(:per_page => 4, :page => params[:page])
@@ -15,7 +15,18 @@ class TestsController < ApplicationController
   def edit
 
   end
-
+  def testslist
+    if params[:id1]=="1"
+    @tests=current_student.standard.tests.joins(:results).where(:results =>{student_id:current_student.id}).order(test_datetime: :desc).paginate(:per_page => 10, :page => params[:page])
+    @status=1
+    elsif params[:id1]=="2"
+    @tests=current_student.standard.tests.order(test_datetime: :desc).reject {|test| test.results.where(student_id:current_student.id).present? == (test.test_datetime<DateTime.now)}
+     @status=2
+    elsif params[:id1]=="3"
+    @tests=current_student.standard.tests.where('test_datetime >= ?',DateTime.now).paginate(:per_page => 10, :page => params[:page])
+    @status=3
+    end
+    end
   def update
     if @test.update(test_params.merge(set_extra_params))
       redirect_to tests_path
