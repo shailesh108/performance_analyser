@@ -76,6 +76,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.6.0)
+    faker (1.6.1)
+      i18n (~> 0.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     groupdate (2.5.2)
@@ -115,6 +117,7 @@ GEM
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
+    populator (1.0.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -212,6 +215,7 @@ DEPENDENCIES
   chartkick
   coffee-rails (~> 4.1.0)
   devise
+  faker
   groupdate
   jbuilder (~> 2.0)
   jquery-rails
@@ -219,8 +223,10 @@ DEPENDENCIES
   paperclip
   pg (~> 0.15)
   pg_search
+  populator
   pry
   rails (= 4.2.5)
+  rake
   roo-xls
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
