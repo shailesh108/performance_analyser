@@ -17,11 +17,10 @@ font-size: 24px !important;
 color: inherit !important;
 }
 
-.back-ground
-{
-    background: image-url('bg.jpg');
-}
-.body
-{
-bgcolor: "#E6E6FA";
+.b{
+  background-image: asset-url('my1.png');
+  background-attachment: fixed;
+  background-height: 1200px;
+  background-width: 1200px;
+  background-repeat: no-repeat;
 }
