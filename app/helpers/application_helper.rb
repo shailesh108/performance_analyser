@@ -28,7 +28,7 @@ module ApplicationHelper
       link_to "Not Atttended Tests", student_testlist_path(:id1=>2) 
   	end
   end
-  def test_path
+  def test_path1  
     if student_signed_in?
       link_to "Up comming tests", student_testlist_path(:id1=>3)
     end

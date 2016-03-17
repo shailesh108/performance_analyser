@@ -1,11 +1,14 @@
-<%= render 'layouts/loginerror'%>
+
  <header class="intro">
+ 
+ <%= render 'layouts/loginerror'%>   
+
         <div class="intro-body">
-            <div class="container">
+          <div class="container">
+
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h3>Performance Analyser</h3>
-                        
+                    <div class="col-md-6 col-md-offset-3">
+                        <h3><span class="glyphicon glyphicon-stats"> Performance Analyser</span></h3>
                        <blockquote><p>The thing about performance, even if it's only an illusion, is that it is a celebration of the fact that we do contain within ourselves infinite possibilities.</p></blockquote>
 		<%= link_to "Admin Login",new_admin_session_path, class: "btn btn-circle page-scroll "%>
 			
