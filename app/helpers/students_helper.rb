@@ -54,5 +54,5 @@ end
 def test_avg_performance
   att=current_student.results
     data1 = att.pluck(:percentage)
- #   return data1.sum/data1.size
+  #return data1.sum/data1.size
 end

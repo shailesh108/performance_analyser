@@ -1,0 +1,33 @@
+  [1m[36mActiveRecord::SchemaMigration Load (77.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (190.7ms)[0m  ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "admins" DISABLE TRIGGER ALL;ALTER TABLE "standards" DISABLE TRIGGER ALL;ALTER TABLE "teachers" DISABLE TRIGGER ALL;ALTER TABLE "subjects" DISABLE TRIGGER ALL;ALTER TABLE "students" DISABLE TRIGGER ALL;ALTER TABLE "teacher_standard_subjects" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "results" DISABLE TRIGGER ALL;ALTER TABLE "standard_subjects" DISABLE TRIGGER ALL;ALTER TABLE "tests" DISABLE TRIGGER ALL
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (8.3ms)[0m  DELETE FROM "standards"
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO "standards" ("name", "created_at", "updated_at", "id") VALUES (1, '2016-03-16 05:58:42', '2016-03-16 05:58:42', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "standards" ("name", "created_at", "updated_at", "id") VALUES (1, '2016-03-16 05:58:42', '2016-03-16 05:58:42', 298486374)
+  [1m[36mFixture Delete (25.7ms)[0m  [1mDELETE FROM "standard_subjects"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "standard_subjects" ("created_at", "updated_at", "id") VALUES ('2016-03-16 05:58:42', '2016-03-16 05:58:42', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "standard_subjects" ("created_at", "updated_at", "id") VALUES ('2016-03-16 05:58:42', '2016-03-16 05:58:42', 298486374)[0m
+  [1m[35mFixture Delete (24.0ms)[0m  DELETE FROM "tests"
+  [1m[36mFixture Insert (0.6ms)[0m  [1mINSERT INTO "tests" ("test_name", "test_datetime", "total_time", "no_of_questions", "status", "created_at", "updated_at", "id") VALUES ('MyString', '2016-02-19 14:51:26.000000', 1455893486, 1, 1, '2016-03-16 05:58:42', '2016-03-16 05:58:42', 980190962)[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "tests" ("test_name", "test_datetime", "total_time", "no_of_questions", "status", "created_at", "updated_at", "id") VALUES ('MyString', '2016-02-19 14:51:26.000000', 1455893486, 1, 1, '2016-03-16 05:58:42', '2016-03-16 05:58:42', 298486374)
+  [1m[36mFixture Delete (16.2ms)[0m  [1mDELETE FROM "students"[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO "students" ("created_at", "updated_at", "id") VALUES ('2016-03-16 05:58:42', '2016-03-16 05:58:42', 980190962)
+  [1m[36mFixture Insert (1.0ms)[0m  [1mINSERT INTO "students" ("created_at", "updated_at", "id") VALUES ('2016-03-16 05:58:42', '2016-03-16 05:58:42', 298486374)[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (24.8ms)[0m  [1mALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "admins" ENABLE TRIGGER ALL;ALTER TABLE "standards" ENABLE TRIGGER ALL;ALTER TABLE "teachers" ENABLE TRIGGER ALL;ALTER TABLE "subjects" ENABLE TRIGGER ALL;ALTER TABLE "students" ENABLE TRIGGER ALL;ALTER TABLE "teacher_standard_subjects" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "results" ENABLE TRIGGER ALL;ALTER TABLE "standard_subjects" ENABLE TRIGGER ALL;ALTER TABLE "tests" ENABLE TRIGGER ALL[0m
+  [1m[35m (8.6ms)[0m  ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "admins" DISABLE TRIGGER ALL;ALTER TABLE "standards" DISABLE TRIGGER ALL;ALTER TABLE "teachers" DISABLE TRIGGER ALL;ALTER TABLE "subjects" DISABLE TRIGGER ALL;ALTER TABLE "students" DISABLE TRIGGER ALL;ALTER TABLE "teacher_standard_subjects" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "results" DISABLE TRIGGER ALL;ALTER TABLE "standard_subjects" DISABLE TRIGGER ALL;ALTER TABLE "tests" DISABLE TRIGGER ALL
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.6ms)[0m  DELETE FROM "standards"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "standards" ("name", "created_at", "updated_at", "id") VALUES (1, '2016-03-16 05:58:42', '2016-03-16 05:58:42', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO "standards" ("name", "created_at", "updated_at", "id") VALUES (1, '2016-03-16 05:58:42', '2016-03-16 05:58:42', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM "standard_subjects"[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO "standard_subjects" ("created_at", "updated_at", "id") VALUES ('2016-03-16 05:58:42', '2016-03-16 05:58:42', 980190962)
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "standard_subjects" ("created_at", "updated_at", "id") VALUES ('2016-03-16 05:58:42', '2016-03-16 05:58:42', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "tests"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "tests" ("test_name", "test_datetime", "total_time", "no_of_questions", "status", "created_at", "updated_at", "id") VALUES ('MyString', '2016-02-19 14:51:26.000000', 1455893486, 1, 1, '2016-03-16 05:58:42', '2016-03-16 05:58:42', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "tests" ("test_name", "test_datetime", "total_time", "no_of_questions", "status", "created_at", "updated_at", "id") VALUES ('MyString', '2016-02-19 14:51:26.000000', 1455893486, 1, 1, '2016-03-16 05:58:42', '2016-03-16 05:58:42', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM "students"[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO "students" ("created_at", "updated_at", "id") VALUES ('2016-03-16 05:58:42', '2016-03-16 05:58:42', 980190962)
+  [1m[36mFixture Insert (0.7ms)[0m  [1mINSERT INTO "students" ("created_at", "updated_at", "id") VALUES ('2016-03-16 05:58:42', '2016-03-16 05:58:42', 298486374)[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (9.5ms)[0m  [1mALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "admins" ENABLE TRIGGER ALL;ALTER TABLE "standards" ENABLE TRIGGER ALL;ALTER TABLE "teachers" ENABLE TRIGGER ALL;ALTER TABLE "subjects" ENABLE TRIGGER ALL;ALTER TABLE "students" ENABLE TRIGGER ALL;ALTER TABLE "teacher_standard_subjects" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "results" ENABLE TRIGGER ALL;ALTER TABLE "standard_subjects" ENABLE TRIGGER ALL;ALTER TABLE "tests" ENABLE TRIGGER ALL[0m

@@ -9,7 +9,7 @@ class Student < ActiveRecord::Base
   :path => ":rails_root/public/avatars/students/:styles/:basename.:extension"
   validates_attachment_presence :avatar
   validates_attachment_size :avatar, :less_than => 300.kilobytes
-  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/jpg']
   devise :database_authenticatable, :trackable, :validatable, :authentication_keys=>[:enrollment_no]
 
   def email_required?
@@ -22,7 +22,7 @@ class Student < ActiveRecord::Base
     extension = File.extname(avatar_file_name).downcase
     self.avatar.instance_write(:file_name, "#{first_name}#{last_name}#{extension}")
   end
- pg_search_scope :search_by_standard_name, :against => [:standard_id, :enrollment_no]
+ pg_search_scope :search_by_standard_name, :against => [:enrollment_no, :first_name],  associated_against: {standard: :name}
 
  def send_password_reset
   generate_token(:password_reset_token)

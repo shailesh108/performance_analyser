@@ -221,6 +221,7 @@ DEPENDENCIES
   pg_search
   pry
   rails (= 4.2.5)
+  rake
   roo-xls
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

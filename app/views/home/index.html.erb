@@ -1,6 +1,30 @@
 <%= render 'layouts/loginerror'%>
 
-<div class="vcenter">
+<html>
+<script type = "text/javascript">
+          function displayNextImage() {
+              x = (x === images.length - 1) ? 0 : x + 1;
+              document.getElementById("img").src = images[x];
+          }
+
+          function displayPreviousImage() {
+              x = (x <= 0) ? images.length - 1 : x - 1;
+              document.getElementById("img").src = images[x];
+          }
+
+          function startTimer() {
+              setInterval(displayNextImage, 3000);
+          }
+
+          var images = [], x = -1;
+          images[0] = "bg.png";
+          images[1] = "cu.png";
+          images[2] = "su.png";
+      </script>
+   </head>
+
+  
+<div class="home_img">
 
 	<% if admin_signed_in? %>
 	<h1>welcome <%=current_admin.email%></h1>
@@ -15,14 +39,12 @@
 	<%end%>
 
 	<%unless admin_signed_in? or teacher_signed_in?%>
-	<div align="center">
-
-		<h1>Sign In </h1>
-
-		<%= link_to "Admin Login",new_admin_session_path, class: "btn btn-primary"%>
-		<%= link_to "Teacher Login",new_teacher_session_path, class: "btn btn-primary"%>
-		<%= link_to "Student Login",new_student_session_path, class: "btn btn-primary"%>
-
-	</div>
+	<%= render 'layouts/home_header'%>
 	<%end%>
 </div>
+<div class="home_space">
+ <body onload = "startTimer()">
+       <img id="img" src="bg.png"  height="600" width="1500"/>
+   </body>
+</div>
+</html>
