@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   before_action :authenticate_teacher_or_admin,except: [:welcome,:starttest,:result,:resultdata]
   before_action :authenticate_student!,only: [:welcome,:starttest,:result,:resultdata]
-  before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result,:resultdata]
+  before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result,:resultdata,:studentcompare]
   before_action :set_test,only: [:starttest]
 
 
@@ -46,16 +46,12 @@ class StudentsController < ApplicationController
   end
 
   def welcome
-    @results=nil;
-     @avatar_path=("/avatars/students/originals/"+current_student.avatar_file_name)
-    @complete_tests=current_student.standard.tests.joins(:results).where(:results =>{student_id:current_student.id})
+       
+       @avatar_path=("/avatars/students/originals/"+current_student.avatar_file_name)
+    @complete_tests=current_student.standard.tests.joins(:results).where(:results =>{student_id:current_student.id}).order(test_datetime: :desc)
 
-    @upcoming_tests=current_student.standard.tests.where('test_datetime >= ?',DateTime.now)
-    @not_attended_tests=current_student.standard.tests.reject {|test| test.results.where(student_id:current_student.id).present? == (test.test_datetime<DateTime.now)}
-     #std.standard.tests.reject {|test| test.results.present?}
-     
-  
-      
+    @upcoming_tests=current_student.standard.tests.where('test_datetime >= ?',DateTime.now).order(test_datetime: :desc)
+    @not_attended_tests=current_student.standard.tests.order(test_datetime: :desc).reject {|test| test.results.where(student_id:current_student.id).present? == (test.test_datetime<DateTime.now)}
   end
   def resultdata
     @st=Result.find_by(:student_id=>current_student.id,:test_id=>params[:t_id])
@@ -63,6 +59,19 @@ class StudentsController < ApplicationController
         format.js    
       end
   end
+  def studentcompare
+    stu_1=Student.find(params[:first_stud][:id]).first_name 
+    stu_1_res=Student.find(params[:first_stud][:id]).results 
+    percentage=stu_1_res.average(:percentage) 
+    stu_2=Student.find(params[:second_stud][:id]).first_name
+    stu_2_res=Student.find(params[:second_stud][:id]).results 
+    percentage1=stu_2_res.average(:percentage) 
+    @graph={ stu_1=> percentage, stu_2=> percentage1} 
+    respond_to do |format|
+        format.js    
+      end
+  end
+  
 
   def destroy
     @student.destroy
@@ -71,9 +80,9 @@ class StudentsController < ApplicationController
 
   def list 
   if params[:query].blank?
-    @students=Student.paginate(:per_page => 5, :page => params[:page])
+    @students=Student.paginate(:per_page => 10, :page => params[:page])
   else
-    @students = Student.search_by_standard_name(params[:query]).paginate(:per_page => 5, :page => params[:page])
+    @students = Student.search_by_standard_name(params[:query]).paginate(:per_page => 10, :page => params[:page])
   end
 end
 

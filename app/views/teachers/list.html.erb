@@ -35,7 +35,7 @@
               <th>Address</th>
               <th>City</th>
               <th>Contactno</th>
-              <th>Subject</th>
+          
               <th colspan="4">Action</th>
             </tr> </thead>
             <tbody>
@@ -45,11 +45,11 @@
                 <td><%= teacher.middle_name %></td>
                 <td><%= teacher.last_name %></td>
                 <td><%= teacher.gender %></td>
-                <td><%= teacher.dateofbirth.strftime("%d-%m-%Y")%></td>
+                <td><%= teacher.dateofbirth %></td>
                 <td><%= teacher.address %></td>
                 <td><%= teacher.city %></td>
                 <td><%= teacher.contactno %></td>
-                <td><%= teacher.sub_name %></td>
+             
                  <td><%= link_to '<i class="glyphicon glyphicon-plus" title="Assign Standard and Subject"></i>'.html_safe, assign_teacher_path(teacher) %>
                 </td>
                 <td><%= link_to '<i class="glyphicon glyphicon-user" title="View"></i>'.html_safe,teacher_path(teacher)%>

@@ -45,8 +45,12 @@ post 'result/:id'=>'results#test_result',as: :result
 
 	get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
+	get 'student/welcome/:id'=> 'students#welcome'
 	get 'student/resultdata'=> 'students#resultdata'
-	
+	get 'student/compare'=> 'students#studentcompare'
+	post 'teacher/perfromance'=> 'teachers#studtestperformance'
 	get 'teacher/welcome'=> 'teachers#welcome'
 	get 'teacher/graph'=> 'teachers#graph'
+	get 'student/testlist'=>'tests#testslist'
+	get 'teacher/tests_graph/:id'=>'teachers#tests_graph',as: :tests_graph
 end

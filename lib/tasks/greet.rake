@@ -1,12 +1,14 @@
- require 'faker' 
-namespace :student  do
+require 'faker'
+ namespace :teacher  do
   desc "create some fake data"
   task :greet => :environment do
-  @images = Dir["#{RAILS_ROOT}/public/*.*"]
+
     
 
-    (1..10).each do |i|
-     ccc = Student.create(email:"abbccc@gmail.com",date_of_birth: 12/06/1995, address: "abc",city:"abc", contactno:"9537156268" ,avatar:"B.j",first_name:"abbccc",middle_name:"aa",last_name:"bbcc",standard_id:5, enrollment_no: i, password:"12345678")
+    (1..15).each do |i|
+     ccc = Teacher.create(email:"Teacher#{i}@gmail.com",address: "samyak",city:"jamnagar", contactno:"9537156268" ,first_name:"Teacher#{i}",middle_name:"A",last_name:"Faldu",gender:"female")
+   	puts ccc.errors.full_messages
+   	puts "Hello"
     end
  
   
