@@ -32,4 +32,8 @@ module TeachersHelper
  	def stu_name(id)
  		return Student.find(id).first_name
  	end
+
+  def std_name(id)
+    return Student.find(id).standard.name
+  end
 end

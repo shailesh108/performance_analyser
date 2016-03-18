@@ -150,24 +150,12 @@
 
 								<div class="panel-body">
 
-									<div class="col-md-4">
-										<div class="thumbnail">
-											<%=total_test_chart%>
-											<div class="caption"> 
-												<button type="button" class="btn btn-success btn-sm btn-block" >
-													Test Attendance
-												</button>
-
-											</div>
-										</div>
-									</div>
-									<div class="col-md-8">
+									
+									<div class="col-md-12">
 										<div class="thumbnail">
 											<%=all_test_performance_chart%>
 											<div class="caption">
-												<button type="button" class="btn btn-success btn-sm btn-block" >											
-													Overall All Test Performance 
-												</button>
+												
 
 											</div>
 										</div>
@@ -230,7 +218,6 @@
 												<td><%=test.standard_subject.subject.sub_name%></td>
 												<td><%= test.test_name %></td>
 												<td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %> 
-													<span class="badge"><%=days_remain(test)%></span></td>
 													<td><span class="badge"><%= test.total_time %>:00 </span>  Minutes</td>
 													<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
 													<td><%= test.teacher.first_name %></td>
@@ -266,7 +253,7 @@
 													<td><%=test.standard_subject.subject.sub_name%></td>
 													<td><%= test.test_name %></td>
 													<td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %> 
-														<span class="badge"><%=days_remain(test)%></span></td>
+														
 														<td><span class="badge"><%= test.total_time %>:00 </span>  Minutes</td>
 														<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
 														<td><%= test.teacher.first_name %></td>
