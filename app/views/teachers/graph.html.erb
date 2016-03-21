@@ -97,6 +97,9 @@
             <div class="col-sm-4">Select Enrollment No
                <%= collection_select :stud,:id, Student.all, :id, :enrollment_no,class: "form-control" %>
             </div>
+            <div class="col-sm-4">Select Subject 
+               <%= collection_select :sub,:id, Subject.all, :id, :sub_name,:include_blank => "all",class: "form-control" %>
+            </div>
             <div class="col-sm-1">
               <%= submit_tag "Perfromance",:class => "btn btn-success "%>
             </div>

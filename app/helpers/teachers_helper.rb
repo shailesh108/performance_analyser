@@ -26,7 +26,7 @@ module TeachersHelper
 
   def all_test_attendance_chart
   	@g_data=current_teacher.tests.joins(:results).distinct.group(:test_name).count(:student_id)
-    return "#{column_chart @g_data ,label: "Attended Test",width: "250px", height: "200px",colors:[ "#b94646","#a48a9e", "#c6e1e8"]}".html_safe
+    return "#{column_chart @g_data ,xtitle: "Test Name", ytitle: "No of Student", label: "Attended Test",width: "300px", height: "200px",colors:[ "#b94646","#a48a9e", "#c6e1e8"]}".html_safe
  	end
 
  	def stu_name(id)
