@@ -1,22 +1,24 @@
 module StudentsHelper
+  
+
  def test_status(test)
     time_now = Time.now.strftime("%d-%m-%Y %H:%M %p")
     test_start_time = test.test_datetime.strftime("%d-%m-%Y %H:%M %p")
     test_finish_time = (test.test_datetime + test.total_time.minutes).strftime("%d-%m-%Y %H:%M %p")
-   # if (test_start_time > time_now)
-    #  return "<button id='test_status' class='btn btn-danger btn-xs disabled'>Pending</button>".html_safe     
+    #if (test_start_time > time_now)
+  #    return "<button id='test_status' class='btn btn-danger btn-xs disabled'>Pending</button>".html_safe     
     #elsif (test_start_time <= time_now && time_now < test_finish_time)
-     return link_to("Pending".html_safe,starttest_students_path(test),:class => "btn btn-danger btn-xs")
+     return link_to("Start Test".html_safe,starttest_students_path(test),:class => "btn btn-danger btn-xs")
     #else
      # return "<button class='btn btn-success btn-xs'>Finish</button>".html_safe 
     #end
   end
 
    def get_test_time
-    return Test.order(test_datetime: :desc).pluck(:test_datetime).last.strftime("%d-%m-%Y %H:%M:%S").to_json
+    return Test.order(test_datetime: :desc).pluck(:test_datetime).first.strftime("%d-%m-%Y %H:%M:%S").to_json
   end
 def get_test_finish_time
-    test = Test.order(test_datetime: :desc).last
+    test = Test.order(test_datetime: :desc).first
     total_time = test.total_time
     return test_finish_time = (test.test_datetime + total_time.minutes).strftime("%d-%m-%Y %H:%M:%S").to_json
   end
@@ -67,7 +69,8 @@ def all_test_performance_chart
     testname=att.pluck(:test_id,:percentage).map{|a,k| Test.find(a).test_name}
     per = att.pluck(:percentage)
     @data1=testname.zip(per)
-    return "#{line_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , height: "200px",discrete: true}".html_safe
+    @data1.shuffle!
+    return "#{area_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , height: "200px",discrete: true}".html_safe
 end
 def test_avg_performance
   att=current_student.results

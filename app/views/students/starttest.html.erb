@@ -95,7 +95,7 @@
 
 		</div>
 <script>
-		var seconds = 10;
+		var seconds =  <%=(@test.total_time*3600)/60%>;
 		function secondPassed()
 		{
 			var minutes = Math.round((seconds - 30)/60);
@@ -117,8 +117,6 @@
 				seconds--;
 			}
 		}
-//countdownTimer = setInterval('secondPassed()', 1000);
-
 function toggleOffByInput(id) {
 	$('#'+id).prop('disabled', false);
 	$('#'+id).prop('checked', false).change()
@@ -133,7 +131,6 @@ $(window).load(function(){
 function starttest()
 {
 	var	countdownTimer= setInterval('secondPassed()', 1000);
-	//document.getElementById("test").style.display = true;
 	$('#test').show();
 }
 

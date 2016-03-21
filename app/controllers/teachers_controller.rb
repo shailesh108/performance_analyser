@@ -27,13 +27,12 @@ class TeachersController < ApplicationController
 
   end
   def tests_graph
-    #render text:params[:id]
+   
     name=Result.where(:test_id=>params[:id]).pluck(:student_id,:percentage).map{|s| Student.where(:id=>s).pluck(:first_name)}
     per=Result.where(:test_id=>params[:id]).pluck(:student_id,:percentage).map{|s,p| p}
     @result=name.zip(per)
     @rank=per.zip(name).sort!
     @rank.reverse!
-   #byebug
   end
   def update
     if @teacher.update(teacher_params)

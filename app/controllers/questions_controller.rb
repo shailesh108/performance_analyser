@@ -18,7 +18,9 @@ class QuestionsController < ApplicationController
         format.js
       end
     end
+    
   end
+
     def import
      Question.import(params[:file],@test_id.id)
      redirect_to test_questions_path

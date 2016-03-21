@@ -44,7 +44,6 @@
 					<td><%=test.standard_subject.subject.sub_name%></td>
 					<td><%= test.test_name %></td>
 					<td><%= test.test_datetime.strftime("%d-%m-%Y %l:%M %p") %> 
-						<span class="badge"><%=days_remain(test)%></span></td>
 						<td><span class="badge"><%= test.total_time %>:00 </span>  Minutes</td>
 						<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
 						<td><%= test.teacher.first_name %></td>

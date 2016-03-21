@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+
   before_action :authenticate_teacher_or_admin,except: [:welcome,:starttest,:result,:resultdata]
   before_action :authenticate_student!,only: [:welcome,:starttest,:result,:resultdata]
   before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result,:resultdata,:studentcompare]
@@ -50,7 +51,7 @@ class StudentsController < ApplicationController
        @avatar_path=("/avatars/students/originals/"+current_student.avatar_file_name)
     @complete_tests=current_student.standard.tests.joins(:results).where(:results =>{student_id:current_student.id}).order(test_datetime: :desc)
 
-    @upcoming_tests=current_student.standard.tests.where('test_datetime >= ?',DateTime.now).order(test_datetime: :desc)
+    @upcoming_tests=current_student.standard.tests.where('test_datetime>?',DateTime.now).order(test_datetime: :desc)                
     @not_attended_tests=current_student.standard.tests.order(test_datetime: :desc).reject {|test| test.results.where(student_id:current_student.id).present? == (test.test_datetime<DateTime.now)}
   end
   def resultdata
@@ -79,7 +80,9 @@ class StudentsController < ApplicationController
   end
 
   def list 
+     
   if params[:query].blank?
+
     @students=Student.paginate(:per_page => 10, :page => params[:page])
   else
     @students = Student.search_by_standard_name(params[:query]).paginate(:per_page => 10, :page => params[:page])

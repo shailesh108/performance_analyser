@@ -13,7 +13,7 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-
+					<div id="printableArea">
 					<div class="table-responsive">
 						<table id="teachers" border="2" class="table table-striped table-bordered table-hover" >
 							<thead>
@@ -39,11 +39,26 @@
 								<%end%>   
 							</tbody>
 						</table>
+						
 					</div>
+					</div>
+					<input type="button" onclick="printDiv('printableArea')" value="Print Result" class="btn btn-primary  pull-right"/>
 				</div>
 			</div>
 
 		</div>
 
 	</div>
+	 <script type="text/javascript">
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>
 </div>
