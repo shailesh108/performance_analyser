@@ -103,7 +103,10 @@ class TeachersController < ApplicationController
    testname=att.pluck(:test_id,:percentage).map{|a,k| Test.find(a).test_name}
  end
  per = att.pluck(:percentage)
+
  @data1=testname.zip(per)
+ @data1.reject!{|a| a[0][0]==nil}
+ 
  render 'graph'
 end
 
