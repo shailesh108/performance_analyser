@@ -93,13 +93,19 @@ class TeachersController < ApplicationController
     end   
   end
 
-    def studtestperformance
-     att=Student.find(params[:stud][:id]).results
-    testname=att.pluck(:test_id,:percentage).map{|a,k| Test.find(a).test_name}
-    per = att.pluck(:percentage)
-    @data1=testname.zip(per)
-    render 'graph'
-  end
+  def studtestperformance
+   att=Student.find(params[:stud][:id]).results
+   std=Student.find(params[:stud][:id]).standard_id
+   if(params[:sub][:id].present?)
+    std_sub_id=StandardSubject.where(:standard_id =>std ,:subject_id => params[:sub][:id]).pluck(:id)
+    testname=att.pluck(:test_id,:percentage).map{|a,k| Test.where(:id=>a,:standard_subject_id=>std_sub_id[0]).pluck(:test_name)}
+  else
+   testname=att.pluck(:test_id,:percentage).map{|a,k| Test.find(a).test_name}
+ end
+ per = att.pluck(:percentage)
+ @data1=testname.zip(per)
+ render 'graph'
+end
 
   private
 
