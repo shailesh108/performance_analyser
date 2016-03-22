@@ -29,10 +29,13 @@
               <td><%= test.teacher.first_name %></td>
 
               <td><%= change_add_question_glyphicon(test) %></td>
-
-              <td><%= link_to '<i class="glyphicon glyphicon-list" title="View Questions"></i>'.html_safe, test_questions_path(test) %>
-              </td>
-              <td><%= link_to '<i class="glyphicon glyphicon-pencil" title="Edit"></i>'.html_safe, edit_test_path(test) %>
+               
+              <td><%= link_to '<i class="glyphicon glyphicon-list" ></i>'.html_safe, test_questions_path(test),
+              class: "tag-tooltip",
+                      :data => {:toggle=>"tooltip"},
+                      'data-original-title' => question_link(test),
+                      'data-placement' => 'right'%></td>
+              <td><%= link_to '<i class="glyphicon glyphicon-edit" title="Edit"></i>'.html_safe, edit_test_path(test) %>
               </td>
               <td><%= link_to '<i class="glyphicon glyphicon-trash" title="delete"></i>'.html_safe, test_path(test), method: :delete, data: {confirm: 'Are you sure?'} %>
               </td>

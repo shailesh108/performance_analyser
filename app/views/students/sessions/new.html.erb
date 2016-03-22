@@ -11,7 +11,7 @@
           <div class="panel-body">
             <%= render 'layouts/loginerror'%>
 
-            <%= form_for(resource, as: resource_name, url: student_session_path) do |f| %>
+            <%= form_for("student", url: student_session_path) do |f| %>
             <fieldset>
 
               <div class="form-group">
@@ -24,7 +24,6 @@
                 <%= f.submit "Log in" ,:class => "btn btn-lg btn-success btn-block" %>
               </div>
             </fieldset>
-
             <% end %>
           </div>
         </div>

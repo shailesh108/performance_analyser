@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 	resources :students,except: [:index],path: 'teacher/student' do
 		collection do
 			get 'list'
-			get 'starttest/:id'=>'students#starttest',as: :starttest	
+			get 'search'
+			get 'starttest/:id'=>'students#starttest',as: :starttest
 		end
 	end
 

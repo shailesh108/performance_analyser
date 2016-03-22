@@ -8,14 +8,13 @@ class Student < ActiveRecord::Base
   validates_attachment_presence :avatar
   validates_attachment_size :avatar, :less_than => 300.kilobytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
-
-  devise :database_authenticatable, :trackable, :validatable, :authentication_keys=>[:enrollment_no]
+  devise :database_authenticatable, :trackable, :validatable, :recoverable, :authentication_keys=>[:enrollment_no]
 
   def email_required?
     false
   end
 
-  before_post_process :rename_avatar
+ before_post_process :rename_avatar
 
   def rename_avatar
     extension = File.extname(avatar_file_name).downcase

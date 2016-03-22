@@ -12,7 +12,7 @@ class Teacher < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
 
   before_post_process :rename_avatar
-
+  
   private
   def rename_avatar
     extension = File.extname(avatar_file_name).downcase

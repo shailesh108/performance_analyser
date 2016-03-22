@@ -28,3 +28,11 @@ $(document).ready(function() {
     elem.style.width = ((yes*100)/no_ques) + "%";                   
   })
 });
+  
+$(function() {
+  $('a#trigger').hover(function() {
+    $('div#pop-up').show();
+  }, function() {
+    $('div#pop-up').hide();
+  });
+});

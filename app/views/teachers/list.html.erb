@@ -1,4 +1,8 @@
 <div class="container">
+  <div class="container">
+    <div class="col-md-5">
+  
+</div>
   <div class="row">
     <div class="col-sm-12">
       <h1>Listing Teachers</h1>
@@ -29,7 +33,6 @@
                 <td><%= teacher.address %></td>
                 <td><%= teacher.city %></td>
                 <td><%= teacher.contactno %></td>
-
                 <td><%= link_to '<i class="glyphicon glyphicon-plus" title="Assign Standard and Subject"></i>'.html_safe, assign_teacher_path(teacher) %>
                 </td>
                 <td><%= link_to '<i class="glyphicon glyphicon-user" title="View"></i>'.html_safe,teacher_path(teacher)%>
