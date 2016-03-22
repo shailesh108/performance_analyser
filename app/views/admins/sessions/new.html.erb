@@ -1,35 +1,19 @@
-<div class="container">
-	<div class="vcenter">
-		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
-				<div class="login-panel panel panel-default">
-					<div class="panel-heading">
+<header class="intro">
+	<div class="intro-body">
+		<div class="body"></div>
 
-						<h3 class="panel-title">Admin Login</h3>
-					</div>
+		<br> <div class="container">
 
-					<div class="panel-body">
-						<%= render 'layouts/loginerror'%>
-
-						<%= form_for(resource, as: resource_name, url: admin_session_path) do |f| %>
-
-						<fieldset>
-
-							<div class="form-group">
-								<%= f.email_field :email, autofocus: true ,:class => "form-control",:placeholder => "E-mail"%>
-							</div>
-							<div class="form-group">
-								<%= f.password_field :password, autocomplete: "off",:class => "form-control",:placeholder => "Password"%>
-							</div>
-							<div class="actions">
-								<%= f.submit "Log in" ,:class => "btn btn-lg btn-success btn-block" %>
-							</div>
-						</fieldset>
-
-						<% end %>
-					</div>
-				</div>
+		<div class="login">
+			<%= render 'layouts/loginerror'%>
+			<h3>Admin Login</h3>
+			<%= form_for(resource, as: resource_name, url: admin_session_path) do |f| %>
+			<fieldset>
+			<%= f.email_field :email, autofocus: true ,:placeholder => "E-mail"%>
+				<%= f.password_field :password, autocomplete: "off",:placeholder => "Password"%>
+				<%= f.submit "Log in"%>
+			</fieldset>
+			<% end %>
 			</div>
-		</div>                   
-	</div>
-</div>
+		</div>
+	</header>

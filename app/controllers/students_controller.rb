@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_teacher_or_admin,except: [:welcome,:starttest,:result]
-  before_action :authenticate_student!,only: [:welcome,:starttest,:result]
-  before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result]
+  before_action :authenticate_teacher_or_admin,except: [:welcome,:starttest,:result,:resultdata]
+  before_action :authenticate_student!,only: [:welcome,:starttest,:result,:resultdata]
+  before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result,:resultdata,:studentcompare]
   before_action :set_test,only: [:starttest]
 
 
@@ -25,14 +25,14 @@ class StudentsController < ApplicationController
       @student.update_attributes(enrollment_no: enrolment_no)
 
       redirect_to list_students_path
-
+      
     else
 
       render :new
 
     end
   end
-
+  
   def starttest  
     @ques=@test.questions
   end
@@ -56,7 +56,31 @@ class StudentsController < ApplicationController
     if params[:test_id].present?
           @result_of_test=current_student.results.where(:test_id=>params[:test_id])
     end
+    @complete_tests=current_student.standard.tests.joins(:results).where(:results =>{student_id:current_student.id}).order(test_datetime: :desc)
+    @upcoming_tests=current_student.standard.tests.where('test_datetime>?',DateTime.now).order(test_datetime: :desc)                
+    @not_attended_tests=current_student.standard.tests.order(test_datetime: :desc).reject {|test| test.results.where(student_id:current_student.id).present? == (test.test_datetime<DateTime.now)}
   end
+  
+  def resultdata
+    @st=Result.find_by(:student_id=>current_student.id,:test_id=>params[:t_id])
+      respond_to do |format|
+        format.js    
+      end
+  end
+  
+  def studentcompare
+    stu_1=Student.find(params[:first_stud][:id]).first_name 
+    stu_1_res=Student.find(params[:first_stud][:id]).results 
+    percentage=stu_1_res.average(:percentage) 
+    stu_2=Student.find(params[:second_stud][:id]).first_name
+    stu_2_res=Student.find(params[:second_stud][:id]).results 
+    percentage1=stu_2_res.average(:percentage) 
+    @graph={ stu_1=> percentage, stu_2=> percentage1} 
+    respond_to do |format|
+        format.js    
+      end
+  end
+  
 
   def destroy
     @student.destroy

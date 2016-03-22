@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 		collection do
 			get 'list'
 			get 'search'
-			get "search_result" => 'teachers#search_result'	
+			get "search_result" => 'teachers#search_result'
 		end		
 		member do
 			get 'assign'
@@ -23,10 +23,9 @@ Rails.application.routes.draw do
 			get 'list'
 			get 'search'
 			get 'starttest/:id'=>'students#starttest',as: :starttest
+			get 'graph'
 		end
 	end
-
-	post 'result/:id'=>'results#test_result',as: :result
 
 	resources :tests, except: [:show], path: 'test' do
 		resources :questions, except: [:show], path: 'question' do
@@ -34,9 +33,22 @@ Rails.application.routes.draw do
 				post 'import'
 			end
 		end
+		member do
+			get 'tests_graph/:id' => 'teachers#tests_graph', as: :tests_graph
+		end
 	end
 
 	get 'admin/welcome'=> 'admins#welcome'
 	get 'student/welcome'=> 'students#welcome'
 	get 'teacher/welcome'=> 'teachers#welcome'
+
+	post 'result/:id'=>'results#test_result',as: :result
+
+	# get 'student/welcome/:id'=> 'students#welcome'
+	# get 'student/resultdata'=> 'students#resultdata'
+	# get 'student/compare'=> 'students#studentcompare'
+	# post 'teacher/perfromance'=> 'teachers#studtestperformance'
+	# get 'teacher/graph'=> 'teachers#graph'
+	# get 'student/testlist'=>'tests#testslist'
+	# get 'teacher/tests_graph/:id'=>'teachers#tests_graph',as: :tests_graph
 end

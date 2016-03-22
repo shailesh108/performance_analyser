@@ -1,0 +1,15 @@
+<% if @st.present?%>
+<div class="row">
+	<div class="col-md-11">
+		<button class="btn btn-success bt-md pull-right">
+		Test Rank <%=individual_test_rank(@st)%> 
+		( <%=@st.percentage%>% )</button>
+	</div>
+</div>
+<% graph_data = {
+	"Attempted Questions"=> @st.attempted_question,
+	"Correct Question"=> @st.correct_question,
+	"Incorrect Question"=> @st.incorrect_question,
+}%>
+<%= pie_chart graph_data, width: "400px", height: "150px"%> 
+<% end%>

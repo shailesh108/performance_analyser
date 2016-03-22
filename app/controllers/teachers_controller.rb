@@ -1,7 +1,9 @@
 class TeachersController < ApplicationController
-  before_action :authenticate_admin!,except: [:welcome]
-  before_action :set_teacher, except: [:welcome,:list,:new,:create,:search,:search_result]
-  before_action :authenticate_teacher!,only: [:welcome]
+
+  before_action :authenticate_admin!,except: [:welcome, :graph,:tests_graph,:studtestperformance]
+  before_action :set_teacher, except: [:welcome,:list,:new,:create,:search,:search_result,:graph,:tests_graph,:studtestperformance]
+  before_action :authenticate_teacher!,only: [:welcome,:tests_graph,:studtestperformance]
+
 
   def welcome
   end
@@ -16,7 +18,17 @@ class TeachersController < ApplicationController
   def list 
     @teachers=Teacher.paginate(:per_page => 5, :page => params[:page])
   end
+  def graph
 
+  end
+  def tests_graph
+   
+    name=Result.where(:test_id=>params[:id]).pluck(:student_id,:percentage).map{|s| Student.where(:id=>s).pluck(:first_name)}
+    per=Result.where(:test_id=>params[:id]).pluck(:student_id,:percentage).map{|s,p| p}
+    @result=name.zip(per)
+    @rank=per.zip(name).sort!
+    @rank.reverse!
+  end
   def update
     if @teacher.update(teacher_params)
       redirect_to list_teachers_path
@@ -74,6 +86,23 @@ class TeachersController < ApplicationController
       @teacher_profile = teacher_assigned.teacher
     end   
   end
+
+  def studtestperformance
+   att=Student.find(params[:stud][:id]).results
+   std=Student.find(params[:stud][:id]).standard_id
+   if(params[:sub][:id].present?)
+    std_sub_id=StandardSubject.where(:standard_id =>std ,:subject_id => params[:sub][:id]).pluck(:id)
+    testname=att.pluck(:test_id,:percentage).map{|a,k| Test.where(:id=>a,:standard_subject_id=>std_sub_id[0]).pluck(:test_name)}
+  else
+   testname=att.pluck(:test_id,:percentage).map{|a,k| Test.find(a).test_name}
+ end
+ per = att.pluck(:percentage)
+
+ @data1=testname.zip(per)
+ @data1.reject!{|a| a[0][0]==nil}
+ 
+ render 'graph'
+end
 
   private
 

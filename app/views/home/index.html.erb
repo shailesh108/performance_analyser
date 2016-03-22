@@ -1,27 +1,24 @@
-<%= render 'layouts/loginerror'%>
 
-<div class="vcenter">
+ <header class="intro">
+ 
+ <%= render 'layouts/loginerror'%>   
 
-	<% if admin_signed_in? %>
-	<h1>welcome <%=current_admin.email%></h1>
+        <div class="intro-body">
+          <div class="container">
 
-	<%= link_to "Logout",  destroy_admin_session_path, :method => :delete   %>
-	<%end%>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <h3><span class="glyphicon glyphicon-stats"> Performance Analyser</span></h3>
+                       <blockquote><p>The thing about performance, even if it's only an illusion, is that it is a celebration of the fact that we do contain within ourselves infinite possibilities.</p></blockquote>
+		<%= link_to "Admin Login",new_admin_session_path, class: "btn btn-circle page-scroll "%>
+			
+		<%= link_to "Teacher Login",new_teacher_session_path, class: "btn btn-circle page-scroll"%>
+		<%= link_to "Student Login",new_student_session_path, class: "btn btn-circle page-scroll"%>
 
-	<% if teacher_signed_in? %>
-	<h1>welcome <%=current_teacher.email%></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-	<%= link_to "Logout",  destroy_teacher_session_path, :method => :delete   %>
-	<%end%>
 
-	<%unless admin_signed_in? or teacher_signed_in?%>
-	<div align="center">
-		<h1> Sign In </h1>
-
-		<%= link_to "Admin Login",new_admin_session_path, class: "btn btn-primary"%>
-		<%= link_to "Teacher Login",new_teacher_session_path, class: "btn btn-primary"%>
-		<%= link_to "Student Login",new_student_session_path, class: "btn btn-primary"%>
-
-	</div>
-	<%end%>
-</div>
