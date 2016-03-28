@@ -8,4 +8,3 @@ require 'faker'
    	puts "Hello"
     end
   end
-end

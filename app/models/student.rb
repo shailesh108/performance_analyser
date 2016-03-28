@@ -22,7 +22,7 @@ class Student < ActiveRecord::Base
     extension = File.extname(avatar_file_name).downcase
     self.avatar.instance_write(:file_name, "#{first_name}#{last_name}#{extension}")
   end
- pg_search_scope :search_by_standard_name, :against => [:standard_id, :enrollment_no]
+ pg_search_scope :search_by_standard_name, :against => [:enrollment_no, :first_name],  associated_against: {standard: :name}
 
  def send_password_reset
   generate_token(:password_reset_token)

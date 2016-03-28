@@ -2,14 +2,14 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Test Performance <span class="badge pull-right">Total Attendence <%=@rank.size%></span></h3>
+			<h3 class="panel-title">Test performance <span class="badge pull-right">Total attendence <%=@rank.size%></span></h3>
 		</div>
 		<div class="panel-body">
 		 
 			<div class="row">
 				<div class="col-md-6">
 				  <div class="thumbnail">
-					<%=area_chart @result,label:"Percentage",xtitle: "Student Name", ytitle: "Percentage" , widht:"300px",height: "200px",discrete: true%>
+					<%=area_chart @result,label:"Percentage",xtitle: "Student name", ytitle: "Percentage" , widht:"300px",height: "200px",discrete: true%>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -19,7 +19,7 @@
 							<thead>
 								<tr>
 									<th>Rank</th>
-									<th>Student Name</th>
+									<th>Student name</th>
 									<th>Percentage</th>
 								</tr>
 							</thead>

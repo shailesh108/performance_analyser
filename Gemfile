@@ -9,9 +9,6 @@ gem "paperclip"
 gem 'bootstrap3-datetimepicker-rails'
 gem 'momentjs-rails'
 gem 'pg_search'
-gem 'chartkick'
-gem 'groupdate'
-gem 'active_median'
 gem 'pry'
 gem 'rake'
 gem 'faker'
@@ -63,4 +60,5 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
 

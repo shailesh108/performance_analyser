@@ -3,7 +3,7 @@
      <div class="col-sm-3">
          <%= form_for :search_by_subject, :url => {:controller => 'teachers', :action => 'list'},class:"navbar-form", :html => {:method => 'get'} do |f| %>
                     <div class="input-group">
-                 <%= text_field_tag 'query', nil, class: "form-control", placeholder: "search",title: "Enter Standard_id or Enrollment_no"%>
+                 <%= text_field_tag 'query', nil, class: "form-control", placeholder: "search",title: "Enter standard_id or Enrollment_no"%>
                    
                   <span class="input-group-btn">
                 <button class="btn btn-primary" type="button" ><i class="glyphicon glyphicon-search" title="View"></i></button></span>
@@ -17,25 +17,26 @@
         
 
         <div class="panel-heading">
-          <h3 class="panel-title"> <i class="glyphicon glyphicon-th-list"></i> Listing Teachers</h3>
+          <h3 class="panel-title"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;Listing teachers</h3>
         </div>
         <div class="panel-body">
     
 
       <div class="table-responsive">
+         <% if @teachers.present?%>
         <table id="teachers" border="2" class="table table-striped table-bordered table-hover" >
           <thead>
             <tr>
-              <th>Email ID</th>
+              <th>Email id</th>
               <th>First name</th>
               <th>Middle name</th>
               <th>Last name</th>
               <th>Gender</th>
-              <th>Date of Birth</th>
+              <th>Date of birth</th>
               <th>Address</th>
               <th>City</th>
               <th>Contactno</th>
-              <th>Subject</th>
+              
               <th colspan="4">Action</th>
             </tr> </thead>
             <tbody>
@@ -45,11 +46,11 @@
                 <td><%= teacher.middle_name %></td>
                 <td><%= teacher.last_name %></td>
                 <td><%= teacher.gender %></td>
-                <td><%= teacher.dateofbirth.strftime("%d-%m-%Y")%></td>
+                <td><%= teacher.dateofbirth %></td>
                 <td><%= teacher.address %></td>
                 <td><%= teacher.city %></td>
                 <td><%= teacher.contactno %></td>
-                <td><%= teacher.sub_name %></td>
+             
                  <td><%= link_to '<i class="glyphicon glyphicon-plus" title="Assign Standard and Subject"></i>'.html_safe, assign_teacher_path(teacher) %>
                 </td>
                 <td><%= link_to '<i class="glyphicon glyphicon-user" title="View"></i>'.html_safe,teacher_path(teacher)%>
@@ -59,13 +60,16 @@
                 </td>
               </tr>
               <% end %>
+              <% else %>
+               <div class="alert alert-warning" role="alert"> No Tests available</div>
+            <%end%>
             </tbody>
           </table>
         </div>
 
         <%= will_paginate @teachers, renderer: BootstrapPagination::Rails,class: "pull-right"%>
 
-        <br><%= link_to "New Teacher", new_teacher_path , class: "btn btn-success" %>
+        <br><%= link_to "New teacher", new_teacher_path , class: "btn btn-success" %>
             <%= link_to "Back",  admin_welcome_path  , class: "btn btn-success" %>
       </div>
     </div>

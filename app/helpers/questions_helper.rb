@@ -1,9 +1,9 @@
 module QuestionsHelper
 	def change_add_question_button(f)
 		unless (@test_id.questions.count >= @test_id.no_of_questions) 
-			return f.submit("Add Question",{:class=> 'btn btn-success',:id=>"commit"}) 
+			return f.submit("Add question",{:class=> 'btn btn-success',:id=>"commit"}) 
 		else
-			return "<h4>All Questions Added</h4>".html_safe
+			return "<h4>All questions added</h4>".html_safe
 		end
 	end
 

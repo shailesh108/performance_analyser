@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
-  before_action :authenticate_teacher!,except:[:testslist]
+  before_action :authenticate_teacher!,except:[:show,:testslist]
   before_action :authenticate_student! ,only: [:show,:testslist]
   before_action :set_test,except: [:index, :new, :create,:testslist]
 

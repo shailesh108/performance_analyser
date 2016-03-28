@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+
   before_action :authenticate_teacher_or_admin,except: [:welcome,:starttest,:result,:resultdata]
   before_action :authenticate_student!,only: [:welcome,:starttest,:result,:resultdata]
   before_action :set_student,except: [:welcome,:list,:new,:create,:starttest,:result,:resultdata,:studentcompare]
@@ -79,14 +80,19 @@ class StudentsController < ApplicationController
   end
 
   def list 
+    
   if params[:query].blank?
-    @students=Student.paginate(:per_page => 5, :page => params[:page])
+    if params[:name]
+      #byebug
+       @students=Student.where(:standard_id=>params[:name][:id]).paginate(:per_page => 10, :page => params[:page])
+       else
+    @students=Student.paginate(:per_page => 10, :page => params[:page])
+  end
   else
-    @students = Student.search_by_standard_name(params[:query]).paginate(:per_page => 5, :page => params[:page])
+    @students = Student.search_by_standard_name(params[:query]).paginate(:per_page => 10, :page => params[:page])
   end
 end
 
-  private
 
   def set_student
     @student = Student.find(params[:id])
