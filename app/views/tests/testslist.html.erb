@@ -28,11 +28,11 @@
 
 				<tr><th>No</th>
 					<th>Subject</th>
-					<th>Test Name</th>
-					<th>Test Date and Time</th>
+					<th>Test name</th>
+					<th>Test date and time</th>
 					<th>Total time</th>
-					<th >No.of Questions</th>
-					<th>Teacher Name</th>
+					<th >No.of questions</th>
+					<th>Teacher name</th>
 					<th>Status</th>
 				</tr> 
 			</thead>
@@ -51,7 +51,7 @@
 						<% if @status==1%>
 						<%= link_to "Result",student_resultdata_path(:t_id=>test.id),remote: true,"data-toggle"=>"modal","data-target"=>"#myModal",class: "btn btn-success btn-xs"	.html_safe %>
 						<%elsif @status==2%>
-						<%= link_to "Not Attended","#",class: "btn btn-warning btn-xs".html_safe %>
+						<%= link_to "Not attended","#",class: "btn btn-warning btn-xs".html_safe %>
 						<%elsif @status==3%>
 						<%= test_status(test) %>
 						<%end%>

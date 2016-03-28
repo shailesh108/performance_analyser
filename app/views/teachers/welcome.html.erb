@@ -5,8 +5,9 @@
     <div class="row">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"> <i class="glyphicon glyphicon-th-list"></i> Student List Profile</h3>
+          <h3 class="panel-title"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;Student list profile</h3>
         </div>
+        
         <% Student.all.each do |student| %>
         <div class="panel-body">
 
@@ -18,16 +19,16 @@
           <div class="row">
           <div class="col-md-6">
            <div class="row mgbt-xs-0">
-                <label class="col-xs-3 control-label">Enrollment No:</label><%=student.enrollment_no%>
+                <label class="col-xs-3 control-label">Enrollment no:</label><%=student.enrollment_no%>
            </div>
             <div class="row mgbt-xs-0">
-              <label class="col-xs-3 control-label">First Name:</label><%=student.first_name%>
+              <label class="col-xs-3 control-label">First name:</label><%=student.first_name%>
             </div>
            <div class="row mgbt-xs-0">
-              <label class="col-xs-3 control-label">Last Name:</label><%=student.last_name%>
+              <label class="col-xs-3 control-label">Last name:</label><%=student.last_name%>
            </div>
            <div class="row mgbt-xs-0">      
-             <label class="col-xs-3 control-label">Email ID:</label><%=student.email%>
+             <label class="col-xs-3 control-label">Email D:</label><%=student.email%>
            </div>
         </div>
       </div>

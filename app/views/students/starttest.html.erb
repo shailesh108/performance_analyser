@@ -9,21 +9,21 @@
 		<div class=" col-sm-2" >
 			<ul class="list-group" style="position:fixed;top:15;left:4%;">
 				<li class="list-group-item">
-					Enrollment No:<%=current_student.enrollment_no%>
+					Enrollment no:<%=current_student.enrollment_no%>
 				</li>
 				<li class="list-group-item">
-						<span class="glyphicon glyphicon glyphicon-user"></span>Name : <%=current_student.first_name.capitalize.to_s+" "+current_student.last_name.capitalize.to_s%>
+						<span class="glyphicon glyphicon glyphicon-user"></span>&nbsp;Name : <%=current_student.first_name.capitalize.to_s+" "+current_student.last_name.capitalize.to_s%>
 				</li>
 				<li class="list-group-item">
-					<span class="glyphicon glyphicon glyphicon-book"></span> Test: <%=@test.test_name.capitalize%>
+					<span class="glyphicon glyphicon glyphicon-book"></span>&nbsp;Test: <%=@test.test_name.capitalize%>
 				</li>
 				<li class="list-group-item">
 					<span class="ques badge"> <%=@test.no_of_questions%></span>
-					Total Questions
+					Total questions
 				</li>
 				<li class="list-group-item">
 					<span class="yes_results badge"> 0</span>
-					Question Attempt
+					Question attempt
 				</li>
 				<li class="list-group-item">
 				  <div class="progress">
@@ -64,7 +64,7 @@
 			<%end%>
 		</div>
 		<div class="col-sm-4" style="position:fixed; top:23%; right:-6%; ">
-			<p><button class="btn btn-primary" data-toggle="collapse" data-target="#credits"><span class="glyphicon glyphicon glyphicon-pencil">NoteBook</p></button>
+			<p><button class="btn btn-primary" data-toggle="collapse" data-target="#credits"><span class="glyphicon glyphicon glyphicon-pencil">Notebook</p></button>
 			<div id="credits" class="collapse in">
 				<%= text_area_tag "comment", nil,:rows => 20, :cols => 35,:class=>"notebook" %>
 			</div>
@@ -79,13 +79,12 @@
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Test Information</h4>
+					<h4 class="modal-title">Test information</h4>
 				</div>
 				<div class="modal-body">
-					<p>Test Name :-- <%=@test.test_name.capitalize%></p>
-					<p>No of Question :-- <%=@test.no_of_questions%></p>
-					<p>Total Time  :--  <%=@test.total_time%></p>
+					<p>Test name :-- <%=@test.test_name.capitalize%></p>
+					<p>No of question :-- <%=@test.no_of_questions%></p>
+					<p>Total time  :--  <%=@test.total_time%></p>
 
 				</div>
 				<div class="modal-footer">
@@ -127,7 +126,10 @@ $(window).load(function(){
 	$('#myModal').modal('show');
 	
 });
-
+$('#myModal').modal({
+    backdrop: 'static',
+    keyboard: false
+})
 function starttest()
 {
 	var	countdownTimer= setInterval('secondPassed()', 1000);

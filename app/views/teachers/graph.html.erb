@@ -1,11 +1,11 @@
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Student Comparison</h4>
+        <h4 class="modal-title">Student comparison</h4>
       </div>
       <div class="modal-body">
         <div id="studentcompare">
@@ -21,13 +21,13 @@
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"> <i class="glyphicon glyphicon-equalizer"></i> Performance Chart</h3>
+      <h3 class="panel-title"> <i class="glyphicon glyphicon-equalizer"></i>&nbsp;Performance chart</h3>
     </div>
     <div class="panel-body">
       <ul class="nav nav-tabs">
-        <li ><a data-toggle="tab" href="#testattend">Test Attendence</a></li>
-        <li><a data-toggle="tab" href="#compare">Compare Student</a></li>
-        <li class="active"><a data-toggle="tab" href="#all_student">Students Performance</a></li>
+        <li ><a data-toggle="tab" href="#testattend">Test attendence</a></li>
+        <li><a data-toggle="tab" href="#compare">Compare student</a></li>
+        <li class="active"><a data-toggle="tab" href="#all_student">Students performance</a></li>
       </ul>
       <div class="tab-content">
         <div id="testattend" class="tab-pane fade">
@@ -35,11 +35,7 @@
             <div class="col-md-8">
               <div class="thumbnail">
                 <%=all_test_attendance_chart%>
-                <div class="caption">
-                  <button type="button" class="btn btn-success btn-sm btn-block">
-                    how many student attend the test
-                  </button>
-                </div>
+                
               </div>
             </div>
             <div class="col-md-4">
@@ -47,8 +43,8 @@
                 <table border="1" class="table table-striped table-bordered table-hover table-fixed">
                   <thead>
                     <tr>
-                      <th>Test_Name</th>
-                      <th>No of Student Attempted</th>
+                      <th>Test_name</th>
+                      <th>No of student attempted</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -68,6 +64,7 @@
             </div>
           </div>
         </div>
+        
         <div id="compare" class="tab-pane fade">
           <div class="row">
             <div class="col-md-8">
@@ -75,14 +72,15 @@
                 <br>
                   <div class="row">
                     <%=form_tag(student_compare_path, method: "get",remote:true)   do  %>
-                    <div class="col-sm-5">Select Enrollment No
+                    <div class="col-sm-5">Select enrollment no
                       <%= collection_select :first_stud,:id, Student.all, :id, :enrollment_no,class: "form-control" %>
+
                     </div>
                     <div class="col-sm-2">
                       <%= collection_select :second_stud,:id, Student.all, :id, :enrollment_no ,class: "form-control"%>
                     </div>
                     <div class="col-sm-2">
-                      <%= submit_tag "Compare",:class => "btn btn-success ","data-toggle"=>"modal" ,"data-target"=>"#myModal" %>
+                      <%= submit_tag "Compare",:class => "btn btn-success ","data-toggle"=>"modal" ,"data-target"=>"#myModal", "data-backdrop"=>"static" ,"data-keyboard"=>"false" %>
                     </div>
                     <% end %>
                   </div>
@@ -94,22 +92,52 @@
         <div id="all_student" class="tab-pane fade in active">
           <div class="row"><br>
              <%=form_tag(teacher_perfromance_path, method: "post")   do  %>
-            <div class="col-sm-4">Select Enrollment No
-               <%= collection_select :stud,:id, Student.all, :id, :enrollment_no,class: "form-control" %>
+            <div class="col-sm-4">Select enrollment no
+               <%= collection_select :stud,:id, Student.all, :id, :enrollment_no,class: "form-control", class: "input-sm"%>
             </div>
-            <div class="col-sm-4">Select Subject 
+            <div class="col-sm-4">Select subject 
                <%= collection_select :sub,:id, Subject.all, :id, :sub_name,:include_blank => "all",class: "form-control" %>
             </div>
             <div class="col-sm-1">
-              <%= submit_tag "Perfromance",:class => "btn btn-success "%>
+              <%= submit_tag "Check perfromance",:class => "btn btn-success "%>
             </div>
             <% end %>
+
           </div>
           <br>
           <div class="row">
+          <div class="col-sm-8">
             <% if @data1.present?%>
-            <%=area_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , width:"700px",height: "200px",discrete: true%>
-                      <%end%>
+               <%=area_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , width:"700px",height: "200px",discrete: true%>
+              
+            </div>
+            <div class="col-sm-4">
+            <div class="table-responsive">
+                <table border="1" class="table table-striped table-bordered table-hover table-fixed">
+                  <thead>
+                    <tr>
+                      <th>Test_name</th>
+                      <th>Percentage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @data1.each do |test| %>
+                    <tr>
+                      <td>
+                        <%=test[0].first %>
+                      </td>
+                      <td>
+                        <%=test.second%>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <% else %>
+               <div class="alert alert-warning" role="alert"> No tests available</div>
+            <%end%>
+            </div>
           </div> 
         </div>
         </div>

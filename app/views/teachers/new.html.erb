@@ -15,7 +15,7 @@
     <div class="row">
       <div class="login-panel panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"> <i class="glyphicon glyphicon-info-sign"></i>Teacher Details</h3>
+          <h3 class="panel-title"> <i class="glyphicon glyphicon-info-sign"></i>&nbsp;Teacher details</h3>
         </div>
         <div class="panel-body">
           <div class="col-md-6">
@@ -38,9 +38,9 @@
                       </div>
                     </div>
                     <div class="form-group <%= 'has-error' if @teacher.errors.messages[:first_name].present? %>">
-                      <%= f.label :First_Name,class: "col-sm-4"%>
+                      <%= f.label :First_name,class: "col-sm-4"%>
                       <div class="col-sm-8">
-                        <%= f.text_field :first_name,:class => "form-control",:placeholder => "First Name"%>
+                        <%= f.text_field :first_name,:class => "form-control",:placeholder => "First name"%>
                         <div class='text-danger'>
                           <% if @teacher.errors.messages[:first_name].present? %>
                           <%=@teacher.errors.full_messages_for(:first_name).first%>
@@ -49,9 +49,9 @@
                       </div>
                     </div>
                     <div class="form-group <%= 'has-error' if @teacher.errors.messages[:middle_name].present? %>">
-                      <%= f.label :Middle_Name,class: "col-sm-4"%>
+                      <%= f.label :Middle_name,class: "col-sm-4"%>
                       <div class="col-sm-8">
-                        <%= f.text_field :middle_name,:class => "form-control",:placeholder => "Middle Name"%>
+                        <%= f.text_field :middle_name,:class => "form-control",:placeholder => "Middle name"%>
                         <div class='text-danger'>
                           <% if @teacher.errors.messages[:middle_name].present? %>
                           <%=@teacher.errors.full_messages_for(:middle_name).first%>
@@ -60,9 +60,9 @@
                       </div>
                     </div>
                     <div class="form-group <%= 'has-error' if @teacher.errors.messages[:last_name].present? %>">
-                      <%= f.label :Last_Name,class: "col-sm-4"%>
+                      <%= f.label :Last_name,class: "col-sm-4"%>
                       <div class="col-sm-8">
-                        <%= f.text_field :last_name,:class => "form-control",:placeholder => "Last Name"%>
+                        <%= f.text_field :last_name,:class => "form-control",:placeholder => "Last name"%>
                         <div class='text-danger'>
                           <% if @teacher.errors.messages[:last_name].present? %>
                           <%=@teacher.errors.full_messages_for(:last_name).first%>
@@ -178,9 +178,9 @@
 
 
                         <div class="form-group <%= 'has-error' if @teacher.errors.messages[:password_confirmation].present? %>">
-                          <%= f.label :Confirm_Password,class: "col-sm-4"%>
+                          <%= f.label :Confirm_password,class: "col-sm-4"%>
                           <div class="col-sm-8">
-                            <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control",:placeholder => "Repeat Password"%>
+                            <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control",:placeholder => "Repeat password"%>
                             <div class='text-danger'>
                               <% if @teacher.errors.messages[:password_confirmation].present? %>
                               <%=@teacher.errors.full_messages_for(:password_confirmation).first%>
@@ -198,7 +198,7 @@
 
               <div class="actions">
                 <div class="col-sm-12 text-center">
-                  <%= f.submit "Add Teacher" ,:class => "btn btn-success"  %>
+                  <%= f.submit "Add teacher" ,:class => "btn btn-success"  %>
                   <%= link_to "Cancel",list_teachers_path, class: "btn btn-danger"%>
                 </div>
               </div>

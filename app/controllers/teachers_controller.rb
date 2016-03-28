@@ -1,7 +1,7 @@
 class TeachersController < ApplicationController
 
   before_action :authenticate_admin!,except: [:welcome, :graph,:tests_graph,:studtestperformance]
-  before_action :set_teacher, except: [:welcome,:list,:new,:create,:search,:search_result,:graph,:tests_graph,:studtestperformance]
+  before_action :set_teacher, except: [:welcome,:list,:new,:create,:search,:search_result,:graph, :tests_graph,:studtestperformance]
   before_action :authenticate_teacher!,only: [:welcome,:tests_graph,:studtestperformance]
 
 
@@ -24,8 +24,9 @@ class TeachersController < ApplicationController
   end
   end
   def graph
-
+    Student.pluck(:enrollment_no)
   end
+  
   def tests_graph
    
     name=Result.where(:test_id=>params[:id]).pluck(:student_id,:percentage).map{|s| Student.where(:id=>s).pluck(:first_name)}
@@ -81,6 +82,7 @@ class TeachersController < ApplicationController
   def search
   end
 
+
   def search_result
     if params[:standard_id] and params[:subject_id]!=nil
       stand_subj = StandardSubject.where(standard_id: params[:standard_id], subject_id: params[:subject_id]).take
@@ -103,7 +105,10 @@ class TeachersController < ApplicationController
    testname=att.pluck(:test_id,:percentage).map{|a,k| Test.find(a).test_name}
  end
  per = att.pluck(:percentage)
+
  @data1=testname.zip(per)
+ @data1.reject!{|a| a[0][0]==nil}
+ 
  render 'graph'
 end
 
