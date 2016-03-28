@@ -1,17 +1,15 @@
 module StudentsHelper
-  
-
- def test_status(test)
+def test_status(test)
     time_now = Time.now.strftime("%d-%m-%Y %H:%M %p")
     test_start_time = test.test_datetime.strftime("%d-%m-%Y %H:%M %p")
     test_finish_time = (test.test_datetime + test.total_time.minutes).strftime("%d-%m-%Y %H:%M %p")
-    #if (test_start_time > time_now)
-  #    return "<button id='test_status' class='btn btn-danger btn-xs disabled'>Pending</button>".html_safe     
-    #elsif (test_start_time <= time_now && time_now < test_finish_time)
+    if (test_start_time > time_now)
+     return "<button id='test_status' class='btn btn-danger btn-xs disabled'>Pending</button>".html_safe     
+    elsif (test_start_time <= time_now && time_now < test_finish_time)
      return link_to("Start Test".html_safe,starttest_students_path(test),:class => "btn btn-danger btn-xs")
-    #else
-     # return "<button class='btn btn-success btn-xs'>Finish</button>".html_safe 
-    #end
+    else
+     return "<button class='btn btn-success btn-xs'>Finish</button>".html_safe 
+    end
   end
 
    def get_test_time
@@ -33,6 +31,11 @@ def days_remain(test)
   end
 
 end
+def show_student
+ student_show = Student.find(params[:id]).enrollment_no
+ Student.find_by(:enrollment_no=>student_show)
+end
+
 
 
 def get_student_avatar
@@ -40,6 +43,9 @@ def get_student_avatar
 end
 def profile_student_avatar
   image_tag("/avatars/students/originals/" + current_student.avatar_file_name, :class=>"img-responsive")
+end
+def get_student_avatar_show
+  image_tag("/avatars/students/originals/" + show_student.avatar_file_name)
 end
 
 def individual_test_rank(res)
@@ -53,6 +59,13 @@ def all_test_rank
   rank.sort!
   t=rank.reverse!
   return t.index(test_avg_performance).to_i+1
+  end
+  def all_test_rank_show
+  per=Student.where(:standard_id=>show_student.standard_id).joins(:results).distinct.map{|stu| stu.results.map{|per| per.percentage}}
+  rank=per.map{|p| p.sum/p.size}
+  rank.sort!
+  t=rank.reverse!
+  return t.index(test_avg_performance_show).to_i+1
   end
 
 
@@ -70,10 +83,25 @@ def all_test_performance_chart
     per = att.pluck(:percentage)
     @data1=testname.zip(per)
     @data1.shuffle!
-    return "#{area_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , height: "200px",discrete: true}".html_safe
+    return "#{column_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , height: "200px",discrete: true}".html_safe
+end
+def all_test_performance_chart_show
+    att=show_student.results
+    testname=att.pluck(:test_id,:percentage).map{|a,k| Test.find(a).test_name}
+    per = att.pluck(:percentage)
+    @data1=testname.zip(per)
+    @data1.shuffle!
+    return "#{column_chart @data1,label:"Percentage",xtitle: "Test Name", ytitle: "Percentage" , height: "200px",discrete: true}".html_safe
 end
 def test_avg_performance
   att=current_student.results
+    data1 = att.pluck(:percentage)
+   
+  return data1.sum/data1.size  rescue 0
+
+end
+def test_avg_performance_show
+  att=show_student.results
     data1 = att.pluck(:percentage)
    
   return data1.sum/data1.size  rescue 0

@@ -82,7 +82,8 @@ class StudentsController < ApplicationController
   def list 
     
   if params[:query].blank?
-    if params[:name][:id].present?
+    if params[:name]
+      #byebug
        @students=Student.where(:standard_id=>params[:name][:id]).paginate(:per_page => 10, :page => params[:page])
        else
     @students=Student.paginate(:per_page => 10, :page => params[:page])
@@ -92,7 +93,6 @@ class StudentsController < ApplicationController
   end
 end
 
-  private
 
   def set_student
     @student = Student.find(params[:id])
