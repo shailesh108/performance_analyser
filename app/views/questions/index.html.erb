@@ -5,7 +5,7 @@
      <div class="col-sm-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"> <i class="glyphicon glyphicon-th-list"></i>Listing Questions</h3>
+          <h3 class="panel-title"> <i class="glyphicon glyphicon-th-list"></i>&nbsp;Listing questions</h3>
         </div>
          <div class="panel-body">
       <div class="table-responsive">
@@ -45,7 +45,7 @@
 
               <td><%= link_to '<i class="glyphicon glyphicon-pencil" title="Edit"></i>'.html_safe, edit_test_question_path(@test_id, question) %>
               </td>
-              <td><%= link_to '<i class="glyphicon glyphicon-trash" title="delete"></i>'.html_safe,  test_question_path(@test_id, question), method: :delete, data: {confirm: 'Are you sure?'} %>
+              <td><%= link_to '<i class="glyphicon glyphicon-trash" title="Delete"></i>'.html_safe,  test_question_path(@test_id, question), method: :delete, data: {confirm: 'Are you sure?'} %>
 
               </tr>
               <% end %>

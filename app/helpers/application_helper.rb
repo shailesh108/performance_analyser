@@ -9,23 +9,23 @@ module ApplicationHelper
 
   def add_user_path
     if teacher_signed_in?
-      link_to "Add Student", new_student_path 
+      link_to "Add student", new_student_path 
       
     elsif admin_signed_in?
-      link_to "Add Teacher",new_teacher_path
+      link_to "Add teacher",new_teacher_path
     else
-      link_to "Attended Tests",student_testlist_path(:id1=>1)
+      link_to "Attended tests",student_testlist_path(:id1=>1)
     end 
 
   end
 
   def list_user_path
     if teacher_signed_in?
-      link_to "List Student", list_students_path 
+      link_to "List student", list_students_path 
     elsif admin_signed_in?
-      link_to "List Teacher", list_teachers_path 
+      link_to "List teacher", list_teachers_path 
     else
-      link_to "Not Atttended Tests", student_testlist_path(:id1=>2) 
+      link_to "Not atttended tests", student_testlist_path(:id1=>2) 
     end
   end
   def test_path1  
@@ -56,18 +56,18 @@ module ApplicationHelper
 end
   def about_test
     if teacher_signed_in?
-      link_to "Add Test",  new_test_path 
+      link_to "Add test",  new_test_path 
     end
   end
 
   def list_test
     if teacher_signed_in?
-      link_to "List Test",  tests_path 
+      link_to "List test",  tests_path 
     end
   end
   def search_path
     if  admin_signed_in?
-      link_to "Search Teacher", search_teachers_path 
+      link_to "Search teacher", search_teachers_path 
     end
   end
   def user_name
@@ -112,4 +112,9 @@ def search_user
   end
 end
 
+def profile
+  if teacher_signed_in?
+       link_to "Profile" ,teacher_profile_path 
+  end
+end
 end

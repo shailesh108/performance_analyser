@@ -6,7 +6,7 @@ def test_status(test)
     if (test_start_time > time_now)
      return "<button id='test_status' class='btn btn-danger btn-xs disabled'>Pending</button>".html_safe     
     elsif (test_start_time <= time_now && time_now < test_finish_time)
-     return link_to("Start Test".html_safe,starttest_students_path(test),:class => "btn btn-danger btn-xs")
+     return link_to("Start test".html_safe,starttest_students_path(test),:class => "btn btn-danger btn-xs")
     else
      return "<button class='btn btn-success btn-xs'>Finish</button>".html_safe 
     end
@@ -74,7 +74,7 @@ def all_test_rank
 def total_test_chart
   attmp=@complete_tests.count
   total= @not_attended_tests.count
-  data ={"Test Attended"=>attmp,"Not Attended Test"=>total}
+  data ={"Test attended"=>attmp,"Not attended test"=>total}
   return "#{column_chart data , width: "230px", height: "200px" }".html_safe
 end
 def all_test_performance_chart

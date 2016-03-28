@@ -21,9 +21,9 @@ module TestsHelper
 
 	def change_add_question_glyphicon(test)
 		unless (test.questions.count >= test.no_of_questions)
-			link_to("<i class='glyphicon glyphicon-plus'></i>".html_safe, new_test_question_path(test), title: "Add Questions [#{count_no_of_questions_remaining(test)}]")			
+			link_to("<i class='glyphicon glyphicon-plus'></i>".html_safe, new_test_question_path(test), title: "add questions [#{count_no_of_questions_remaining(test)}]")			
 		else
-			return "<i class='glyphicon glyphicon-thumbs-up' title='all Questions Added'></i>".html_safe
+			return "<i class='glyphicon glyphicon-thumbs-up' title='all questions added'></i>".html_safe
 		end
 	end
 

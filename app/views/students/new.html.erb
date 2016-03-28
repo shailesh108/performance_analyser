@@ -13,7 +13,7 @@
       <div class="login-panel panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="panel-title"> <i class="glyphicon glyphicon-info-sign"></i>Students Details</h3>
+          <h3 class="panel-title"> <i class="glyphicon glyphicon-info-sign"></i>&nbsp;Students details</h3>
         </div>
         <div class="panel-body">
           <div class="col-md-6">
@@ -48,9 +48,9 @@
                   </div>
 
                   <div class="form-group <%= 'has-error' if @student.errors.messages[:first_name].present? %>">
-                    <%= f.label :First_Name,class: "col-sm-4"%>
+                    <%= f.label :First_name,class: "col-sm-4"%>
                     <div class="col-sm-8">
-                      <%= f.text_field :first_name,class: "form-control"  , placeholder: "First Name" %>
+                      <%= f.text_field :first_name,class: "form-control"  , placeholder: "First name" %>
                       <div class='text-danger'>
                         <% if @student.errors.messages[:first_name].present? %>
                         <%=@student.errors.full_messages_for(:first_name).first%>
@@ -60,9 +60,9 @@
                   </div>
 
                   <div class="form-group <%= 'has-error' if @student.errors.messages[:middle_name].present? %>">
-                    <%= f.label :Middle_Name,class: "col-sm-4"%>
+                    <%= f.label :Middle_name,class: "col-sm-4"%>
                     <div class="col-sm-8">
-                      <%= f.text_field :middle_name,class: "form-control"  , placeholder: "Middle Name" %>
+                      <%= f.text_field :middle_name,class: "form-control"  , placeholder: "Middle name" %>
                       <div class='text-danger'>
                         <% if @student.errors.messages[:middle_name].present? %>
                         <%=@student.errors.full_messages_for(:middle_name).first%>
@@ -72,9 +72,9 @@
                   </div>
 
                   <div class="form-group <%= 'has-error' if @student.errors.messages[:last_name].present? %>">
-                    <%= f.label :Last_Name,class: "col-sm-4"%>
+                    <%= f.label :Last_name,class: "col-sm-4"%>
                     <div class="col-sm-8">
-                      <%= f.text_field :last_name,class: "form-control"  , placeholder: "Last Name"%>
+                      <%= f.text_field :last_name,class: "form-control"  , placeholder: "Last name"%>
                       <div class='text-danger'>
                         <% if @student.errors.messages[:last_name].present? %>
                         <%=@student.errors.full_messages_for(:last_name).first%>
@@ -127,7 +127,7 @@
 
 
                       <div class="form-group <%= 'has-error' if @student.errors.messages[:date_of_birth].present? %>">
-                        <%= f.label :Date_Of_Birth,class: "col-sm-4"%>
+                        <%= f.label :Date_of_birth,class: "col-sm-4"%>
                         <div class="col-sm-8">
                           <%= f.text_field :date_of_birth,class: "form-control datepicker" , placeholder: "DD-MM-YYYY" %>
                           <div class='text-danger'>
@@ -151,7 +151,7 @@
                       </div>
 
                       <div class="form-group <%= 'has-error' if @student.errors.messages[:password_confirmation].present? %>">
-                        <%= f.label :Confirm_Password,class: "col-sm-4"%>
+                        <%= f.label :Confirm_password,class: "col-sm-4"%>
                         <div class="col-sm-8">
                           <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control",:placeholder => "Confirm Password"%>
                           <div class='text-danger'>
@@ -188,9 +188,9 @@
                       </div>
 
                       <div class="form-group <%= 'has-error' if @student.errors.messages[:contactno].present? %>">
-                        <%= f.label :Contact_No,class: "col-sm-4"%>
+                        <%= f.label :Contact_no,class: "col-sm-4"%>
                         <div class="col-sm-8">
-                          <%= f.text_field :contactno,:class => "form-control",:placeholder => "Contact No"%>
+                          <%= f.text_field :contactno,:class => "form-control",:placeholder => "Contact no"%>
                           <div class='text-danger'>
                             <% if @student.errors.messages[:contactno].present? %>
                             <%=@student.errors.full_messages_for(:contactno).first%>
