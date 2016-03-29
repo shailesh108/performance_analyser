@@ -1,142 +1,90 @@
-<script type="text/javascript">
-	function updateClock(){
-		var currentTime = new Date ( );
-		var currentDate = currentTime.getDate ( );
-		var currentMonth = currentTime.getMonth ( ) + 1;
-		var currentYear = currentTime.getFullYear ( );
-		var currentHours = currentTime.getHours ( );
-		var currentMinutes = currentTime.getMinutes ( );
-		var currentSeconds = currentTime.getSeconds ( );
-
-		currentDate = ( currentDate < 10 ? "0" : "" ) + currentDate;
-		currentMonth = ( currentMonth < 10 ? "0" : "" ) + currentMonth;
-		currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-		currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-
-		var currentTimeString = currentDate + "-" + currentMonth + "-" + currentYear + " " + currentHours + ":" + currentMinutes + ":" + currentSeconds;
-
-		test_date_time = $.parseJSON(<%=get_test_time.dump.html_safe %>);
-		test_finish_time = $.parseJSON(<%=get_test_finish_time.dump.html_safe %>);
-		console.log(test_date_time);
-		console.log(test_finish_time);
-		if (currentTimeString.match(test_date_time) || currentTimeString.match(test_finish_time))
-		{
-			window.location.reload();
-		}
-	}
-</script>
-
 <div class="container">
-	<!-- Student Result modal  -->
-	<div id="myModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Test Result</h4>
+	<button type="button" class="btn btn-danger btn-sm pull-right" >
+		<i class="glyphicon glyphicon-king"></i>
+		Class Rank <%=all_test_rank_show%>
+	</button>
+	<div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+					<%= get_student_avatar_show %>
 				</div>
-				<div class="modal-body">
 
-					<div id="resultdata">
-						<%= render 'resultdata' %>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<%=show_student.first_name+" "+show_student.last_name%>
+					</div>
+					<div class="profile-usertitle-job">
+						Student of <span class="badge"><%=show_student.standard.name%> <sup>th</sup> </span>  Standard
 					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<canvas id="demo-3" style="demo" width="100" height="100"></canvas>
+					<div class="profile-usertitle-job">
+						Test Performance Level
+						<span class="average" style="visibility:hidden"><%= test_avg_performance_show %></span>
+					</div>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<a href="#">
+								<i class="glyphicon glyphicon-education"></i>
+
+								No <%=show_student.enrollment_no%></a>
+							</li>
+							<li class="active">
+								<a href="#">
+									<i class="glyphicon glyphicon-calendar"></i>
+									D.O.B <%=show_student.date_of_birth%>
+								</a>
+							</li>
+							<li class="active">
+								<a href="#">
+									<i class="glyphicon glyphicon-globe"></i>
+									<%=show_student.address+"("+show_student.city+")"%>
+								</a>
+							</li>
+
+						</ul>
+					</div>
+					<!-- END MENU -->
+
 				</div>
 			</div>
 
-		</div>
-	</div>
-	<!-- End of Modal-->
-<button type="button" class="btn btn-danger btn-sm pull-right" >
-								         <i class="glyphicon glyphicon-king"></i>
-				                            Class Rank <%=all_test_rank_show%>
-			                            </button>
-		<div class="row profile ">
-			<div class="col-md-3">
-				<div class="profile-sidebar">
-					<!-- SIDEBAR USERPIC -->
-					<div class="profile-userpic">
-						<%= get_student_avatar_show %>
-					</div>
-					<!-- END SIDEBAR USERPIC -->
-					<!-- SIDEBAR USER TITLE -->
-					<div class="profile-usertitle">
-						<div class="profile-usertitle-name">
-							<%=show_student.first_name+" "+show_student.last_name%>
-						</div>
-						<div class="profile-usertitle-job">
-							Student of <span class="badge"><%=show_student.standard.name%> <sup>th</sup> </span>  Standard
-						</div>
-					</div>
-					<!-- END SIDEBAR USER TITLE -->
-					<!-- SIDEBAR BUTTONS -->
-					<div class="profile-userbuttons">
-						<canvas id="demo-3" style="demo" width="100" height="100"></canvas>
-						<div class="profile-usertitle-job">
-							Test Performance Level
-							<span class="average" style="visibility:hidden"><%= test_avg_performance_show %></span>
-						</div>
-					</div>
-					<!-- END SIDEBAR BUTTONS -->
-					<!-- SIDEBAR MENU -->
-					<div class="profile-usermenu">
-						<ul class="nav">
-							<li class="active">
-								<a href="#">
-									<i class="glyphicon glyphicon-education"></i>
+			<div class="col-md-9">
 
-									No <%=show_student.enrollment_no%></a>
-								</li>
-								<li class="active">
-									<a href="#">
-										<i class="glyphicon glyphicon-calendar"></i>
-										D.O.B <%=show_student.date_of_birth%></a>
-									</a>
-								</li>
-								<li class="active">
-									<a href="#">
-										<i class="glyphicon glyphicon-globe"></i>
-										<%=show_student.address+"("+show_student.city+")"%>
-									</a>
-								</li>
-								
-							</ul>
-						</div>
-						<!-- END MENU -->
+				<div class="profile-content">	
+					<div class="row">
+						<div class="panel panel-default"> 
+							<div class="panel-heading">
 
-					</div>
-				</div>
-				<div class="col-md-9">
-
-					<div class="profile-content">	
-						<div class="row">
-							<div class="panel panel-default"> 
-								<div class="panel-heading">
-								
-									<h3 class="panel-title"> <i class="glyphicon glyphicon-equalizer"></i> Performance Chart
-									</div> 
-
+								<h3 class="panel-title"> <i class="glyphicon glyphicon-equalizer"></i> Performance Chart
+								</div> </h3>
 								<div class="panel-body">
-
-									
 									<div class="col-md-12">
 										<div class="thumbnail">
 											<%=all_test_performance_chart_show%>
-											<div class="caption">
-												
-
-											</div>
 										</div>
 									</div>
 
 								</div>			
 							</div>
-				<script>
-				$('#demo-3').waterbubble({txt: $('.average').text()+"%",});
-			</script>		
 
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+	
+	<script>
+		$('#demo-3').waterbubble({txt: $('.average').text()+"%",});
+	</script>	
