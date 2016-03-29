@@ -230,7 +230,7 @@ DEPENDENCIES
   pry
   rails (= 4.2.5)
   rails_12factor
-  rake
+  rake (= 10.5.0)
   roo-xls
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
