@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+ if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.5.0')
+     abort "Redmine requires Bundler 1.5.0 or higher (you're using #{Bundler::VERSION}).\nPlease update with 'gem update bundler'."
+   end
 gem 'roo-xls'
 gem 'chartkick'
 gem 'groupdate'
@@ -10,12 +13,12 @@ gem 'bootstrap3-datetimepicker-rails'
 gem 'momentjs-rails'
 gem 'pg_search'
 gem 'pry'
-gem 'rake','10.5.0'
+gem 'rake'
 gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.15'
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
