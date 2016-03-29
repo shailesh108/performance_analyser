@@ -3,13 +3,13 @@ module StudentsHelper
     time_now = Time.now.strftime("%d-%m-%Y %H:%M %p")
     test_start_time = test.test_datetime.strftime("%d-%m-%Y %H:%M %p")
     test_finish_time = (test.test_datetime + test.total_time.minutes).strftime("%d-%m-%Y %H:%M %p")
-    if (test_start_time > time_now)
-     return "<button id='test_status' class='btn btn-danger btn-xs disabled'>Pending</button>".html_safe     
-   elsif (test_start_time <= time_now && time_now < test_finish_time)
+    #if (test_start_time > time_now)
+     #return "<button id='test_status' class='btn btn-danger btn-xs disabled'>Pending</button>".html_safe     
+   #elsif (test_start_time <= time_now && time_now < test_finish_time)
      return link_to("Start test".html_safe,starttest_students_path(test),:class => "btn btn-danger btn-xs")
-   else
-     return "<button class='btn btn-success btn-xs'>Finish</button>".html_safe 
-   end
+   #else
+    # return "<button class='btn btn-success btn-xs'>Finish</button>".html_safe 
+   #end
  end
 
  def get_test_time
