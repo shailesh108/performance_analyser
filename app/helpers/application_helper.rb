@@ -46,11 +46,17 @@ module ApplicationHelper
   end
   def home
     if student_signed_in?
-      link_to "Home", student_welcome_path
+      link_to(student_welcome_path) do
+        "<i class='glyphicon glyphicon-home'></i>&nbsp;<span>Home</span>".html_safe
+      end
     elsif admin_signed_in?
-    link_to "Home" , list_teachers_path 
+    link_to(list_teachers_path) do 
+       "<i class='glyphicon glyphicon-home'></i>&nbsp;<span>Home</span>".html_safe
+    end
   elsif teacher_signed_in?
-    link_to "Home" , list_students_path 
+    link_to(list_students_path) do 
+       "<i class='glyphicon glyphicon-home'></i>&nbsp;<span>Home</span>".html_safe
+    end
     end
  
 end

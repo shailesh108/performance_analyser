@@ -82,11 +82,11 @@ class StudentsController < ApplicationController
   def list 
     
   if params[:query].blank?
-    if params[:name]
-      #byebug
+    if params[:name].present?
+     # byebug
        @students=Student.where(:standard_id=>params[:name][:id]).paginate(:per_page => 10, :page => params[:page])
        else
-    @students=Student.paginate(:per_page => 10, :page => params[:page])
+        @students=Student.paginate(:per_page => 10, :page => params[:page])
   end
   else
     @students = Student.search_by_standard_name(params[:query]).paginate(:per_page => 10, :page => params[:page])
