@@ -19,3 +19,5 @@ Standard.all.each do |std|
 		StandardSubject.create(standard_id:std.id,subject_id:sub.id)
 	end
 end
+
+Admin.create(email:"admin@gmail.com", password:"12345678")
