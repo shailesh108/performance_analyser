@@ -103,6 +103,13 @@
 										<i class="glyphicon glyphicon-book"></i>&nbsp;Test attended <span class="badge"> <%= @complete_tests.count%></span>
 									</a>
 								</li>
+								<li class="active">
+									<a href="#">
+										<%= social_share_button_tag("My Home Page", :url => "student_welcome_url") %>
+									</a>
+								</li>
+								
+								</li>
 								<li class="dropdown active">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 										<i class="glyphicon glyphicon-bell"></i>&nbsp;Up coming tests  <span class="badge"><%=@upcoming_tests.count%></span>
@@ -248,6 +255,7 @@
 														<td>Questions <span class="badge"><%= test.no_of_questions %></span></td>
 														<td><%= test.teacher.first_name %></td>
 														<td><%= link_to "Not attended","#",class: "btn btn-warning btn-xs".html_safe %></td>
+
 
 													</tr>
 													<% end %>

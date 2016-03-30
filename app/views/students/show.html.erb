@@ -17,6 +17,9 @@
 					<div class="profile-usertitle-name">
 						<%=show_student.first_name+" "+show_student.last_name%>
 					</div>
+
+										<%= social_share_button_tag("My Home Page", :url => "student_welcome_url") %>
+									
 					<div class="profile-usertitle-job">
 						Student of <span class="badge"><%=show_student.standard.name%> <sup>th</sup> </span>  Standard
 					</div>

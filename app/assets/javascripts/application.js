@@ -16,6 +16,8 @@
 //= require bootstrap-sprockets
 //= require jsapi
 //= require chartkick
+
 //= require_tree .
 //= require moment
 //= require bootstrap-datetimepicker
+//= require social-share-button

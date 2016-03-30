@@ -13,7 +13,7 @@ gem 'bootstrap3-datetimepicker-rails'
 gem 'momentjs-rails'
 gem 'pg_search'
 gem 'pry'
-
+gem 'social-share-button'
 gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
